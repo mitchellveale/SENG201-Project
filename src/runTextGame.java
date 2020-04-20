@@ -2,18 +2,14 @@
 import java.util.Scanner;  // Import the Scanner class
 
 public class runTextGame {
-
 	
-	public static void main(String[] args) {
-		
-		int gameLength = 0;
-		String farmerName = "x";
-		int farmType = 0;
-		String farmName;
-		
-		Scanner scan = new Scanner(System.in);  // Create a Scanner object
-		runTextGame game = new runTextGame();   // Create a Game
-		
+	Scanner scan = new Scanner(System.in);  // Create a Scanner object
+	int gameLength = 0;
+	String farmerName = "x";
+	int farmType = 0;
+	String farmName;
+	
+	public void setupGame() {
 		do {
 			System.out.println("Enter valid game length (Between 5-10 days): \n");
 			gameLength = scan.nextInt();  // Read user input
@@ -37,6 +33,7 @@ public class runTextGame {
 		}
 		while(farmType < 0 || farmType > 4); 
 		
+		
 		do {
 		System.out.println("Enter Farm Name: \n");
 		farmName = scan.nextLine();
@@ -44,16 +41,31 @@ public class runTextGame {
 		while(farmName.length()< 1);
 		
 		//Farm userFarm = new Farm(farmName, farmerName, farmType);
+	}
+
+	void play(){
 		
-		//start gameplay
-		
-		System.out.println("Day 1 begins! \n");
-		
+		System.out.println("Day x begins! \n");
 		System.out.println("Day : ");
 		System.out.println("Actions Remaining : ");
 		System.out.println("Bank Balance : ");
+		System.out.println("1 : Visit Store");
+		System.out.println("2 : Tend Crops");
+		System.out.println("3 : Feed Animals");
+		System.out.println("4 : Play with Animals");
+		System.out.println("5 : Harvest Crops");
+		System.out.println("6 : Tend to Farm Land" );
+		System.out.println("7 : Next Day\n");
+		System.out.println("Input the Number that corresponds to the action");
 		
+	}
+	
+	
+	public static void main(String[] args) {
 		
+		runTextGame game = new runTextGame();  
+		game.setupGame();
+		game.play();
 		
 	}
 	

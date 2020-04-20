@@ -1,3 +1,4 @@
+
 import java.util.Scanner;  // Import the Scanner class
 
 public class runTextGame {
@@ -28,17 +29,32 @@ public class runTextGame {
 		
 		
 		do {
-		System.out.println(" 1 : Crop-Master");
-		System.out.println(" 2 : animal_whisperer");
-		System.out.println(" 3 : money");
+		System.out.println(" 1 : Crop-Master");            // examples for now 
+		System.out.println(" 2 : animal-whisperer");
+		System.out.println(" 3 : Money");
 		System.out.println(" 4 : lucky \n");
 		farmType = scan.nextInt(); 
 		}
 		while(farmType < 0 || farmType > 4); 
 		
-		
+		do {
 		System.out.println("Enter Farm Name: \n");
 		farmName = scan.nextLine();
+		}
+		while(farmName.length()< 1);
+		
+		//Farm userFarm = new Farm(farmName, farmerName, farmType);
+		
+		//start gameplay
+		
+		System.out.println("Day 1 begins! \n");
+		
+		System.out.println("Day : ");
+		System.out.println("Actions Remaining : ");
+		System.out.println("Bank Balance : ");
+		
+		
+		
 	}
 	
 }

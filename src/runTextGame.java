@@ -9,7 +9,9 @@ public class runTextGame {
 	String farmerName;
 	int farmType = 0;
 	String farmName;
-	//Farm userFarm;
+	Farm userFarm;
+	int currentDay = 1;
+	int actions = 2;
 	
 	public void setupGame() {
 		
@@ -46,7 +48,7 @@ public class runTextGame {
 		}
 		while(farmName.length()< 1);
 		
-		// userFarm = new Farm(farmName, farmerName, farmType);
+		userFarm = new Farm(farmName, farmerName, farmType);
 	}
 
 	public void playMenu(){
@@ -54,10 +56,9 @@ public class runTextGame {
 		int doCommand = 0;
 		do {
 
-		System.out.println("Day x begins! \n");
-		System.out.println("Day : ");
-		System.out.println("Actions Remaining : ");
-		System.out.println("Bank Balance : ");
+		System.out.println("Day " + currentDay + "/" + gameLength + " begins! \n");
+		System.out.println("Actions Remaining : " + actions);
+		System.out.println("Bank Balance : $" + userFarm.getBank() +"\n");
 		System.out.println("1 : Visit Store");
 		System.out.println("2 : Tend Crops");
 		System.out.println("3 : Feed Animals");
@@ -65,7 +66,7 @@ public class runTextGame {
 		System.out.println("5 : Harvest Crops");
 		System.out.println("6 : Tend to Farm Land" );
 		System.out.println("7 : Next Day\n");
-		System.out.println("*** Input the number that corresponds to the action you would like to do ***");
+		System.out.println("*** Input the number that corresponds to the action you would like to do ***\n");
 		
 		doCommand= scan.nextInt();
 		}
@@ -99,7 +100,7 @@ public class runTextGame {
 	}
 	
 	void storeMenu() {
-		System.out.println("Welcome to the store!");
+		System.out.println("Welcome to the store!\n");
 	}
 	
 	

@@ -1,41 +1,31 @@
-public class Farm {
-    /**
-     * the name of the farm
-     */
-    protected String farmName;
-    /**
-     * the name of the farmer
-     */
-    //If we add farmer attributes later we should change this to a 'Farmer' class
-    protected String farmerName;
-    /**
-     * the type of farm
-     */
-    protected FarmType farmType;
+import java.util.ArrayList;
 
-    /**
-     * Instantiates the Farm class
-     * @param farmName the name of the farm
-     * @param farmerName the name of the farmer
-     * @param farmType  the farm type.
-     *                 An array of possible farm types can be obtained with {@link #farmTypes()}
-     */
-    public Farm(String farmName, String farmerName, FarmType farmType){
+public class Farm {
+	
+    String farmName;
+    String farmerName;
+    int farmType;
+    ArrayList cropList = new ArrayList();
+    ArrayList animalList = new ArrayList();
+    double bank = 0;
+    
+
+  
+    public Farm(String farmName, String farmerName, int farmType){
         this.farmName = farmName;
         this.farmerName = farmerName;
         this.farmType = farmType;
+        if (farmType == 3) {
+        	bank += 1000;
+        }
     }
+    
+    public double getBank() {
+    	return bank;
+    }
+    
+    
 
-    /**
-     * Used to declare all farm types
-     * @return An array of all farm types
-     */
-    public static FarmType[] farmTypes(){
-        return new FarmType[]{
-                new FarmType("Farm type 1"),
-                new FarmType("Farm type 2"),
-                new FarmType("Farm type 3"),
-                new FarmType("Farm type 4")
-        };
-    }
+
+
 }

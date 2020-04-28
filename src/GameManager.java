@@ -1,4 +1,4 @@
-public class Main {
+public class GameManager {
     public static void main(String[] args) {
         //We will probably want to default to using the gui when it is implemented
         boolean gui = false; // Make this default to true when the GUI has been implemented
@@ -10,7 +10,6 @@ public class Main {
             //Run the game with the GUI
             ;
         else
-            //Run the game in the command line
-            ;
+            TextGame.startTextGame();
     }
 }

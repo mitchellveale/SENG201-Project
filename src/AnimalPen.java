@@ -17,4 +17,8 @@ public class AnimalPen {
 		return capacity;
 	}
 	
+	public void upgradePen(int percentageIncrease) {
+		capacity = capacity * percentageIncrease;
+	}
+	
 }

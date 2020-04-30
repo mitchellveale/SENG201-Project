@@ -56,4 +56,15 @@ public enum Crop{
     public boolean doesFertilize() {
         return fertilizes;
     }
+
+    public String abilities() {
+        String ans = "";
+        if (healthBoost > 0)
+            ans += "Grants " + healthBoost + " health to all animals when harvested.\n";
+        if (environmentResistance)
+            ans += "Immune to environmental effects.\n";
+        if (fertilizes)
+            ans += "Fertilizes the field it was grown in when harvested";
+        return ans;
+    }
 }

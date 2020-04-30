@@ -1,5 +1,9 @@
 public class Farm {
     private static int gameLength;
+    private static int currentDay;
+
+    private static int bank;
+
     /**
      * the name of the farm
      */
@@ -25,5 +29,16 @@ public class Farm {
         Farm.farmName = farmName;
         Farm.farmerName = farmerName;
         Farm.farmType = farmType;
+
+        currentDay = 1;
+        bank = 1000;
+    }
+
+    public static void nextDay(){
+        currentDay++;
+        if (currentDay > gameLength) {
+            // FIXME: Add functionality for the end of the game
+        }
+        bank += farmType.getExtraCash();
     }
 }

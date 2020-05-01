@@ -24,7 +24,7 @@ public class Farm {
      * @param farmerName the name of the farmer
      * @param farmType  the farm type.
      */
-    public static void createFarm(int gameLength, String farmName, String farmerName, FarmType farmType){
+    public Farm(int gameLength, String farmName, String farmerName, FarmType farmType){
         Farm.gameLength = gameLength;
         Farm.farmName = farmName;
         Farm.farmerName = farmerName;
@@ -40,5 +40,17 @@ public class Farm {
             // FIXME: Add functionality for the end of the game
         }
         bank += farmType.getExtraCash();
+    }
+    
+    public int getCurrentDay() {
+    	return currentDay;
+    }
+    
+    public int getgameLength() {
+    	return gameLength;
+    }
+    
+    public int getBank() {
+    	return bank;
     }
 }

@@ -7,15 +7,15 @@ public enum FarmType {
     private final String name;
     private final String description;
     private final int extraCash;
-    private final double cropGrowthMultiplier;
+    private final double cropYieldMultiplier;
     private final double animalPenSizeMultiplier;
     private final double valueMultiplier;
 
-    FarmType(String name, String description, int extraCash, double cropGrowthMultiplier, double animalPenSizeMultiplier, double valueMultiplier){
+    FarmType(String name, String description, int extraCash, double cropYieldMultiplier, double animalPenSizeMultiplier, double valueMultiplier){
         this.name = name;
         this.description = description;
         this.extraCash = extraCash;
-        this.cropGrowthMultiplier = cropGrowthMultiplier;
+        this.cropYieldMultiplier = cropYieldMultiplier;
         this.animalPenSizeMultiplier = animalPenSizeMultiplier;
         this.valueMultiplier = valueMultiplier;
     }
@@ -32,8 +32,8 @@ public enum FarmType {
         return extraCash;
     }
 
-    public double getCropGrowthMultiplier() {
-        return cropGrowthMultiplier;
+    public double getCropYieldMultiplier() {
+        return cropYieldMultiplier;
     }
 
     public double getAnimalPenSizeMultiplier() {

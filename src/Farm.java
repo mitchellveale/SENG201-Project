@@ -1,25 +1,22 @@
 public class Farm {
+    private static int currentDay = 1;
+
+    /**
+     * the farmer's total money
+     */
+    public static int money = 1000;
+
+    private static CropField[] cropFields = new CropField[6];
+
     private static int gameLength;
-    private static int currentDay;
-
-    private static int bank;
-
-    /**
-     * the name of the farm
-     */
     private static String farmName;
-    /**
-     * the name of the farmer
-     */
     //If we add farmer attributes later we should change this to a 'Farmer' class
     private static String farmerName;
-    /**
-     * the type of farm
-     */
     private static FarmType farmType;
 
     /**
      * Instantiates the Farm class
+     * @param gameLength the length of the game in days
      * @param farmName the name of the farm
      * @param farmerName the name of the farmer
      * @param farmType  the farm type.
@@ -29,16 +26,30 @@ public class Farm {
         Farm.farmName = farmName;
         Farm.farmerName = farmerName;
         Farm.farmType = farmType;
-
-        currentDay = 1;
-        bank = 1000;
     }
 
+    /**
+     * Advances game to the next day by performing all end of day calculations
+     */
     public static void nextDay(){
         currentDay++;
         if (currentDay > gameLength) {
-            // FIXME: Add functionality for the end of the game
+            // TODO: Add functionality for the end of the game
         }
-        bank += farmType.getExtraCash();
+        money += farmType.getExtraCash();
+    }
+
+    /**
+     * @return the farm's type
+     */
+    public static FarmType getFarmType() {
+        return farmType;
+    }
+
+    /**
+     * @return true if the current day is the final day of the game else false
+     */
+    public boolean isFinalDay(){
+        return (currentDay == gameLength);
     }
 }

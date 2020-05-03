@@ -1,6 +1,9 @@
 
-public class Animal {
+public enum Animal {
 
+	COW ("Cow", 10, 10, 10, 10, 10),
+	PIG ("Pig", 10, 10, 10, 5, 2),
+	Chicken("Chicken", 10 , 10, 10, 5, 8);
 	
 	String name;
 	int happiness;
@@ -9,7 +12,7 @@ public class Animal {
 	int buyPrice;
 	int dailyIncome;
 	
-	public Animal(String newName, int newHappiness, int newHealthiness, int newCurrentCount, int newbuyPrice, int newDailyIncome) {
+	Animal(String newName, int newHappiness, int newHealthiness, int newCurrentCount, int newbuyPrice, int newDailyIncome) {
 		this.name = newName;
 		this.happiness = newHappiness;
 		this.healthiness = newHealthiness;
@@ -43,5 +46,6 @@ public class Animal {
 	}
 	
 	
-	}
+}
+
 

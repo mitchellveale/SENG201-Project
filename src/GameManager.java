@@ -7,9 +7,9 @@ public class GameManager {
             if (args[0].toLowerCase().equals("-gui") && args[1].toLowerCase().equals("false"))
                 gui = false;
         if (gui)
-            //Run the game with the GUI
+            //GUIGame.startGUIGame;
             ;
         else
-            TextGame.startTextGame();
+            TextGame.startGame();
     }
 }

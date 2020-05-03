@@ -14,6 +14,7 @@ public class Farm {
     private static String farmerName;
     private static FarmType farmType;
 
+
     /**
      * Instantiates the Farm class
      * @param gameLength the length of the game in days
@@ -21,7 +22,7 @@ public class Farm {
      * @param farmerName the name of the farmer
      * @param farmType  the farm type.
      */
-    public Farm(int gameLength, String farmName, String farmerName, FarmType farmType){
+    public static void createFarm(int gameLength, String farmName, String farmerName, FarmType farmType){
         Farm.gameLength = gameLength;
         Farm.farmName = farmName;
         Farm.farmerName = farmerName;
@@ -49,19 +50,16 @@ public class Farm {
     /**
      * @return true if the current day is the final day of the game else false
      */
-    public boolean isFinalDay(){
+    public static boolean isFinalDay(){
         return (currentDay == gameLength);
     }
     
-    public int getCurrentDay() {
+    public static int getCurrentDay() {
     	return currentDay;
     }
     
-    public int getgameLength() {
+    public static int getGameLength() {
     	return gameLength;
     }
-    
-    public int getBank() {
-    	return bank;
-    }
+
 }

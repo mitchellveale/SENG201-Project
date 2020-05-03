@@ -12,6 +12,8 @@ public class CropField {
     public void PlantCrop(Crop crop){
         plantedCrop = crop;
         resetMultipliers();
+        if (fertilized)
+            addYieldMultplier(1.5);
     }
 
     private void resetMultipliers(){
@@ -28,7 +30,10 @@ public class CropField {
     }
 
     public void grow(){
-        // ugh, its too late at night to think of all the math that this method requires
+        if (isMature())
+            return;
+        growth++;
+        amount += (plantedCrop.getBaseYield() * yieldMultiplier) / actualGrowTime();
     }
 
     public void harvest(){
@@ -43,4 +48,25 @@ public class CropField {
 
     }
 
+    public boolean isMature(){
+        return (growth >= actualGrowTime());
+    }
+
+    public double getGrowthPercent(){
+        return growth / actualGrowTime();
+    }
+
+    private int actualGrowTime()
+    {
+        return (int)Math.ceil(plantedCrop.getBaseGrowTime() / growthMultiplier);
+    }
+
+    public Crop getPlantedCrop() {
+        return plantedCrop;
+    }
+
+    public void fertilize(){
+        //This assumes that a check for if the field is empty is done elsewhere
+        fertilized = true;
+    }
 }

@@ -10,6 +10,8 @@ public class CropField {
     private boolean fertilized = false;
 
     public void PlantCrop(Crop crop){
+        // Assumes seed amount has been checked in calling method
+        crop.plant();
         plantedCrop = crop;
         resetMultipliers();
         if (fertilized)

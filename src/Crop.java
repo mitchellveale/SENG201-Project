@@ -13,6 +13,7 @@ public enum Crop{
     private final int healthBoost;
     private final boolean environmentResistance;
     private final boolean fertilizes;
+    private int seedAmount;
 
     Crop(String name, int buyPrice, int sellPrice, int baseYield, int baseGrowTime, int healthBoost, boolean environmentResistance, boolean fertilizes) {
         this.name = name;
@@ -23,6 +24,7 @@ public enum Crop{
         this.healthBoost = healthBoost;
         this.environmentResistance = environmentResistance;
         this.fertilizes = fertilizes;
+        seedAmount = 0;
     }
 
     public String getName() {
@@ -66,5 +68,25 @@ public enum Crop{
         if (fertilizes)
             ans += "Fertilizes the field it was grown in when harvested";
         return ans;
+    }
+
+    public void buy(){
+        Farm.money -= buyPrice;
+        seedAmount++;
+    }
+
+    public int getSeedAmount() {
+        return seedAmount;
+    }
+
+    public void buy(int amount){
+        if (amount > 0) {
+            Farm.money -= buyPrice * amount;
+            seedAmount += amount;
+        }
+    }
+
+    public void plant(){
+        seedAmount--;
     }
 }

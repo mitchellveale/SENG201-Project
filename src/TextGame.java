@@ -1,29 +1,27 @@
 import java.util.Scanner;  // Import the Scanner class
 import java.util.regex.Pattern;
 
-
 // TODO extremely stripped down text game that only takes perfect user input at the moment
-// the farm type doesnt have an effect on the farm yet
+// the farm type doesn't have an effect on the farm yet
 
 public class TextGame {
 
 	static Scanner scan = new Scanner(System.in);
-	//Farm userFarm = null;
 	
 	public static void setup() {
+		int gameLength;
+		do {
+			System.out.println("Enter desired game length (Must be between 5-10 days!): ");
+			gameLength = scan.nextInt();  
+		}
+		while(gameLength > 10 || gameLength < 5);
 		
-		System.out.println("Enter desired game length (5-10 days): ");
-		int gameLength = scan.nextInt();  // Read user input
+
 		System.out.println("Enter Farmer name: ");
 		String farmerName = scan.next();
+
 		System.out.println("Enter Farm name: ");
 		String farmName = scan.next();
-		/*
-		System.out.println("1 - Subsidised Farm");
-		System.out.println("2 - Fertile Farm");
-		System.out.println("3 - Big Farm");
-		System.out.println("4 - Organic Farm");
-		*/
 		FarmType[] farmTypes = FarmType.values();
 		for(int i=1;i<farmTypes.length + 1;i++) {
 			System.out.println(i + " - " + farmTypes[i-1].getName());
@@ -38,33 +36,75 @@ public class TextGame {
 		}else{
 			//input is not valid
 		}
-		/*
-		switch(farmChoice) {
-		
-		case 1:
-			userFarmType = FarmType.SUBSIDISED_FARM;
-			break;
-		case 2:
-			userFarmType = FarmType.FERTILE_LAND;
-		    break;
-		case 3:
-			userFarmType = FarmType.EXPANSIVE_LAND;
-			break;
-		case 4:
-			userFarmType = FarmType.ORGANIC;
-			break;
-		}
-		 */
 		Farm.createFarm(gameLength, farmName, farmerName, userFarmType);
 	    // Plays game now 	
 	}
+	
+	
 	public static void play() {
 		System.out.println("Welcome to day " + Farm.getCurrentDay() + " / " + Farm.getGameLength() + "!");
 		System.out.println("Bank: " + Farm.money);
 		System.out.println("Actions remaining: ");
-		store();
+		System.out.println("1 : Go to store");					// basically the main menu
+		System.out.println("2 : View crop status");
+		System.out.println("3 : View animal status");
+		System.out.println("4 : Tend to crops");
+		System.out.println("5 : Feed animals");
+		System.out.println("6 : Play with Animals");
+		System.out.println("7 : Harvest crops");
+		System.out.println("8 : Tend to farm land");
+		System.out.println("9 : Next Day");
+		System.out.println("\n Please enter the number that corresponds to the action you would like to perform!");
+		
+		int doNext = scan.nextInt();
+		
+		switch(doNext) {
+		
+		case 1:
+			//go to store
+			store();
+			break;
+		
+		case 2:
+			//view crop status
+			break;
+		
+		case 3:
+			//view animal status
+			break;
+			
+		case 4:
+			//tend to crops
+			break;
+			
+		case 5:
+			//feed animals
+			break;
+			
+		case 6:
+			//play with animals 
+			break;
+			
+		case 7:
+			// harvest crops
+			break;
+			
+		case 8:
+			// tend to farm land
+			break;
+			
+		case 9:
+			// next day
+			//Farm.nextDay();
+			//play(); ?
+			break;
+			
+		default:
+			System.out.println("That input is invalid");
+		}
 	}
 
+	
 	public static void store(){
 		boolean exit = false;
 		while (!exit) {

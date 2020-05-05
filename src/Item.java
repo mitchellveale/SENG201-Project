@@ -45,4 +45,8 @@ public enum Item {
             this.amount += amount;
         }
     }
+
+    public void use(){
+        amount--;
+    }
 }

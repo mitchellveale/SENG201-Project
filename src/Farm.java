@@ -6,13 +6,15 @@ public class Farm {
      */
     public static int money = 1000;
 
-    private static CropField[] cropFields = new CropField[6];
+    public static CropField[] cropFields = new CropField[6];
 
     private static int gameLength;
     private static String farmName;
     //If we add farmer attributes later we should change this to a 'Farmer' class
     private static String farmerName;
     private static FarmType farmType;
+
+    public static double farmCondition;
 
 
     /**
@@ -27,6 +29,7 @@ public class Farm {
         Farm.farmName = farmName;
         Farm.farmerName = farmerName;
         Farm.farmType = farmType;
+        farmCondition = 1;
     }
 
     /**
@@ -37,7 +40,12 @@ public class Farm {
         if (currentDay > gameLength) {
             // TODO: Add functionality for the end of the game
         }
+        for(CropField field : cropFields){
+            field.grow();
+        }
         money += farmType.getExtraCash();
+        farmCondition -= 0.2;
+        FarmerActions.resetActions();
     }
 
     /**

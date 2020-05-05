@@ -31,18 +31,23 @@ public class CropField {
         growthMultiplier += (amount - 1);
     }
 
+
     public void grow(){
-        if (isMature())
+        if (isMature() || plantedCrop == null)
             return;
         growth++;
-        amount += (plantedCrop.getBaseYield() * yieldMultiplier) / actualGrowTime();
+        amount += ((plantedCrop.getBaseYield() * yieldMultiplier) / actualGrowTime()) * (0.5 + (Farm.farmCondition / 2));
     }
 
     public void harvest(){
+        if(!isMature())
+            return;
         Farm.money += plantedCrop.getSellPrice() * amount;
 
         if (plantedCrop.getHealthBoost() > 0){
             // TODO: This requires animal to be finalised
+            // this is just to keep intellij happy
+            int t = 1;
         }
 
         fertilized = plantedCrop.doesFertilize();
@@ -55,7 +60,7 @@ public class CropField {
     }
 
     public double getGrowthPercent(){
-        return growth / actualGrowTime();
+        return (double) growth / actualGrowTime();
     }
 
     private int actualGrowTime()
@@ -66,6 +71,7 @@ public class CropField {
     public Crop getPlantedCrop() {
         return plantedCrop;
     }
+
 
     public void fertilize(){
         //This assumes that a check for if the field is empty is done elsewhere

@@ -9,36 +9,71 @@ public class TextGame {
 	static Scanner scan = new Scanner(System.in);
 	
 	public static void setup() {
-		int gameLength;
-		do {
+		int gameLength = 0;
+		boolean stop = false;
+		while(stop == false) {
 			System.out.println("Enter desired game length (Must be between 5-10 days!): ");
 			gameLength = scan.nextInt();  
+			if(gameLength <= 10 && gameLength >= 5) {
+				stop = true;
+			}
+			else {
+				System.out.println("Invalid Input, Try Again");
+			}
 		}
-		while(gameLength > 10 || gameLength < 5);
+
 		
-
-		System.out.println("Enter Farmer name: ");
-		String farmerName = scan.next();
-
-		System.out.println("Enter Farm name: ");
-		String farmName = scan.next();
-		FarmType[] farmTypes = FarmType.values();
-		for(int i=1;i<farmTypes.length + 1;i++) {
-			System.out.println(i + " - " + farmTypes[i-1].getName());
+	    stop = false;
+		String farmerName = null;
+		while(stop == false) {
+			System.out.println("Enter Farmer name (Must be 3-15 alphabetic characters only!): ");
+			farmerName = scan.next();
+			if(Pattern.matches("([a-zA-Z]{3,15})", farmerName)) {
+				stop = true;
+			}
+			else {
+				System.out.println("Invalid Input, Try Again");
+			}
 		}
-		System.out.println("Please enter the number corresponding to your choice: ");
-		int farmChoice = scan.nextInt();
+		
+		// requirements don't actually have a restriction on farm name, could remove?
+		stop = false;
+		String farmName = null;
+		while(stop == false) {
+			System.out.println("Enter Farm name: ");
+			farmName = scan.next();
+			if(Pattern.matches("([a-zA-Z]{3,15})", farmName)) {
+				stop = true;
+			}
+			else {
+				System.out.println("Invalid Input, Try Again");
+			}
+		}
+		
+		
+		stop = false;
 		FarmType userFarmType = null;
-
-		if (farmChoice < farmTypes.length && farmChoice > 0){
-			//input is valid
-			userFarmType = farmTypes[farmChoice-1];
-		}else{
-			//input is not valid
+		FarmType[] farmTypes = FarmType.values();
+		while(stop == false) {
+			for(int i=1;i<farmTypes.length + 1;i++) {
+				System.out.println(i + " - " + farmTypes[i-1].getName());
+			}
+			System.out.println("Please enter the number corresponding to your choice: ");
+			int farmChoice = scan.nextInt();
+			if (farmChoice < farmTypes.length && farmChoice > 0){
+				//input is valid
+				userFarmType = farmTypes[farmChoice-1];
+				stop = true; }
+			else {
+				System.out.println("Invalid Input, Try Again");
+			}
 		}
+		
+		
 		Farm.createFarm(gameLength, farmName, farmerName, userFarmType);
 	    // Plays game now 	
 	}
+	
 	
 	
 	public static void play() {
@@ -221,3 +256,4 @@ public class TextGame {
 	}
 
 }
+

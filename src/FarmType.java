@@ -1,8 +1,8 @@
 public enum FarmType {
-    SUBSIDISED_FARM ("Subsidised Farm", "Receive an extra $500 at the beginning of the game", 200, 1, 1, 1),
+    SUBSIDISED_FARM ("Subsidised Farm", "Receive an extra $200 at the beginning of each day", 200, 1, 1, 1),
     FERTILE_LAND ("Fertile Land", "Crops have 50% larger yields", 0, 1.5d, 1, 1),
     EXPANSIVE_LAND ("Expansive Land", "Animal pens have 100% more capacity", 0, 1, 2, 1),
-    ORGANIC ("Organic", "Animals generate / Crops sell for, 30% more", 0, 1, 1, 1.3);
+    ORGANIC ("Organic", "Animals and Crops sell for 30% more", 0, 1, 1, 1.3);
 
     private final String name;
     private final String description;

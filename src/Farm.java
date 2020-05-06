@@ -33,19 +33,6 @@ public class Farm {
         Farm.farmerName = farmerName;
         Farm.farmType = farmType;
         farmCondition = 1;
-        Farm.processFarmType();
-    }
-    
-    public static void processFarmType() {
-    	money += farmType.getExtraCash();
-    	// TODO need some help Farm.CropField.yieldMultiplier += farmType.getCropYieldMultiplier();
-    	cowPen.capacity *= farmType.getAnimalPenSizeMultiplier();
-    	chickenPen.capacity *= farmType.getAnimalPenSizeMultiplier();
-    	pigPen.capacity *= farmType.getAnimalPenSizeMultiplier();
-    	cowPen.holdingAnimal.dailyIncome *= farmType.getValueMultiplier();
-    	chickenPen.holdingAnimal.dailyIncome *= farmType.getValueMultiplier();
-    	pigPen.holdingAnimal.dailyIncome *= farmType.getValueMultiplier();
-    	// TODO need help again Farm.CropField.crop.sellPrice *= farmType.getValueMultiplier();
     }
 
     /**

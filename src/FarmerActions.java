@@ -29,6 +29,9 @@ public class FarmerActions {
 
     public static void playWithAnimals(){
         //TODO: ryan this is also for you
+    	Farm.cowPen.holdingAnimal.happiness += 10;
+    	Farm.chickenPen.holdingAnimal.happiness += 10;
+    	Farm.pigPen.holdingAnimal.happiness += 10;
     }
 
     public static void tendToFarm(){

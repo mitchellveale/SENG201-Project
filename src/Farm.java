@@ -7,6 +7,9 @@ public class Farm {
     public static int money = 1000;
 
     public static CropField[] cropFields = new CropField[6];
+    public  static AnimalPen cowPen = new AnimalPen(Animal.COW);
+    public  static AnimalPen chickenPen = new AnimalPen(Animal.Chicken);
+    public  static AnimalPen pigPen = new AnimalPen(Animal.PIG);
 
     private static int gameLength;
     private static String farmName;

@@ -106,6 +106,10 @@ public class TextGame {
 		
 		case 3:
 			//view animal status
+			System.out.println("Name, Count, Happiness, Healthiness, Daily Income\n");
+			System.out.println(Farm.cowPen);
+			System.out.println(Farm.chickenPen);
+			System.out.println(Farm.pigPen);
 			break;
 			
 		case 4:
@@ -118,6 +122,7 @@ public class TextGame {
 			
 		case 6:
 			//play with animals 
+			FarmerActions.playWithAnimals();
 			break;
 			
 		case 7:

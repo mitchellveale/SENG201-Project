@@ -9,6 +9,14 @@ public class AnimalPen {
 		this.holdingAnimal = newholdingAnimal;
 	}
 	
+	public String toString() {
+		return holdingAnimal.name + " " +
+			   holdingAnimal.CurrentCount + " " +
+			   holdingAnimal.happiness + " " +
+			   holdingAnimal.healthiness + " " +
+			   holdingAnimal.dailyIncome;
+	}
+	
 	public Animal getAnimal() {
 		return holdingAnimal;
     }

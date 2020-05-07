@@ -44,12 +44,17 @@ public class Farm {
     public static void nextDay(){
         currentDay++;
         if (currentDay > gameLength) {
+        	System.out.println("Score: ");
             // TODO: Add functionality for the end of the game
         }
-        for(CropField field : cropFields){
-            field.grow();
-        }
+        /** Just commented out so next day works in the meantime
+        *for(CropField field : cropFields){
+        *    field.grow();
+        }*/
         money += farmType.getExtraCash();
+        money += (cowPen.getAnimal().getdailyIncome() * cowPen.getAnimal().CurrentCount);
+        money += (chickenPen.getAnimal().getdailyIncome() * chickenPen.getAnimal().CurrentCount);
+        money += (pigPen.getAnimal().getdailyIncome() * pigPen.getAnimal().CurrentCount);
         farmCondition -= 0.2;
         FarmerActions.resetActions();
     }

@@ -1,8 +1,5 @@
-import java.util.Scanner;  // Import the Scanner class
+import java.util.Scanner;  
 import java.util.regex.Pattern;
-
-// TODO extremely stripped down text game that only takes perfect user input at the moment
-// the farm type doesn't have an effect on the farm yet
 
 public class TextGame {
 
@@ -60,7 +57,7 @@ public class TextGame {
 			}
 			System.out.println("Please enter the number corresponding to your choice: ");
 			int farmChoice = scan.nextInt();
-			if (farmChoice < farmTypes.length && farmChoice > 0){
+			if (farmChoice <= farmTypes.length && farmChoice > 0){
 				//input is valid
 				userFarmType = farmTypes[farmChoice-1];
 				stop = true; }
@@ -79,8 +76,8 @@ public class TextGame {
 	public static void play() {
 		System.out.println("Welcome to day " + Farm.getCurrentDay() + " / " + Farm.getGameLength() + "!");
 		System.out.println("Bank: " + Farm.money);
-		System.out.println("Actions remaining: ");
-		System.out.println("1 : Go to store");					// basically the main menu
+		System.out.println("Actions remaining: "+ FarmerActions.getRemainingActions());
+		System.out.println("1 : Go to store");					
 		System.out.println("2 : View crop status");
 		System.out.println("3 : View animal status");
 		System.out.println("4 : Tend to crops");
@@ -91,57 +88,71 @@ public class TextGame {
 		System.out.println("9 : Next Day");
 		System.out.println("\n Please enter the number that corresponds to the action you would like to perform!");
 		
-		int doNext = scan.nextInt();
+		String doNext = scan.next();
 		
 		switch(doNext) {
 		
-		case 1:
+		case "1":
 			//go to store
 			store();
+			play();
 			break;
 		
-		case 2:
+		case "2":
 			//view crop status
 			break;
 		
-		case 3:
+		case "3":
 			//view animal status
-			System.out.println("Name, Count, Happiness, Healthiness, Daily Income\n");
-			System.out.println(Farm.cowPen);
-			System.out.println(Farm.chickenPen);
-			System.out.println(Farm.pigPen);
+			viewAnimalStatus();
 			break;
 			
-		case 4:
+		case "4":
 			//tend to crops
 			break;
 			
-		case 5:
+		case "5":
 			//feed animals
 			break;
 			
-		case 6:
+		case "6":
 			//play with animals 
 			FarmerActions.playWithAnimals();
+			System.out.println("Animals recieved a happiness boost!\n");
+			play();
 			break;
 			
-		case 7:
+		case "7":
 			// harvest crops
 			break;
 			
-		case 8:
+		case "8":
 			// tend to farm land
 			break;
 			
-		case 9:
+		case "9":
 			// next day
-			//Farm.nextDay();
-			//play(); ?
+			Farm.nextDay();
+			play(); 
 			break;
 			
 		default:
-			System.out.println("That input is invalid");
+			System.out.println("That input is invalid, Try Again!");
+			play();
 		}
+	}
+	
+	public static void viewAnimalStatus() {
+		System.out.println("Name, Count, Happiness, Healthiness, Daily Income\n");
+		System.out.println(Farm.cowPen);
+		System.out.println(Farm.chickenPen);
+		System.out.println(Farm.pigPen);
+		System.out.println("1 : Go Back");
+		int doNext = scan.nextInt();
+		if(doNext == 1) {
+			play();
+		}
+		
 	}
 
 	

@@ -1,7 +1,7 @@
 public class FarmerActions {
     public static final int MAX_DAILY_ACTIONS = 2;
 
-    private static int remainingActions;
+    private static int remainingActions = MAX_DAILY_ACTIONS;
 
     public static void resetActions(){
         remainingActions = MAX_DAILY_ACTIONS;
@@ -28,10 +28,10 @@ public class FarmerActions {
     }
 
     public static void playWithAnimals(){
-        //TODO: ryan this is also for you
     	Farm.cowPen.holdingAnimal.happiness += 10;
     	Farm.chickenPen.holdingAnimal.happiness += 10;
     	Farm.pigPen.holdingAnimal.happiness += 10;
+    	remainingActions -= 1;
     }
 
     public static void tendToFarm(){

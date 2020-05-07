@@ -1,9 +1,9 @@
 
 public enum Animal {
 
-	COW ("Cow", 70, 10, 10, 10, 10),
-	PIG ("Pig", 70, 10, 10, 5, 2),
-	Chicken("Chicken", 70 , 10, 10, 5, 8);
+	COW ("Cow", 70, 10, 10, 10, 5),
+	PIG ("Pig", 70, 10, 10, 5, 1),
+	Chicken("Chicken", 70 , 10, 10, 5, 3);
 	
 	String name;
 	int happiness;
@@ -41,7 +41,7 @@ public enum Animal {
 		return buyPrice;
 	}
 	
-	public int getdailyIncome() {
+	public double getdailyIncome() {
 		return dailyIncome;
 	}
 	

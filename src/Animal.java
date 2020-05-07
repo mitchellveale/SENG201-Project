@@ -10,7 +10,7 @@ public enum Animal {
 	int healthiness;
 	int CurrentCount;
 	int buyPrice;
-	int dailyIncome;
+	double dailyIncome;
 	
 	Animal(String newName, int newHappiness, int newHealthiness, int newCurrentCount, int newbuyPrice, int newDailyIncome) {
 		this.name = newName;
@@ -18,7 +18,7 @@ public enum Animal {
 		this.healthiness = newHealthiness;
 		this.CurrentCount = newCurrentCount;
 		this.buyPrice = newbuyPrice;
-		this.dailyIncome = newDailyIncome;
+		this.dailyIncome = newDailyIncome * Farm.getFarmType().getValueMultiplier();
 	}
 		
 	public String getName() {

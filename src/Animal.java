@@ -1,16 +1,16 @@
 
 public enum Animal {
 
-	COW ("Cow", 70, 10, 10, 10, 5),
-	PIG ("Pig", 70, 10, 10, 5, 1),
-	Chicken("Chicken", 70 , 10, 10, 5, 3);
+	COW ("Cow", 7, 7, 10, 15, 5),
+	PIG ("Pig", 7, 7, 10, 5, 1),
+	Chicken("Chicken", 7 , 7, 10, 6, 3);
 	
 	String name;
 	int happiness;
 	int healthiness;
 	int CurrentCount;
 	int buyPrice;
-	double dailyIncome;
+	double baseDailyIncome;
 	
 	Animal(String newName, int newHappiness, int newHealthiness, int newCurrentCount, int newbuyPrice, int newDailyIncome) {
 		this.name = newName;
@@ -18,7 +18,7 @@ public enum Animal {
 		this.healthiness = newHealthiness;
 		this.CurrentCount = newCurrentCount;
 		this.buyPrice = newbuyPrice;
-		this.dailyIncome = newDailyIncome * Farm.getFarmType().getValueMultiplier();
+		this.baseDailyIncome = newDailyIncome * Farm.getFarmType().getValueMultiplier();
 	}
 		
 	public String getName() {
@@ -42,10 +42,9 @@ public enum Animal {
 	}
 	
 	public double getdailyIncome() {
-		return dailyIncome;
+		return baseDailyIncome * ((happiness+healthiness)/10);
 	}
 	
 	
 }
-
 

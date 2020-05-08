@@ -28,9 +28,9 @@ public class FarmerActions {
     }
 
     public static void playWithAnimals(){
-    	Farm.cowPen.holdingAnimal.happiness += 10;
-    	Farm.chickenPen.holdingAnimal.happiness += 10;
-    	Farm.pigPen.holdingAnimal.happiness += 10;
+    	Farm.cowPen.holdingAnimal.happiness += 1;
+    	Farm.chickenPen.holdingAnimal.happiness += 1;
+    	Farm.pigPen.holdingAnimal.happiness += 1;
     	remainingActions -= 1;
     }
 

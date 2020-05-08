@@ -74,8 +74,8 @@ public class TextGame {
 	
 	
 	public static void play() {
-		System.out.println("Welcome to day " + Farm.getCurrentDay() + " / " + Farm.getGameLength() + "!");
-		System.out.println("Bank: " + Farm.money);
+		System.out.println("Day " + Farm.getCurrentDay() + " / " + Farm.getGameLength() + "!");
+		System.out.println("Bank: $" + Farm.money);
 		System.out.println("Actions remaining: "+ FarmerActions.getRemainingActions());
 		System.out.println("1 : Go to store");					
 		System.out.println("2 : View crop status");
@@ -117,8 +117,7 @@ public class TextGame {
 			
 		case "6":
 			//play with animals 
-			FarmerActions.playWithAnimals();
-			System.out.println("Animals recieved a happiness boost!\n");
+			playAnimals();
 			play();
 			break;
 			
@@ -142,16 +141,30 @@ public class TextGame {
 		}
 	}
 	
+	public static void playAnimals() {
+		if(FarmerActions.getRemainingActions() == 0) {
+			System.out.println("NO Actions Remaining!");
+		}
+		else if(Farm.cowPen.holdingAnimal.happiness == 10) { // As all animals have the same happiness
+			System.out.println("Animals Have full happiness");
+		}
+		else {
+			FarmerActions.playWithAnimals();
+			System.out.println("Animals recieved a happiness boost!\n");
+		}
+	}
+	
 	public static void viewAnimalStatus() {
 		System.out.println("Name, Count, Happiness, Healthiness, Daily Income\n");
 		System.out.println(Farm.cowPen);
-		System.out.println(Farm.chickenPen);
 		System.out.println(Farm.pigPen);
+		System.out.println(Farm.chickenPen);
 		System.out.println("1 : Go Back");
-		int doNext = scan.nextInt();
-		if(doNext == 1) {
+		String doNext = scan.next();
+		if(doNext == "1") {
 			play();
 		}
+		else {play();}
 		
 	}
 
@@ -272,4 +285,3 @@ public class TextGame {
 	}
 
 }
-

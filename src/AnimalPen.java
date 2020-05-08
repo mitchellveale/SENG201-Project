@@ -13,11 +13,11 @@ public class AnimalPen {
 	}
 	
 	public String toString() {
-		return holdingAnimal.name + " " +
-			   holdingAnimal.CurrentCount + " " +
-			   holdingAnimal.happiness + " " +
-			   holdingAnimal.healthiness + " " +
-			   holdingAnimal.dailyIncome;
+		return holdingAnimal.name + " (" +
+			   holdingAnimal.CurrentCount + ")  " +
+			   holdingAnimal.happiness + "/10  " +
+			   holdingAnimal.healthiness + "/10  $" +
+			   holdingAnimal.getdailyIncome();
 	}
 	
 	public Animal getAnimal() {

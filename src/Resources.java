@@ -12,6 +12,8 @@ public class Resources {
     public final ImageIcon setupBackground;
     public final ImageIcon borderImage;
     public final ImageIcon testBackgroundImage;
+    public final ImageIcon textFieldBackground;
+    public final ImageIcon beginButtonBackground;
 
     public Resources(){
         Font newFont;
@@ -27,6 +29,8 @@ public class Resources {
         setupBackground = new ImageIcon(scaledImage("res/Setup Background.png"));
         borderImage = new ImageIcon(scaledImage("res/Border.png"));
         testBackgroundImage = new ImageIcon(scaledImage("res/Test Background.png"));
+        textFieldBackground = new ImageIcon(scaledImage("res/TextFieldBackground.png"));
+        beginButtonBackground = new ImageIcon((scaledImage("res/Begin Button Background.png")));
     }
 
     private Image scaledImage(String path){

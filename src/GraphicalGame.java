@@ -4,6 +4,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.Hashtable;
+import java.util.Set;
 import javax.imageio.ImageIO;
 
 public class GraphicalGame {
@@ -43,6 +44,12 @@ public class GraphicalGame {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
         frame.setResizable(false);
+    }
+
+    public static void begin(){
+        SetupScreen.getPanel().setVisible(false);
+        frame.getContentPane().remove(SetupScreen.getPanel());
+        // TODO: create the main panel
     }
 
     public static Font sizedFont(float size){

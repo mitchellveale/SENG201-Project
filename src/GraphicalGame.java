@@ -1,15 +1,9 @@
 import javax.swing.*;
-import java.awt.image.BufferedImage;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
-import java.util.Hashtable;
-import java.util.Set;
-import javax.imageio.ImageIO;
 
 public class GraphicalGame {
 
-    private static String windowTitle = "Shitty farm game";
+    private static final String windowTitle = "Shitty farm game";
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
     private static int width;
@@ -28,9 +22,14 @@ public class GraphicalGame {
         resources = new Resources();
 
         initializeFrame();
+        initializePanels();
 
-        SetupScreen.createSetupScreen();
-        frame.getContentPane().add(SetupScreen.getPanel());
+        // frame.getContentPane().add(SetupScreen.getPanel());
+
+        // TESTING
+        Farm.createFarm(7, "Bob's Farm", "Bob", FarmType.SUBSIDISED_FARM);
+        frame.getContentPane().add(MainScreen.getPanel());
+        MainScreen.update();
 
         frame.setVisible(true);
 
@@ -46,10 +45,16 @@ public class GraphicalGame {
         frame.setResizable(false);
     }
 
+    private static void initializePanels(){
+        SetupScreen.createSetupScreen();
+        MainScreen.createMainScreen();
+    }
+
     public static void begin(){
         SetupScreen.getPanel().setVisible(false);
         frame.getContentPane().remove(SetupScreen.getPanel());
-        // TODO: create the main panel
+
+        frame.getContentPane().add(MainScreen.getPanel());
     }
 
     public static Font sizedFont(float size){
@@ -62,6 +67,10 @@ public class GraphicalGame {
 
     public static float scaled(float value){
         return (float)(scaled((int) value));
+    }
+
+    public static Rectangle scaled(int x, int y, int width, int height){
+        return new Rectangle(scaled(x), scaled(y), scaled(width), scaled(height));
     }
 
     public static void centerBounds(Component component, int x, int y, int width, int height){

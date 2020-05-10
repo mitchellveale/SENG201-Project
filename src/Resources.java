@@ -11,9 +11,20 @@ public class Resources {
 
     public final ImageIcon setupBackground;
     public final ImageIcon borderImage;
-    public final ImageIcon testBackgroundImage;
+    public final ImageIcon farmBackground;
     public final ImageIcon textFieldBackground;
     public final ImageIcon beginButtonBackground;
+    public final ImageIcon farmLandscape;
+    public final ImageIcon farmhouse;
+    public final ImageIcon barn;
+    public final ImageIcon pathTracks;
+    public final ImageIcon store;
+    public final ImageIcon fertilizedCropField;
+    public final ImageIcon unfertilizedCropField;
+    public final ImageIcon cowPen;
+    public final ImageIcon chickenPen;
+    public final ImageIcon pigPen;
+
 
     public Resources(){
         Font newFont;
@@ -28,9 +39,20 @@ public class Resources {
         font = newFont;
         setupBackground = new ImageIcon(scaledImage("res/Setup Background.png"));
         borderImage = new ImageIcon(scaledImage("res/Border.png"));
-        testBackgroundImage = new ImageIcon(scaledImage("res/Test Background.png"));
+        farmBackground = new ImageIcon(scaledImage("res/Farm Background.png"));
         textFieldBackground = new ImageIcon(scaledImage("res/TextFieldBackground.png"));
         beginButtonBackground = new ImageIcon((scaledImage("res/Begin Button Background.png")));
+        farmLandscape = new ImageIcon((scaledImage("res/Farm Landscape.png")));
+        farmhouse = new ImageIcon((scaledImage("res/Farm House.png")));
+        barn = new ImageIcon((scaledImage("res/Barn.png")));
+        pathTracks = new ImageIcon((scaledImage("res/Path Tracks.png")));
+        store = new ImageIcon((scaledImage("res/Store.png")));
+        fertilizedCropField = new ImageIcon((scaledImage("res/Fertilized Crop Field.png")));
+        unfertilizedCropField = new ImageIcon((scaledImage("res/Unfertilized Crop Field.png")));
+        cowPen = new ImageIcon((scaledImage("res/Cow Pen.png")));
+        chickenPen = new ImageIcon((scaledImage("res/Chicken Pen.png")));
+        pigPen = new ImageIcon((scaledImage("res/Pig Pen.png")));
+
     }
 
     private Image scaledImage(String path){

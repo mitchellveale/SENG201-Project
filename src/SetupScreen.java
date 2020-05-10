@@ -27,7 +27,6 @@ public class SetupScreen{
         title.setHorizontalAlignment(SwingConstants.CENTER);
         title.setFont(GraphicalGame.sizedFont(GraphicalGame.scaled(40f)));
         title.setForeground(primaryColor);
-        //GraphicalGame.centerBounds(title, GraphicalGame.getWidth() / 2, GraphicalGame.scaled(120), GraphicalGame.scaled(600), GraphicalGame.scaled(40));
         title.setBounds(GraphicalGame.scaled(100), GraphicalGame.scaled(100), GraphicalGame.scaled(600), GraphicalGame.scaled(40));
         panel.add(title);
 
@@ -205,7 +204,7 @@ public class SetupScreen{
         JLabel background = new JLabel(GraphicalGame.resources.setupBackground);
         background.setBounds(0, 0, GraphicalGame.getWidth(), GraphicalGame.getHeight());
         panel.add(background);
-        JLabel test = new JLabel(GraphicalGame.resources.testBackgroundImage);
+        JLabel test = new JLabel(GraphicalGame.resources.farmBackground);
         test.setBounds(0, 0, GraphicalGame.getWidth(), GraphicalGame.getHeight());
         panel.add(test);
     }

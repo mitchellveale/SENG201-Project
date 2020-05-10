@@ -62,12 +62,16 @@ public enum Crop{
     public String abilities() {
         String ans = "";
         if (healthBoost > 0)
-            ans += "Grants " + healthBoost + " health to all animals when harvested.\n";
-        if (environmentResistance)
-            ans += "Immune to environmental effects.\n";
+            ans += "Grants " + healthBoost + " health to all animals when harvested. ";
+        //if (environmentResistance)
+        //    ans += "Immune to environmental effects.\n  ";
         if (fertilizes)
-            ans += "Fertilizes the field it was grown in when harvested";
+            ans += "Fertilizes the field it was grown in when harvested. ";
         return ans;
+    }
+
+    public String description(){
+        return "Growth time: " + baseGrowTime + " day(s)\n    Sale amount (before modifiers): $" + sellPrice * baseYield;
     }
 
     public void buy(){

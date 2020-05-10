@@ -204,6 +204,9 @@ public class TextGame {
 			int i;
 			for (i=1; i < crops.length + 1; i++){
 				System.out.println(i + " - Purchase " + crops[i-1].getName() + " seeds for $" + crops[i-1].getBuyPrice() + " (You have " + crops[i-1].getSeedAmount() + ")");
+				if (crops[i-1].abilities() != "")
+					System.out.println("    " + crops[i-1].abilities());
+				System.out.println("    " + crops[i-1].description());
 			}
 			System.out.println(i + " - Back");
 

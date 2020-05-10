@@ -25,6 +25,14 @@ public class Resources {
     public final ImageIcon chickenPen;
     public final ImageIcon pigPen;
 
+    // Crop images
+    public final ImageIcon wheat;
+    public final ImageIcon corn;
+    public final ImageIcon soybean;
+    public final ImageIcon beet;
+    public final ImageIcon kale;
+    public final ImageIcon potato;
+
 
     public Resources(){
         Font newFont;
@@ -52,7 +60,12 @@ public class Resources {
         cowPen = new ImageIcon((scaledImage("res/Cow Pen.png")));
         chickenPen = new ImageIcon((scaledImage("res/Chicken Pen.png")));
         pigPen = new ImageIcon((scaledImage("res/Pig Pen.png")));
-
+        wheat = new ImageIcon((scaledImage("res/Wheat.png")));
+        corn = new ImageIcon((scaledImage("res/Corn.png")));
+        soybean = new ImageIcon((scaledImage("res/Soybeans.png")));
+        beet = new ImageIcon((scaledImage("res/Beets.png")));
+        kale = new ImageIcon((scaledImage("res/Kale.png")));
+        potato = new ImageIcon((scaledImage("res/Potatos.png")));
     }
 
     private Image scaledImage(String path){

@@ -44,8 +44,9 @@ public class Farm {
     public static void nextDay(){
         currentDay++;
         if (currentDay > gameLength) {
-        	System.out.println("Score: ");
+        	System.out.println("Score: " + getScore());
             // TODO: Add functionality for the end of the game
+        	System.exit(0);
         }
         /** Just commented out so next day works in the meantime
         *for(CropField field : cropFields){
@@ -79,6 +80,10 @@ public class Farm {
     
     public static int getGameLength() {
     	return gameLength;
+    }
+    
+    public static int getScore() {
+    	return (Farm.money);	// for now 
     }
 
 }

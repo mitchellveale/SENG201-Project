@@ -85,7 +85,10 @@ public class TextGame {
 		System.out.println("6 : Play with Animals");
 		System.out.println("7 : Harvest crops");
 		System.out.println("8 : Tend to farm land");
-		System.out.println("9 : Next Day");
+		if(Farm.isFinalDay()) {
+		System.out.println("9 : Finish Game");}
+		else {System.out.println("9 : Next Day");}
+			
 		System.out.println("\n Please enter the number that corresponds to the action you would like to perform!");
 		
 		String doNext = scan.next();
@@ -95,7 +98,6 @@ public class TextGame {
 		case "1":
 			//go to store
 			store();
-			play();
 			break;
 		
 		case "2":
@@ -113,12 +115,12 @@ public class TextGame {
 			
 		case "5":
 			//feed animals
+			
 			break;
 			
 		case "6":
 			//play with animals 
 			playAnimals();
-			play();
 			break;
 			
 		case "7":
@@ -131,14 +133,14 @@ public class TextGame {
 			
 		case "9":
 			// next day
-			Farm.nextDay();
-			play(); 
+			Farm.nextDay(); 
 			break;
 			
 		default:
 			System.out.println("That input is invalid, Try Again!");
-			play();
+			break;
 		}
+		play();
 	}
 	
 	public static void playAnimals() {
@@ -159,13 +161,9 @@ public class TextGame {
 		System.out.println(Farm.cowPen);
 		System.out.println(Farm.pigPen);
 		System.out.println(Farm.chickenPen);
-		System.out.println("1 : Go Back");
+		System.out.println("Press any character to go back to main menu");
 		String doNext = scan.next();
-		if(doNext == "1") {
-			play();
-		}
-		else {play();}
-		
+
 	}
 
 	
@@ -175,7 +173,8 @@ public class TextGame {
 			System.out.println("What would you like to buy?");
 			System.out.println("1 - Seeds");
 			System.out.println("2 - Special Items");
-			System.out.println("3 - Exit");
+			System.out.println("3 - Animals");
+			System.out.println("4 - Exit");
 			String choice = scan.next();
 			switch (choice.trim()){
 				case "1":
@@ -185,6 +184,9 @@ public class TextGame {
 					buyItems();
 					break;
 				case "3":
+					buyAnimals();
+					break;
+				case "4":
 					exit = true;
 					break;
 				default:
@@ -272,6 +274,53 @@ public class TextGame {
 				System.out.println("That input is not valid");
 			}
 		}
+	}
+	
+	public static void buyAnimals() {
+		Animal[] animals = Animal.values();
+		boolean back = false;
+		while(back == false) {
+			System.out.println("Your Money: $" + Farm.money);
+			int i;
+			for (i=1; i < animals.length + 1; i++){
+				System.out.println(i + " - Purchase " + animals[i-1].getName() + " for $" + 
+			    animals[i-1].getbuyPrice() + " (You have " + animals[i-1].getCurrentCount() + ")");
+				System.out.println("You can hold a maximum of " + Farm.cowPen.getCapacity()); // As all animals pens have the same capacity
+		}
+			
+		System.out.println(i + " - Back");
+		String input = scan.next();
+		int choice = (Pattern.matches("[0-9]+", input)) ? Integer.parseInt(input) : 0;
+
+		if (choice == i)
+			back = true;
+		else if (choice > 0 && choice < animals.length + 1){
+			System.out.println("How many would you like?");
+			input = scan.next();
+
+			// if input is valid parse it otherwise make amount 0
+			int amount = (Pattern.matches("0*[1-9][0-9]*", input)) ? Integer.parseInt(input) : 0;
+			if(amount + animals[choice-1].CurrentCount > Farm.cowPen.getCapacity()) {
+				System.out.println("This would exceed the max capacity!");
+			}
+
+			else if (Farm.money >= (animals[choice-1].getbuyPrice() * amount)){
+				if (amount > 0) {
+					animals[choice - 1].CurrentCount += amount;
+					System.out.println("You purchased " + amount + " " + animals[choice-1].getName());
+					Farm.money -= animals[choice-1].getbuyPrice() * amount;
+				}
+			}else{
+				System.out.println("You don't have enough money for that");
+				System.out.println("To buy " + amount + " " + animals[choice-1].getName() + " you need $" + animals[choice-1].getbuyPrice() * amount + " but you only have $" + Farm.money);
+			}
+			if (amount <= 0)
+				System.out.println("That input is invalid");
+		}else{
+			System.out.println("That input is not valid");
+		}
+		
+	}
 	}
 	
 	

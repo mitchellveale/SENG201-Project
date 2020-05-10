@@ -24,7 +24,7 @@ public class GraphicalGame {
         initializeFrame();
         initializePanels();
 
-        // frame.getContentPane().add(SetupScreen.getPanel());
+        //frame.getContentPane().add(SetupScreen.getPanel());
 
         // TESTING
         Farm.createFarm(7, "Bob's Farm", "Bob", FarmType.SUBSIDISED_FARM);
@@ -55,6 +55,7 @@ public class GraphicalGame {
         frame.getContentPane().remove(SetupScreen.getPanel());
 
         frame.getContentPane().add(MainScreen.getPanel());
+        MainScreen.update();
     }
 
     public static Font sizedFont(float size){

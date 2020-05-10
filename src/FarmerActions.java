@@ -12,6 +12,7 @@ public class FarmerActions {
             if (field.getPlantedCrop() != null)
                 field.harvest();
         }
+        remainingActions--;
     }
 
     public static void tendToCrop(CropField c, Boolean growthCompound){
@@ -21,6 +22,7 @@ public class FarmerActions {
         }else{
             c.addGrowthMultiplier(2);
         }
+        remainingActions--;
     }
 
     public static void tendToAnimals(){
@@ -38,6 +40,7 @@ public class FarmerActions {
         Farm.farmCondition += 0.5;
         if (Farm.farmCondition > 1)
             Farm.farmCondition = 1;
+        remainingActions--;
     }
 
     public static int getRemainingActions() {

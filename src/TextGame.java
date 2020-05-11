@@ -204,6 +204,7 @@ public class TextGame {
 			switch(doNext) {
 			case "1":
 				//plant crop
+				plantCrop(o);
 				break;
 			case "2":
 				//spread fertilizer
@@ -235,6 +236,36 @@ public class TextGame {
 		}
 		}
 	}
+	
+	public static void plantCrop(CropField o) {
+		Crop[] crops = Crop.values();
+		boolean back = false;
+		while(!back) {
+			for (int i=1; i < crops.length + 1; i++){
+				System.out.println(i +" - "+ crops[i-1].getName()+ " (You have " + crops[i-1].getSeedAmount() + ")");
+		}
+		System.out.println(crops.length+1 + " - back");
+		System.out.println("What would you like to plant?");
+		String doNext = scan.next();
+		int seedType = (Pattern.matches("[0-9]+", doNext)) ? Integer.parseInt(doNext) : 0;
+		if(seedType == 7) {
+			back = true;
+		}
+		else if (seedType < 7 && seedType>0) {
+			if(crops[seedType-1].getSeedAmount()>0) {
+			o.PlantCrop(crops[seedType-1]);
+			back = true;
+			}
+			else {
+				System.out.println("You dont have enough seeds - Buy some from the store!");
+			}
+		}
+		else {
+			System.out.println("Invalid input - Try again");
+		}
+		
+		
+	}}
 
 	
 	public static void store(){

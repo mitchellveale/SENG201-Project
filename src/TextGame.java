@@ -10,7 +10,8 @@ public class TextGame {
 		boolean stop = false;
 		while(stop == false) {
 			System.out.println("Enter desired game length (Must be between 5-10 days!): ");
-			gameLength = scan.nextInt();  
+			String input = scan.nextLine(); 
+			gameLength = (Pattern.matches("[0-9]+", input)) ? Integer.parseInt(input) : 0;
 			if(gameLength <= 10 && gameLength >= 5) {
 				stop = true;
 			}
@@ -24,7 +25,7 @@ public class TextGame {
 		String farmerName = null;
 		while(stop == false) {
 			System.out.println("Enter Farmer name (Must be 3-15 alphabetic characters only!): ");
-			farmerName = scan.next();
+			farmerName = scan.nextLine();
 			if(Pattern.matches("([a-zA-Z]{3,15})", farmerName)) {
 				stop = true;
 			}
@@ -38,7 +39,7 @@ public class TextGame {
 		String farmName = null;
 		while(stop == false) {
 			System.out.println("Enter Farm name: ");
-			farmName = scan.next();
+			farmName = scan.nextLine();
 			if(Pattern.matches("([a-zA-Z]{3,15})", farmName)) {
 				stop = true;
 			}
@@ -56,7 +57,8 @@ public class TextGame {
 				System.out.println(i + " - " + farmTypes[i-1].getName());
 			}
 			System.out.println("Please enter the number corresponding to your choice: ");
-			int farmChoice = scan.nextInt();
+			String input = scan.nextLine();
+			int farmChoice = (Pattern.matches("[0-9]+", input)) ? Integer.parseInt(input) : 0;
 			if (farmChoice <= farmTypes.length && farmChoice > 0){
 				//input is valid
 				userFarmType = farmTypes[farmChoice-1];
@@ -102,6 +104,7 @@ public class TextGame {
 		
 		case "2":
 			//view crop status
+			viewCropStatus();
 			break;
 		
 		case "3":
@@ -163,7 +166,74 @@ public class TextGame {
 		System.out.println(Farm.chickenPen);
 		System.out.println("Press any character to go back to main menu");
 		String doNext = scan.next();
-
+	}
+	
+	public static void viewCropStatus() {
+		boolean exit = false;
+		while(!exit) {
+		for(int i = 1; i <= Farm.cropFields.length;i++) {
+			System.out.println(i +" - Crop Field #" + i);
+			System.out.println(Farm.cropFields[i-1]);
+		}
+		System.out.println(Farm.cropFields.length +1 + " - back");
+		String doNext = scan.next();
+		int cropNumber = (Pattern.matches("[0-9]+", doNext)) ? Integer.parseInt(doNext) : 0;
+		if(cropNumber == 7) {
+			exit = true;
+		}
+		else if (cropNumber < 7 && cropNumber>0) {
+			cropOptions(Farm.cropFields[cropNumber-1]);
+		}
+		else {
+			System.out.println("Invalid input - Try again");
+		}
+		
+		
+		}
+	}
+	
+	public static void cropOptions(CropField o) {
+		boolean stop = false;
+		while(!stop) {
+		System.out.println(o);
+		if(o.getPlantedCrop()==null) {
+			System.out.println("1 - Plant Crop");
+			System.out.println("2 - Spread Fertilizer");
+			System.out.println("3 - Back");
+			String doNext = scan.next();
+			switch(doNext) {
+			case "1":
+				//plant crop
+				break;
+			case "2":
+				//spread fertilizer
+				break;
+			case "3":
+				//back
+				stop = true;
+				break;
+			default:
+				System.out.println("Invalid input - Try again");
+			}
+			
+		}
+		else {
+			System.out.println("1 - Tend to crop");
+			System.out.println("2 - Back");
+			String doNext = scan.next();
+			switch(doNext) {
+			case "1":
+				// tend to crop
+				break;
+			case "2":
+				//back
+				stop = true;
+				break;
+			default:
+				System.out.println("Invalid input - Try again");
+		}
+		}
+		}
 	}
 
 	

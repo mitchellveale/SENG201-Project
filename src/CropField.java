@@ -77,4 +77,14 @@ public class CropField {
         //This assumes that a check for if the field is empty is done elsewhere
         fertilized = true;
     }
+    
+    public String toString() {
+    	if(plantedCrop == null) {
+    		return "Currently planted: " + plantedCrop + "\nFertilized: " + fertilized;
+    	}
+    	else {
+    		return "Currently planted: " + plantedCrop + "\n Fertilized: " + fertilized
+    				+ "\n Maturity "+ getGrowthPercent();
+    	}
+    }
 }

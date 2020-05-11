@@ -36,6 +36,9 @@ public class Farm {
         cowPen = new AnimalPen(Animal.COW);
         chickenPen = new AnimalPen(Animal.Chicken);
         pigPen = new AnimalPen(Animal.PIG);
+        for(int i=0;i<=cropFields.length-1;i++) {
+        	cropFields[i] = new CropField();
+        }
     }
 
     /**

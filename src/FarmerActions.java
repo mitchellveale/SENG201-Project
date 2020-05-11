@@ -1,7 +1,7 @@
 public class FarmerActions {
     public static final int MAX_DAILY_ACTIONS = 2;
 
-    private static int remainingActions = MAX_DAILY_ACTIONS;
+    public static int remainingActions = MAX_DAILY_ACTIONS;
 
     public static void resetActions(){
         remainingActions = MAX_DAILY_ACTIONS;

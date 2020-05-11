@@ -90,15 +90,16 @@ public class CropField {
     public void fertilize(){
         //This assumes that a check for if the field is empty is done elsewhere
         fertilized = true;
+        FarmerActions.remainingActions -= 1;
     }
     
     public String toString() {
     	if(plantedCrop == null) {
-    		return "Currently planted: " + plantedCrop + "\nFertilized: " + fertilized;
+    		return "Currently planted: " + plantedCrop + "\nFertilized: " + fertilized+"\n";
     	}
     	else {
     		return "Currently planted: " + plantedCrop + "\n Fertilized: " + fertilized
-    				+ "\n Maturity "+ getGrowthPercent();
+    				+ "\n Maturity "+ getGrowthPercent()+"\n";
     	}
     }
 }

@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MainScreen {
 
@@ -8,6 +10,9 @@ public class MainScreen {
     private static JLabel moneyLabel;
     private static JLabel actionsLabel;
     private static JLabel dayLabel;
+
+    private static JLabel[] cropFieldButtonBackgrounds;
+    private static JLabel[] cropIcons;
 
     public static void createMainScreen(){
         panel = new JPanel();
@@ -63,18 +68,25 @@ public class MainScreen {
 
         // Crop Fields
         JButton[] cropFieldButtons = new JButton[6];
-        JLabel[] cropFieldButtonBackgrounds = new JLabel[6];
+        cropFieldButtonBackgrounds = new JLabel[6];
+        cropIcons = new JLabel[6];
         for(int i = 0; i < 2; i++){
             for(int j = 0; j < 3; j++){
                 JButton cropFieldButton = newImageButton();
                 cropFieldButton.setBounds(GraphicalGame.scaled(45 + (j * 110), 369 + (i * 96), 132, 101));
+                JLabel cropIcon = buttonBackground(cropFieldButton, GraphicalGame.resources.wheat);
+                cropIcon.setVisible(false);
                 JLabel cropFieldButtonBackground = buttonBackground(cropFieldButton, GraphicalGame.resources.unfertilizedCropField);
                 cropFieldButtons[j + (3 * i)] = cropFieldButton;
+                cropIcons[j + (3 * i)] = cropIcon;
                 cropFieldButtonBackgrounds[j + (3 * i)] = cropFieldButtonBackground;
             }
         }
         for (JButton button : cropFieldButtons){
             panel.add(button);
+        }
+        for (JLabel label : cropIcons){
+            panel.add(label);
         }
         for (JLabel label : cropFieldButtonBackgrounds){
             panel.add(label);
@@ -111,6 +123,21 @@ public class MainScreen {
         JLabel farmLandscape = new JLabel(GraphicalGame.resources.farmLandscape);
         farmLandscape.setBounds(0, 0, GraphicalGame.getWidth(), GraphicalGame.getHeight());
         panel.add(farmLandscape);
+
+
+        for(int i = 0; i < 6; i++){
+            int finalI = i;
+            cropFieldButtons[i].addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (panel != GraphicalGame.getActivePanel())
+                        return;
+                    MediumPanel newPanel = new MediumPanel(panel, "Crop Field " + (finalI + 1));
+                    newPanel.designateAsCropFieldPanel(finalI);
+                    GraphicalGame.addPanel(newPanel, panel);
+                }
+            });
+        }
     }
 
     private static JButton newImageButton(){
@@ -132,6 +159,52 @@ public class MainScreen {
         moneyLabel.setText("" + Farm.money);
         actionsLabel.setText("" + FarmerActions.getRemainingActions());
         dayLabel.setText("Day " + Farm.getCurrentDay() + "/" + Farm.getGameLength());
+
+
+    }
+
+    public static void updateImages(){
+        for (int i = 0; i < 6; i++){
+            if (Farm.cropFields[i].getPlantedCrop() == null){
+                cropIcons[i].setVisible(false);
+            } else{
+                switch (Farm.cropFields[i].getPlantedCrop()){
+                    case WHEAT:
+                        cropIcons[i].setIcon(GraphicalGame.resources.wheat);
+                        cropIcons[i].setVisible(true);
+                        break;
+                    case CORN:
+                        cropIcons[i].setIcon(GraphicalGame.resources.corn);
+                        cropIcons[i].setVisible(true);
+                        break;
+                    case BEET:
+                        cropIcons[i].setIcon(GraphicalGame.resources.beet);
+                        cropIcons[i].setVisible(true);
+                        break;
+                    case SOYBEAN:
+                        cropIcons[i].setIcon(GraphicalGame.resources.soybean);
+                        cropIcons[i].setVisible(true);
+                        break;
+                    case KALE:
+                        cropIcons[i].setIcon(GraphicalGame.resources.kale);
+                        cropIcons[i].setVisible(true);
+                        break;
+                    case POTATO:
+                        cropIcons[i].setIcon(GraphicalGame.resources.potato);
+                        cropIcons[i].setVisible(true);
+                        break;
+                    default:
+                        cropIcons[i].setVisible(false);
+                        break;
+                }
+            }
+
+
+            if (Farm.cropFields[i].isFertilized())
+                cropFieldButtonBackgrounds[i].setIcon(GraphicalGame.resources.fertilizedCropField);
+            else
+                cropFieldButtonBackgrounds[i].setIcon(GraphicalGame.resources.unfertilizedCropField);
+        }
     }
 
     public static JPanel getPanel() {

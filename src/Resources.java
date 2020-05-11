@@ -33,6 +33,11 @@ public class Resources {
     public final ImageIcon kale;
     public final ImageIcon potato;
 
+    //Colors
+    public final Color primaryColor;
+    public final Color secondaryColor;
+    public final Color tertiaryColor;
+
 
     public Resources(){
         Font newFont;
@@ -66,6 +71,10 @@ public class Resources {
         beet = new ImageIcon((scaledImage("res/Beets.png")));
         kale = new ImageIcon((scaledImage("res/Kale.png")));
         potato = new ImageIcon((scaledImage("res/Potatos.png")));
+
+        primaryColor = new Color(151, 111, 41);
+        secondaryColor = new Color(114, 72, 8);
+        tertiaryColor = new Color(255, 183, 61);
     }
 
     private Image scaledImage(String path){

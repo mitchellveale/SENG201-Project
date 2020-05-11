@@ -71,7 +71,7 @@ public enum Crop{
     }
 
     public String description(){
-        return "Growth time: " + baseGrowTime + " day(s)\n    Sale amount (before modifiers): $" + sellPrice * baseYield;
+        return "Grows in " + baseGrowTime + " day(s)\n    Sells for $" + sellPrice * baseYield;
     }
 
     public void buy(){

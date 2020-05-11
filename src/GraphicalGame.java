@@ -11,8 +11,11 @@ public class GraphicalGame {
     private static double scale;
 
     private static JFrame frame;
+    private static JLayeredPane pane;
 
     public static Resources resources;
+
+    private static JPanel activePanel;
 
     public static void startGame(double scale){
         GraphicalGame.scale = scale;
@@ -24,12 +27,15 @@ public class GraphicalGame {
         initializeFrame();
         initializePanels();
 
-        //frame.getContentPane().add(SetupScreen.getPanel());
+        //pane.add(SetupScreen.getPanel());
+        //activePanel = SetupScreen.getPanel();
 
         // TESTING
         Farm.createFarm(7, "Bob's Farm", "Bob", FarmType.SUBSIDISED_FARM);
-        frame.getContentPane().add(MainScreen.getPanel());
+        pane.add(MainScreen.getPanel());
+        pane.moveToBack(MainScreen.getPanel());
         MainScreen.update();
+        activePanel = MainScreen.getPanel();
 
         frame.setVisible(true);
 
@@ -42,6 +48,10 @@ public class GraphicalGame {
         frame.setBounds(0, 0, width + insets.left + insets.right, height + insets.top + insets.bottom);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
+        pane = new JLayeredPane();
+        pane.setBounds(0, 0, width, height);
+        pane.setLayout(null);
+        frame.add(pane);
         frame.setResizable(false);
     }
 
@@ -51,11 +61,12 @@ public class GraphicalGame {
     }
 
     public static void begin(){
-        SetupScreen.getPanel().setVisible(false);
-        frame.getContentPane().remove(SetupScreen.getPanel());
+        pane.remove(SetupScreen.getPanel());
 
-        frame.getContentPane().add(MainScreen.getPanel());
+        pane.add(MainScreen.getPanel());
+        pane.moveToBack(MainScreen.getPanel());
         MainScreen.update();
+        setActivePanel(MainScreen.getPanel());
     }
 
     public static Font sizedFont(float size){
@@ -80,11 +91,31 @@ public class GraphicalGame {
         component.setBounds(newx, newy, width, height);
     }
 
+    public static void deletePanel(JPanel panel, JPanel newActive){
+        panel.setVisible(false);
+        pane.remove(panel);
+        setActivePanel(newActive);
+    }
+
+    public static void addPanel(JPanel panel, JPanel previousPanel){
+        pane.add(panel);
+        pane.moveToFront(panel);
+        setActivePanel(panel);
+    }
+
     public static int getWidth() {
         return width;
     }
 
     public static int getHeight() {
         return height;
+    }
+
+    public static JPanel getActivePanel() {
+        return activePanel;
+    }
+
+    public static void setActivePanel(JPanel activePanel) {
+        GraphicalGame.activePanel = activePanel;
     }
 }

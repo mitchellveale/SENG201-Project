@@ -5,10 +5,10 @@ public enum Item {
     GROWTH_COMPOUND ("Growth Compound", "Increases a crop's growing speed by 100%", 200),
     HAY ("Hay", "Increases all animal healthiness by 30", 100),
     LOTTO_TICKET ("Lotto Ticket", "Wanna try your luck?", 500);
-    protected final String name;
-    protected final String description;
-    protected final int price;
-    protected int amount;
+    private final String name;
+    private final String description;
+    private final int price;
+    private int amount;
 
 
     Item(String name, String description, int price) {

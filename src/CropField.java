@@ -42,7 +42,7 @@ public class CropField {
     public void harvest(){
         if(!isMature())
             return;
-        Farm.money += plantedCrop.getSellPrice() * amount;
+        Farm.money += (int)(plantedCrop.getSellPrice() * amount);
 
         if (plantedCrop.getHealthBoost() > 0){
             // TODO: This requires animal to be finalised
@@ -53,6 +53,12 @@ public class CropField {
         fertilized = plantedCrop.doesFertilize();
         plantedCrop = null;
 
+    }
+
+    public int harvestValue(){
+        if (!isMature() || plantedCrop == null)
+            return 0;
+        return (int)(plantedCrop.getSellPrice() * amount);
     }
 
     public boolean isMature(){
@@ -66,6 +72,14 @@ public class CropField {
     private int actualGrowTime()
     {
         return (int)Math.ceil(plantedCrop.getBaseGrowTime() / growthMultiplier);
+    }
+
+    public int getRemainingGrowTime(){
+        return (actualGrowTime() - growth);
+    }
+
+    public boolean isFertilized() {
+        return fertilized;
     }
 
     public Crop getPlantedCrop() {

@@ -48,13 +48,11 @@ public class Farm {
         currentDay++;
         if (currentDay > gameLength) {
         	System.out.println("Score: " + getScore());
-            // TODO: Add functionality for the end of the game
         	System.exit(0);
         }
-        /** Just commented out so next day works in the meantime
-        *for(CropField field : cropFields){
-        *    field.grow();
-        }*/
+        for(CropField field : cropFields){
+            field.grow();
+        }
         money += farmType.getExtraCash();
         money += (cowPen.getAnimal().getdailyIncome() * cowPen.getAnimal().CurrentCount);
         money += (chickenPen.getAnimal().getdailyIncome() * chickenPen.getAnimal().CurrentCount);

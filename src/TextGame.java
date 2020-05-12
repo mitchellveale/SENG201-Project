@@ -78,18 +78,18 @@ public class TextGame {
 	public static void play() {
 		System.out.println("Day " + Farm.getCurrentDay() + " / " + Farm.getGameLength() + "!");
 		System.out.println("Bank: $" + Farm.money);
+		System.out.println("Farm Condition: "+Farm.farmCondition);
 		System.out.println("Actions remaining: "+ FarmerActions.getRemainingActions());
 		System.out.println("1 : Go to store");					
-		System.out.println("2 : View crop status");
+		System.out.println("2 : Manage Crops");
 		System.out.println("3 : View animal status");
-		System.out.println("4 : Tend to crops");
-		System.out.println("5 : Feed animals");
-		System.out.println("6 : Play with Animals");
-		System.out.println("7 : Harvest crops");
-		System.out.println("8 : Tend to farm land");
+		System.out.println("4 : Feed animals");
+		System.out.println("5 : Play with Animals");
+		System.out.println("6 : Harvest crops");
+		System.out.println("7 : Tend to farm land");
 		if(Farm.isFinalDay()) {
-		System.out.println("9 : Finish Game");}
-		else {System.out.println("9 : Next Day");}
+		System.out.println("8 : Finish Game");}
+		else {System.out.println("8 : Next Day");}
 			
 		System.out.println("\n Please enter the number that corresponds to the action you would like to perform!");
 		
@@ -113,37 +113,68 @@ public class TextGame {
 			break;
 			
 		case "4":
-			//tend to crops
-			break;
-			
-		case "5":
 			//feed animals
 			
 			break;
 			
-		case "6":
+		case "5":
 			//play with animals 
 			playAnimals();
 			break;
 			
-		case "7":
+		case "6":
 			// harvest crops
+			harvestCrops();
+			break;
+			
+		case "7":
+			// tend to farm land
+			if(FarmerActions.getRemainingActions()>0) {
+			FarmerActions.tendToFarm();
+			System.out.println("Farm Condition Increased!\n");}
+			else {System.out.println("No remaining Actions!\n");}
 			break;
 			
 		case "8":
-			// tend to farm land
-			break;
-			
-		case "9":
 			// next day
 			Farm.nextDay(); 
 			break;
 			
 		default:
-			System.out.println("That input is invalid, Try Again!");
+			System.out.println("That input is invalid, Try Again!\n");
 			break;
 		}
 		play();
+	}
+	
+	public static void harvestCrops() {
+		boolean back = false;
+		while(!back) {
+			System.out.println("Crops ready for harvest:\n");
+			for(int i=0;i <= Farm.cropFields.length-1;i++) {
+				if(Farm.cropFields[i].isMature()) {
+					System.out.println(Farm.cropFields[i]);
+				}
+			}
+			System.out.println("1 - Harvest all");
+			System.out.println("2 - Back");
+			String doNext = scan.next();
+			switch(doNext) {
+			case "1":
+				//Harvest all
+				int before = Farm.money;
+				FarmerActions.harvestCrops();
+				int after = Farm.money;
+				System.out.println("You made $" + (after-before));
+				break;
+			case "2":
+				back = true;
+				break;
+			default:
+				System.out.println("Invalid input - Try again");
+			}
+			
+		}
 	}
 	
 	public static void playAnimals() {
@@ -198,7 +229,7 @@ public class TextGame {
 		System.out.println(o);
 		if(o.getPlantedCrop()==null) {
 			System.out.println("1 - Plant Crop");
-			System.out.println("2 - Spread Fertilizer");
+			System.out.println("2 - Spread Fertilizer (You have " + Item.FERTILIZER.getAmount()+")");
 			System.out.println("3 - Back");
 			String doNext = scan.next();
 			switch(doNext) {
@@ -208,6 +239,7 @@ public class TextGame {
 				break;
 			case "2":
 				//spread fertilizer
+				spreadFert(o);
 				break;
 			case "3":
 				//back
@@ -225,6 +257,7 @@ public class TextGame {
 			switch(doNext) {
 			case "1":
 				// tend to crop
+				tendCrop(o);
 				break;
 			case "2":
 				//back
@@ -234,6 +267,52 @@ public class TextGame {
 				System.out.println("Invalid input - Try again");
 		}
 		}
+		}
+	}
+	
+	public static void tendCrop(CropField o) {
+		boolean exit = false;
+		while(!exit) {
+			System.out.println("1 - Water crop");
+			System.out.println("2 - Use Growth Compound");
+			System.out.println("3 - Back");
+			String doNext = scan.next();
+			switch(doNext) {
+			case "1":
+				//water crop
+				if(FarmerActions.remainingActions>0) {
+				FarmerActions.tendToCrop(o,false);
+				System.out.println("Crop was watered!\n");}
+				else {
+					System.out.println("No remaining actions!");
+				}
+				break;
+			case "2":
+				//Growth compound
+				if(FarmerActions.remainingActions>0) {
+				if(Item.GROWTH_COMPOUND.getAmount()>0) {
+					FarmerActions.tendToCrop(o,true);
+					System.out.println("Growth compound was applied");
+				}
+				else {System.out.println("You don't have enough");}}
+				else {System.out.println("No remaining actions!");}
+				break;
+			case "3":
+				exit = true;
+				break;
+			default:
+				System.out.println("Invalid input - Try again");
+			}
+		}
+	}
+	
+	public static void spreadFert(CropField o) {
+		if(Item.FERTILIZER.getAmount()>0) {
+			o.fertilize();
+			Item.FERTILIZER.use();
+		}
+		else {
+			System.out.println("You don't have enough");
 		}
 	}
 	

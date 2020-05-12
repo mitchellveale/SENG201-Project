@@ -37,6 +37,7 @@ public class Resources {
     public final Color primaryColor;
     public final Color secondaryColor;
     public final Color tertiaryColor;
+    public final Color quaternaryColor;
 
 
     public Resources(){
@@ -75,6 +76,7 @@ public class Resources {
         primaryColor = new Color(151, 111, 41);
         secondaryColor = new Color(114, 72, 8);
         tertiaryColor = new Color(255, 183, 61);
+        quaternaryColor = new Color(148, 97, 20);
     }
 
     private Image scaledImage(String path){
@@ -82,7 +84,7 @@ public class Resources {
         try {
             bufferedImage = ImageIO.read(new File(path));
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Something went wrong when scaling required images");
         }
         return bufferedImage.getScaledInstance(GraphicalGame.scaled(bufferedImage.getWidth()),GraphicalGame.scaled(bufferedImage.getHeight()), Image.SCALE_SMOOTH);
     }

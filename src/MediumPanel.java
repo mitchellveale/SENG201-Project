@@ -82,7 +82,7 @@ public class MediumPanel extends JPanel{
         JButton plantCropButton = new JButton("Plant Crop");
         JButton fertilizeButton = new JButton("Fertilize");
         JButton harvestButton = new JButton(("Harvest Crops"));
-        JButton tendToCropsButton = new JButton("Tend to crops");
+        JButton tendToCropButton = new JButton("Tend to crops");
 
         // needed for referring to this object in action listener overrides
         JPanel thisPanel = this;
@@ -100,17 +100,42 @@ public class MediumPanel extends JPanel{
                 fertilizeButton.setBounds(GraphicalGame.scaled(165, 222, 151, 30));
                 add(plantCropButton);
                 add(fertilizeButton);
+            }else{
+                tendToCropButton.setBounds(GraphicalGame.scaled(15, 222, 141, 30));
+                harvestButton.setBounds(GraphicalGame.scaled(165, 222, 151, 30));
+                add(tendToCropButton);
+                add(harvestButton);
             }
         }
 
         add(backButton);
 
+        // Tend to crops button listener
+        tendToCropButton.addActionListener(e -> {
+            if (thisPanel != GraphicalGame.getActivePanel())
+                return;
+            SmallPanel newPanel = new SmallPanel(thisPanel, "Tend to crop");
+            newPanel.designateAsTendToCropPanel(cropField);
+            GraphicalGame.addPanel(newPanel, thisPanel);
+        });
 
-        // Plant crop listener
+        // Harvest Crops button listener
+        harvestButton.addActionListener(e -> {
+            if (thisPanel != GraphicalGame.getActivePanel())
+                return;
+            SmallPanel newPanel = new SmallPanel(thisPanel, "Harvest crops");
+            newPanel.designateAsHarvestCropsPanel(cropField);
+            GraphicalGame.addPanel(newPanel, thisPanel);
+        });
+
+        // Plant crop button listener
         plantCropButton.addActionListener(e -> {
             if (thisPanel != GraphicalGame.getActivePanel())
                 return;
             // Create A large panel and assign it to plant seeds
+            LargePanel newPanel = new LargePanel(this, "Plant crop");
+            newPanel.designateAsPlantPanel(cropField);
+            GraphicalGame.addPanel(newPanel, this);
         });
 
         // Fertilize button listener
@@ -121,12 +146,119 @@ public class MediumPanel extends JPanel{
             MediumPanel newPanel = new MediumPanel(previousPanel, titleLabel.getText());
             newPanel.designateAsCropFieldPanel(cropField);
             GraphicalGame.addPanel(newPanel, previousPanel);
-            GraphicalGame.deletePanel(this, newPanel);
+            GraphicalGame.deletePanel(thisPanel, newPanel);
             MainScreen.updateImages();
         });
 
         // Back button listener
         backButton.addActionListener(e -> {
+            if (thisPanel != GraphicalGame.getActivePanel())
+                return;
+            GraphicalGame.deletePanel(thisPanel, previousPanel);
+        });
+    }
+
+    public void designateAsStorePanel(){
+        JButton buySeedsButton = new JButton("Buy seeds");
+        JButton buyItemsButton = new JButton("Buy items");
+        JButton buyAnimalsButton = new JButton("Buy animals");
+        JButton exitButton = new JButton("Exit");
+
+        buySeedsButton.setBounds(GraphicalGame.scaled(43, 62, 334, 40));
+        buyItemsButton.setBounds(GraphicalGame.scaled(43, 110, 334, 40));
+        buyAnimalsButton.setBounds(GraphicalGame.scaled(43, 158, 334, 40));
+        exitButton.setBounds(GraphicalGame.scaled(43, 206, 334, 40));
+
+        add(buySeedsButton);
+        add(buyItemsButton);
+        add(buyAnimalsButton);
+        add(exitButton);
+
+        JPanel thisPanel = this;
+
+        // Buy seeds button listener
+        buySeedsButton.addActionListener(e -> {
+            if (thisPanel != GraphicalGame.getActivePanel())
+                return;
+            LargePanel newPanel = new LargePanel(thisPanel, "Buy seeds");
+            newPanel.designateAsBuySeedsPanel();
+            GraphicalGame.addPanel(newPanel, thisPanel);
+        });
+
+        //Buy items button listener
+        buyItemsButton.addActionListener(e -> {
+            if (thisPanel != GraphicalGame.getActivePanel())
+                return;
+            LargePanel newPanel = new LargePanel(thisPanel, "Buy items");
+            newPanel.designateAsBuyItemsPanel();
+            GraphicalGame.addPanel(newPanel, thisPanel);
+        });
+
+        // Buy animals button listener
+        buyAnimalsButton.addActionListener(e -> {
+            if (thisPanel != GraphicalGame.getActivePanel())
+                return;
+            MediumPanel newPanel = new MediumPanel(thisPanel, "Buy animals");
+            newPanel.designateAsBuyAnimalsPanel();
+            GraphicalGame.addPanel(newPanel, thisPanel);
+        });
+
+
+        // Exit button listener
+        exitButton.addActionListener(e -> {
+            if (thisPanel != GraphicalGame.getActivePanel())
+                return;
+            GraphicalGame.deletePanel(thisPanel, previousPanel);
+        });
+    }
+
+    public void designateAsBuyAnimalsPanel(){
+        JButton buyCowsButton = new JButton("Buy cows");
+        JButton buyPigsButton = new JButton("Buy pigs");
+        JButton buyChickensButton = new JButton("Buy chickens");
+        JButton exitButton = new JButton("Exit");
+
+        buyCowsButton.setBounds(GraphicalGame.scaled(43, 62, 334, 40));
+        buyPigsButton.setBounds(GraphicalGame.scaled(43, 110, 334, 40));
+        buyChickensButton.setBounds(GraphicalGame.scaled(43, 158, 334, 40));
+        exitButton.setBounds(GraphicalGame.scaled(43, 206, 334, 40));
+
+        add(buyCowsButton);
+        add(buyPigsButton);
+        add(buyChickensButton);
+        add(exitButton);
+
+        JPanel thisPanel = this;
+
+        // Buy cow listener
+        buyCowsButton.addActionListener(e -> {
+            if (thisPanel != GraphicalGame.getActivePanel())
+                return;
+            SmallPanel newPanel = new SmallPanel(thisPanel, "Buy cows");
+            newPanel.designateAsBuyAnimalsPanel(Farm.cowPen);
+            GraphicalGame.addPanel(newPanel, thisPanel);
+        });
+
+        // Buy pig listener
+        buyPigsButton.addActionListener(e -> {
+            if (thisPanel != GraphicalGame.getActivePanel())
+                return;
+            SmallPanel newPanel = new SmallPanel(thisPanel, "Buy pigs");
+            newPanel.designateAsBuyAnimalsPanel(Farm.pigPen);
+            GraphicalGame.addPanel(newPanel, thisPanel);
+        });
+
+        // Buy chicken listener
+        buyChickensButton.addActionListener(e -> {
+            if (thisPanel != GraphicalGame.getActivePanel())
+                return;
+            SmallPanel newPanel = new SmallPanel(thisPanel, "Buy chickens");
+            newPanel.designateAsBuyAnimalsPanel(Farm.chickenPen);
+            GraphicalGame.addPanel(newPanel, thisPanel);
+        });
+
+        // Exit button listener
+        exitButton.addActionListener(e -> {
             if (thisPanel != GraphicalGame.getActivePanel())
                 return;
             GraphicalGame.deletePanel(thisPanel, previousPanel);

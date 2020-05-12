@@ -56,12 +56,14 @@ public class CropField {
     }
 
     public int harvestValue(){
-        if (!isMature() || plantedCrop == null)
+        if (plantedCrop == null || !isMature())
             return 0;
         return (int)(plantedCrop.getSellPrice() * amount);
     }
 
     public boolean isMature(){
+        if (plantedCrop == null)
+            return false;
         return (growth >= actualGrowTime());
     }
 
@@ -90,6 +92,7 @@ public class CropField {
     public void fertilize(){
         //This assumes that a check for if the field is empty is done elsewhere
         fertilized = true;
+        Item.FERTILIZER.use();
     }
     
     public String toString() {

@@ -127,17 +127,21 @@ public class MainScreen {
 
         for(int i = 0; i < 6; i++){
             int finalI = i;
-            cropFieldButtons[i].addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    if (panel != GraphicalGame.getActivePanel())
-                        return;
-                    MediumPanel newPanel = new MediumPanel(panel, "Crop Field " + (finalI + 1));
-                    newPanel.designateAsCropFieldPanel(finalI);
-                    GraphicalGame.addPanel(newPanel, panel);
-                }
+            cropFieldButtons[i].addActionListener(e -> {
+                if (panel != GraphicalGame.getActivePanel())
+                    return;
+                MediumPanel newPanel = new MediumPanel(panel, "Crop Field " + (finalI + 1));
+                newPanel.designateAsCropFieldPanel(finalI);
+                GraphicalGame.addPanel(newPanel, panel);
             });
         }
+
+        // Store action listener
+        storeButton.addActionListener(e -> {
+            MediumPanel newPanel = new MediumPanel(panel, "Store");
+            newPanel.designateAsStorePanel();
+            GraphicalGame.addPanel(newPanel, panel);
+        });
     }
 
     private static JButton newImageButton(){

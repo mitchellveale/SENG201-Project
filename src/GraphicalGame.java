@@ -70,7 +70,8 @@ public class GraphicalGame {
     }
 
     public static Font sizedFont(float size){
-        return resources.font.deriveFont(size);
+        // I screwed up when making the panels, this was the easiest way to fix it
+        return resources.font.deriveFont(scaled(size) / 1.69f);
     }
 
     public static int scaled(int value){

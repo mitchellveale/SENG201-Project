@@ -81,16 +81,15 @@ public class TextGame {
 		System.out.println("Farm Condition: "+Farm.farmCondition);
 		System.out.println("Actions remaining: "+ FarmerActions.getRemainingActions());
 		System.out.println("1 : Go to store");					
-		System.out.println("2 : View crop status");
+		System.out.println("2 : Manage Crops");
 		System.out.println("3 : View animal status");
-		System.out.println("4 : Tend to crops");
-		System.out.println("5 : Feed animals");
-		System.out.println("6 : Play with Animals");
-		System.out.println("7 : Harvest crops");
-		System.out.println("8 : Tend to farm land");
+		System.out.println("4 : Feed animals");
+		System.out.println("5 : Play with Animals");
+		System.out.println("6 : Harvest crops");
+		System.out.println("7 : Tend to farm land");
 		if(Farm.isFinalDay()) {
-		System.out.println("9 : Finish Game");}
-		else {System.out.println("9 : Next Day");}
+		System.out.println("8 : Finish Game");}
+		else {System.out.println("8 : Next Day");}
 			
 		System.out.println("\n Please enter the number that corresponds to the action you would like to perform!");
 		
@@ -114,24 +113,21 @@ public class TextGame {
 			break;
 			
 		case "4":
-			//tend to crops
-			break;
-			
-		case "5":
 			//feed animals
 			
 			break;
 			
-		case "6":
+		case "5":
 			//play with animals 
 			playAnimals();
 			break;
 			
-		case "7":
+		case "6":
 			// harvest crops
+			harvestCrops();
 			break;
 			
-		case "8":
+		case "7":
 			// tend to farm land
 			if(FarmerActions.getRemainingActions()>0) {
 			FarmerActions.tendToFarm();
@@ -139,7 +135,7 @@ public class TextGame {
 			else {System.out.println("No remaining Actions!\n");}
 			break;
 			
-		case "9":
+		case "8":
 			// next day
 			Farm.nextDay(); 
 			break;
@@ -149,6 +145,36 @@ public class TextGame {
 			break;
 		}
 		play();
+	}
+	
+	public static void harvestCrops() {
+		boolean back = false;
+		while(!back) {
+			System.out.println("Crops ready for harvest:\n");
+			for(int i=0;i <= Farm.cropFields.length-1;i++) {
+				if(Farm.cropFields[i].isMature()) {
+					System.out.println(Farm.cropFields[i]);
+				}
+			}
+			System.out.println("1 - Harvest all");
+			System.out.println("2 - Back");
+			String doNext = scan.next();
+			switch(doNext) {
+			case "1":
+				//Harvest all
+				int before = Farm.money;
+				FarmerActions.harvestCrops();
+				int after = Farm.money;
+				System.out.println("You made $" + (after-before));
+				break;
+			case "2":
+				back = true;
+				break;
+			default:
+				System.out.println("Invalid input - Try again");
+			}
+			
+		}
 	}
 	
 	public static void playAnimals() {

@@ -62,7 +62,9 @@ public class CropField {
     }
 
     public boolean isMature(){
-        return (growth >= actualGrowTime());
+    	if(growth == 0) {return false;}
+    	else {
+        return (growth >= actualGrowTime());}
     }
 
     public double getGrowthPercent(){
@@ -71,7 +73,11 @@ public class CropField {
 
     private int actualGrowTime()
     {
-        return (int)Math.ceil(plantedCrop.getBaseGrowTime() / growthMultiplier);
+    	if(plantedCrop == null) {
+    		return 0;
+    	}
+    	else {
+        return (int)Math.ceil(plantedCrop.getBaseGrowTime() / growthMultiplier);}
     }
 
     public int getRemainingGrowTime(){

@@ -20,6 +20,20 @@ public enum Animal {
 		this.buyPrice = newbuyPrice;
 		this.baseDailyIncome = newDailyIncome * Farm.getFarmType().getValueMultiplier();
 	}
+	
+	public void increaseHappiness(int i) {
+		this.happiness += i;
+		if(this.happiness > 10) {
+			this.happiness = 10;
+		}
+	}
+	
+	public void increaseHealthiness(int i) {
+		this.healthiness += i;
+		if(this.healthiness > 10) {
+			this.healthiness = 10;
+		}
+	}
 		
 	public String getName() {
 		return name;

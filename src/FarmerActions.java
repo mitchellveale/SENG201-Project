@@ -24,9 +24,22 @@ public class FarmerActions {
         }
         remainingActions--;
     }
+    
+    public static void feedAnimalsHay() {
+    	Farm.cowPen.holdingAnimal.increaseHealthiness(3);
+    	Farm.chickenPen.holdingAnimal.increaseHealthiness(3);
+    	Farm.pigPen.holdingAnimal.increaseHealthiness(3);
+    	remainingActions -= 1;
+    }
 
-    public static void tendToAnimals(){
-        //TODO: ryan this is for you
+    public static void feedAnimalsTreats(){
+    	Farm.cowPen.holdingAnimal.increaseHappiness(3);
+    	Farm.chickenPen.holdingAnimal.increaseHappiness(3);
+    	Farm.pigPen.holdingAnimal.increaseHappiness(3);
+    	Farm.cowPen.holdingAnimal.increaseHealthiness(3);
+    	Farm.chickenPen.holdingAnimal.increaseHealthiness(3);
+    	Farm.pigPen.holdingAnimal.increaseHealthiness(3);
+    	remainingActions -= 1;
     }
 
     public static void playWithAnimals(){

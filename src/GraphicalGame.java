@@ -87,9 +87,9 @@ public class GraphicalGame {
     }
 
     public static void centerBounds(Component component, int x, int y, int width, int height){
-        int newx = x - (width / 2);
-        int newy = y - (height / 2);
-        component.setBounds(newx, newy, width, height);
+        int newX = x - (width / 2);
+        int newY = y - (height / 2);
+        component.setBounds(newX, newY, width, height);
     }
 
     public static void deletePanel(JPanel panel, JPanel newActive){

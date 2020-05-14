@@ -15,7 +15,7 @@ public class CropField {
         plantedCrop = crop;
         resetMultipliers();
         if (fertilized)
-            addYieldMultplier(1.5);
+            addYieldMultiplier(1.5);
     }
 
     private void resetMultipliers(){
@@ -23,7 +23,7 @@ public class CropField {
         yieldMultiplier = 1 * Farm.getFarmType().getCropYieldMultiplier();
     }
 
-    public void addYieldMultplier(double amount){
+    public void addYieldMultiplier(double amount){
         yieldMultiplier += (amount - 1);
     }
 

@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 public class Resources {
 
@@ -86,6 +87,6 @@ public class Resources {
         } catch (IOException e) {
             System.out.println("Something went wrong when scaling required images");
         }
-        return bufferedImage.getScaledInstance(GraphicalGame.scaled(bufferedImage.getWidth()),GraphicalGame.scaled(bufferedImage.getHeight()), Image.SCALE_SMOOTH);
+        return Objects.requireNonNull(bufferedImage).getScaledInstance(GraphicalGame.scaled(bufferedImage.getWidth()),GraphicalGame.scaled(bufferedImage.getHeight()), Image.SCALE_SMOOTH);
     }
 }

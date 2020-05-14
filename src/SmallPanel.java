@@ -2,9 +2,7 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 
 public class SmallPanel extends JPanel{
-    private JPanel previousPanel;
-
-    private JLabel titleLabel;
+    private final JPanel previousPanel;
 
     public SmallPanel(JPanel previousPanel, String title){
         super();
@@ -14,7 +12,7 @@ public class SmallPanel extends JPanel{
         setBorder(new LineBorder(GraphicalGame.resources.secondaryColor, GraphicalGame.scaled(3)));
         setBackground(GraphicalGame.resources.primaryColor);
         //TODO: Maybe add a picture background later but for now this is fine
-        titleLabel = new JLabel(title);
+        JLabel titleLabel = new JLabel(title);
         titleLabel.setBounds(GraphicalGame.scaled(0, 0, 345, 44));
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
         titleLabel.setForeground(GraphicalGame.resources.tertiaryColor);
@@ -244,6 +242,44 @@ public class SmallPanel extends JPanel{
 
         // Back button listener
         backButton.addActionListener(e -> {
+            if (thisPanel != GraphicalGame.getActivePanel())
+                return;
+            GraphicalGame.deletePanel(thisPanel, previousPanel);
+        });
+    }
+
+    public void designateAsInventoryPanel(){
+        JButton seedsButton = new JButton("Seeds");
+        JButton itemsButton = new JButton("Items");
+        JButton exitButton = new JButton("Exit");
+
+        seedsButton.setBounds(GraphicalGame.scaled(73, 55, 203, 34));
+        itemsButton.setBounds(GraphicalGame.scaled(73, 97, 203, 34));
+        exitButton.setBounds(GraphicalGame.scaled(73, 140, 203, 34));
+
+        add(seedsButton);
+        add(itemsButton);
+        add(exitButton);
+
+        JPanel thisPanel = this;
+
+        seedsButton.addActionListener(e -> {
+            if (thisPanel != GraphicalGame.getActivePanel())
+                return;
+            LargePanel newPanel = new LargePanel(thisPanel, "View seeds");
+            newPanel.designateAsViewSeedsPanel();
+            GraphicalGame.addPanel(newPanel, thisPanel);
+        });
+
+        itemsButton.addActionListener(e -> {
+            if (thisPanel != GraphicalGame.getActivePanel())
+                return;
+            LargePanel newPanel = new LargePanel(thisPanel, "View items");
+            newPanel.designateAsViewItemsPanel();
+            GraphicalGame.addPanel(newPanel, thisPanel);
+        });
+
+        exitButton.addActionListener(e -> {
             if (thisPanel != GraphicalGame.getActivePanel())
                 return;
             GraphicalGame.deletePanel(thisPanel, previousPanel);

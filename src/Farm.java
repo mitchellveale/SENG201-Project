@@ -6,7 +6,7 @@ public class Farm {
      */
     public static int money = 1000;
 
-    public static CropField[] cropFields = new CropField[6];
+    public static final CropField[] cropFields = new CropField[6];
     public  static AnimalPen cowPen;
     public  static AnimalPen chickenPen;
     public  static AnimalPen pigPen;
@@ -87,4 +87,7 @@ public class Farm {
     	return (Farm.money);	// for now 
     }
 
+    public static String getFarmerName() {
+        return farmerName;
+    }
 }

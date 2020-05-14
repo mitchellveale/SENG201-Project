@@ -1,14 +1,8 @@
 import javax.swing.*;
 import javax.swing.border.LineBorder;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.util.regex.Pattern;
 
 public class SetupScreen{
@@ -151,12 +145,7 @@ public class SetupScreen{
         panel.add(beginButtonBackground);
 
         // Listeners
-        daySlider.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                dayLabel.setText("Game Length: " + daySlider.getValue() + " days");
-            }
-        });
+        daySlider.addChangeListener(e -> dayLabel.setText("Game Length: " + daySlider.getValue() + " days"));
 
         farmerNameTextField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
@@ -175,28 +164,22 @@ public class SetupScreen{
             }
         });
 
-        farmTypeComboBox.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                int newIndex = farmTypeComboBox.getSelectedIndex();
-                farmTypeNameLabel.setText(FarmType.values()[newIndex].getName() + ":");
-                farmTypeDescriptionLabel.setText(FarmType.values()[newIndex].getDescription());
-            }
+        farmTypeComboBox.addItemListener(e -> {
+            int newIndex = farmTypeComboBox.getSelectedIndex();
+            farmTypeNameLabel.setText(FarmType.values()[newIndex].getName() + ":");
+            farmTypeDescriptionLabel.setText(FarmType.values()[newIndex].getDescription());
         });
 
-        beginButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (warningLabel.isVisible())
-                    return;
-                System.out.println("Farm created.");
-                System.out.println("Game length: " +  daySlider.getValue());
-                System.out.println("Farmer name: " + farmerNameTextField.getText());
-                System.out.println("Farm name:" +  farmNameTextField.getText());
-                System.out.println("Farm type: " + FarmType.values()[farmTypeComboBox.getSelectedIndex()].getName());
-                Farm.createFarm(daySlider.getValue(), farmNameTextField.getText(), farmerNameTextField.getText(), FarmType.values()[farmTypeComboBox.getSelectedIndex()]);
-                GraphicalGame.begin();
-            }
+        beginButton.addActionListener(e -> {
+            if (warningLabel.isVisible())
+                return;
+            System.out.println("Farm created.");
+            System.out.println("Game length: " +  daySlider.getValue());
+            System.out.println("Farmer name: " + farmerNameTextField.getText());
+            System.out.println("Farm name:" +  farmNameTextField.getText());
+            System.out.println("Farm type: " + FarmType.values()[farmTypeComboBox.getSelectedIndex()].getName());
+            Farm.createFarm(daySlider.getValue(), farmNameTextField.getText(), farmerNameTextField.getText(), FarmType.values()[farmTypeComboBox.getSelectedIndex()]);
+            GraphicalGame.begin();
         });
 
 
@@ -210,10 +193,7 @@ public class SetupScreen{
     }
 
     private static void enforceFarmerNameValidity(JTextField farmerName, JLabel warningLabel){
-        if (farmerNameValid(farmerName.getText()))
-            warningLabel.setVisible(false);
-        else
-            warningLabel.setVisible(true);
+        warningLabel.setVisible(!farmerNameValid(farmerName.getText()));
     }
 
     private static boolean farmerNameValid(String name){

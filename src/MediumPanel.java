@@ -1,12 +1,10 @@
 import javax.swing.*;
 import javax.swing.border.LineBorder;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class MediumPanel extends JPanel{
-    private JPanel previousPanel;
+    private final JPanel previousPanel;
 
-    private JLabel titleLabel;
+    private final JLabel titleLabel;
 
     public MediumPanel(JPanel previousPanel, String title){
         super();
@@ -206,8 +204,9 @@ public class MediumPanel extends JPanel{
 
         // Exit button listener
         exitButton.addActionListener(e -> {
-            if (thisPanel != GraphicalGame.getActivePanel())
-                return;
+            if (thisPanel != GraphicalGame.getActivePanel()){
+                System.out.println("Not the active panel active is" + GraphicalGame.getActivePanel());
+                return;}
             GraphicalGame.deletePanel(thisPanel, previousPanel);
         });
     }
@@ -261,6 +260,34 @@ public class MediumPanel extends JPanel{
         exitButton.addActionListener(e -> {
             if (thisPanel != GraphicalGame.getActivePanel())
                 return;
+            GraphicalGame.deletePanel(thisPanel, previousPanel);
+        });
+    }
+
+    public void designateAsHousePanel(){
+        JButton tendToFarmButton = new JButton("Tend to farm land (" + (int)(Farm.farmCondition * 100) + "%)");
+        JButton nextDayButton = new JButton((Farm.isFinalDay() ? "Finish Game" : "Next day"));
+        JButton lottoTicketButton = new JButton("Use lotto ticket (You have " + Item.LOTTO_TICKET.getAmount() + ")");
+        JButton exitButton = new JButton("Exit");
+
+        tendToFarmButton.setBounds(GraphicalGame.scaled(43, 62, 334, 40));
+        nextDayButton.setBounds(GraphicalGame.scaled(43, 110, 334, 40));
+        lottoTicketButton.setBounds(GraphicalGame.scaled(43, 158, 334, 40));
+        exitButton.setBounds(GraphicalGame.scaled(43, 206, 334, 40));
+
+        add(tendToFarmButton);
+        add(nextDayButton);
+        add(lottoTicketButton);
+        add(exitButton);
+
+        JPanel thisPanel = this;
+
+
+        // Exit button listener
+        exitButton.addActionListener(e -> {
+            if (thisPanel != GraphicalGame.getActivePanel()){
+                System.out.println("Not the active panel active is" + GraphicalGame.getActivePanel());
+                return;}
             GraphicalGame.deletePanel(thisPanel, previousPanel);
         });
     }

@@ -2,7 +2,7 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 
 public class LargePanel extends JPanel{
-    private JPanel previousPanel;
+    private final JPanel previousPanel;
 
     public LargePanel(JPanel previousPanel, String title){
         super();
@@ -46,7 +46,7 @@ public class LargePanel extends JPanel{
 
     public void designateAsBuySeedsPanel(){
         for (int i = 0; i < 6; i++){
-            JPanel newPanel = buyCropOption(Crop.values()[i]);
+            JPanel newPanel = buyCropOption(Crop.values()[i], true);
             newPanel.setBounds(GraphicalGame.scaled(8, 45 + (69 * i), 384, 64));
             add(newPanel);
         }
@@ -54,13 +54,29 @@ public class LargePanel extends JPanel{
 
     public void designateAsBuyItemsPanel(){
         for (int i = 0; i < 6; i++){
-            JPanel newPanel = buyItemOption(Item.values()[i]);
+            JPanel newPanel = buyItemOption(Item.values()[i], true);
             newPanel.setBounds(GraphicalGame.scaled(8, 45 + (69 * i), 384, 64));
             add(newPanel);
         }
     }
 
-    private JPanel buyItemOption(Item item){
+    public void designateAsViewSeedsPanel(){
+        for (int i = 0; i < 6; i++){
+            JPanel newPanel = buyCropOption(Crop.values()[i], false);
+            newPanel.setBounds(GraphicalGame.scaled(8, 45 + (69 * i), 384, 64));
+            add(newPanel);
+        }
+    }
+
+    public void designateAsViewItemsPanel(){
+        for (int i = 0; i < 6; i++){
+            JPanel newPanel = buyItemOption(Item.values()[i], false);
+            newPanel.setBounds(GraphicalGame.scaled(8, 45 + (69 * i), 384, 64));
+            add(newPanel);
+        }
+    }
+
+    private JPanel buyItemOption(Item item, boolean buyable){
         JPanel panel = new JPanel();
         panel.setLayout(null);
         panel.setBackground(GraphicalGame.resources.quaternaryColor);
@@ -117,13 +133,13 @@ public class LargePanel extends JPanel{
             GraphicalGame.deletePanel(thisPanel, newPanel);
         });
 
-        if(Farm.money >= item.getPrice())
+        if(Farm.money >= item.getPrice() && buyable)
             panel.add(buyButton);
 
         return panel;
     }
 
-    private JPanel buyCropOption(Crop crop){
+    private JPanel buyCropOption(Crop crop, boolean buyable){
         JPanel panel = new JPanel();
         panel.setLayout(null);
         panel.setBackground(GraphicalGame.resources.quaternaryColor);
@@ -180,7 +196,7 @@ public class LargePanel extends JPanel{
             GraphicalGame.deletePanel(thisPanel, newPanel);
         });
 
-        if(Farm.money >= crop.getBuyPrice())
+        if(Farm.money >= crop.getBuyPrice() && buyable)
             panel.add(buyButton);
 
         return panel;

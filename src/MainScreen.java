@@ -1,7 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class MainScreen {
 
@@ -138,8 +136,27 @@ public class MainScreen {
 
         // Store action listener
         storeButton.addActionListener(e -> {
+            if (panel != GraphicalGame.getActivePanel())
+                return;
             MediumPanel newPanel = new MediumPanel(panel, "Store");
             newPanel.designateAsStorePanel();
+            GraphicalGame.addPanel(newPanel, panel);
+        });
+
+        // Barn action listener
+        barnButton.addActionListener(e -> {
+            if (panel != GraphicalGame.getActivePanel())
+                return;
+            SmallPanel newPanel = new SmallPanel(panel, "Inventory");
+            newPanel.designateAsInventoryPanel();
+            GraphicalGame.addPanel(newPanel, panel);
+        });
+
+        houseButton.addActionListener(e -> {
+            if (panel != GraphicalGame.getActivePanel())
+                return;
+            MediumPanel newPanel = new MediumPanel(panel, Farm.getFarmerName() + "'s farmhouse");
+            newPanel.designateAsHousePanel();
             GraphicalGame.addPanel(newPanel, panel);
         });
     }

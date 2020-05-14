@@ -196,6 +196,7 @@ public class TextGame {
 		}
 	}
 	
+	
 	public static void harvestCrops() {
 		boolean back = false;
 		int ready = 0;

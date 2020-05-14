@@ -59,6 +59,12 @@ public class Farm {
         money += (pigPen.getAnimal().getdailyIncome() * pigPen.getAnimal().CurrentCount);
         farmCondition -= 0.2;
         FarmerActions.resetActions();
+        if(Item.BREEDING_COMPOUND.getAmount()>0) {
+        	cowPen.animalMultiplication(1.5); 
+        	chickenPen.animalMultiplication(1.5);
+        	pigPen.animalMultiplication(1.5);
+        	Item.BREEDING_COMPOUND.use();
+        	}
     }
 
     /**

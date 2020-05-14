@@ -8,7 +8,7 @@ public enum Animal {
 	String name;
 	int happiness;
 	int healthiness;
-	int CurrentCount;
+	double CurrentCount;
 	int buyPrice;
 	double baseDailyIncome;
 	
@@ -34,6 +34,7 @@ public enum Animal {
 			this.healthiness = 10;
 		}
 	}
+	
 		
 	public String getName() {
 		return name;
@@ -47,7 +48,7 @@ public enum Animal {
 		return healthiness;
 	}
 	
-	public int getCurrentCount() {
+	public double getCurrentCount() {
 		return CurrentCount;
 	}
 	

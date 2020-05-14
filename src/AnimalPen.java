@@ -2,14 +2,14 @@
 public class AnimalPen {
 
 	Animal holdingAnimal;    // Eg cow, chicken, pig
-	double capacity;      
+	int capacity;      
 	int baseCapacity = 100;
 	
 	
 	
 	public AnimalPen(Animal newholdingAnimal) {
 		this.holdingAnimal = newholdingAnimal;
-		this.capacity = baseCapacity * Farm.getFarmType().getAnimalPenSizeMultiplier();
+		this.capacity = (int)Math.round(baseCapacity * Farm.getFarmType().getAnimalPenSizeMultiplier());
 	}
 	
 	public String toString() {
@@ -29,7 +29,7 @@ public class AnimalPen {
 	}
 	
 	public void animalMultiplication(double i) {
-		this.holdingAnimal.CurrentCount *= i;
+		this.holdingAnimal.CurrentCount = (int)Math.round(this.holdingAnimal.CurrentCount*i);
 		if(this.holdingAnimal.CurrentCount > this.capacity) {
 			this.holdingAnimal.CurrentCount = this.capacity;
 		}

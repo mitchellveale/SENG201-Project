@@ -8,7 +8,7 @@ public class TextGame {
 	public static void setup() {
 		int gameLength = 0;
 		boolean stop = false;
-		while(stop == false) {
+		while(!stop) {
 			System.out.println("Enter desired game length (Must be between 5-10 days!): ");
 			String input = scan.nextLine(); 
 			gameLength = (Pattern.matches("[0-9]+", input)) ? Integer.parseInt(input) : 0;
@@ -23,7 +23,7 @@ public class TextGame {
 		
 	    stop = false;
 		String farmerName = null;
-		while(stop == false) {
+		while(!stop) {
 			System.out.println("Enter Farmer name (Must be 3-15 alphabetic characters only!): ");
 			farmerName = scan.nextLine();
 			if(Pattern.matches("([a-zA-Z]{3,15})", farmerName)) {
@@ -37,7 +37,7 @@ public class TextGame {
 		// requirements don't actually have a restriction on farm name, could remove?
 		stop = false;
 		String farmName = null;
-		while(stop == false) {
+		while(!stop) {
 			System.out.println("Enter Farm name: ");
 			farmName = scan.nextLine();
 			if(Pattern.matches("([a-zA-Z]{3,15})", farmName)) {
@@ -52,7 +52,7 @@ public class TextGame {
 		stop = false;
 		FarmType userFarmType = null;
 		FarmType[] farmTypes = FarmType.values();
-		while(stop == false) {
+		while(!stop) {
 			for(int i=1;i<farmTypes.length + 1;i++) {
 				System.out.println(i + " - " + farmTypes[i-1].getName());
 			}
@@ -526,7 +526,7 @@ public class TextGame {
 	public static void buyAnimals() {
 		Animal[] animals = Animal.values();
 		boolean back = false;
-		while(back == false) {
+		while(!back) {
 			System.out.println("Your Money: $" + Farm.money);
 			int i;
 			for (i=1; i < animals.length + 1; i++){

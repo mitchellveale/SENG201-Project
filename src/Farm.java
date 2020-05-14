@@ -58,6 +58,13 @@ public class Farm {
         money += (chickenPen.getAnimal().getdailyIncome() * chickenPen.getAnimal().CurrentCount);
         money += (pigPen.getAnimal().getdailyIncome() * pigPen.getAnimal().CurrentCount);
         farmCondition -= 0.2;
+        cowPen.getAnimal().happiness -= 1;
+        chickenPen.getAnimal().happiness -= 1;
+        pigPen.getAnimal().happiness -= 1;
+        cowPen.getAnimal().healthiness -= 1;
+        chickenPen.getAnimal().healthiness -= 1;
+        pigPen.getAnimal().healthiness -= 1;
+        
         FarmerActions.resetActions();
         if(Item.BREEDING_COMPOUND.getAmount()>0) {
         	cowPen.animalMultiplication(1.5); 

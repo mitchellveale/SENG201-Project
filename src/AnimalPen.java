@@ -28,5 +28,12 @@ public class AnimalPen {
 		return capacity;
 	}
 	
+	public void animalMultiplication(double i) {
+		this.holdingAnimal.CurrentCount *= i;
+		if(this.holdingAnimal.CurrentCount > this.capacity) {
+			this.holdingAnimal.CurrentCount = this.capacity;
+		}
+	}
+	
 	
 }

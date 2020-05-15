@@ -6,11 +6,11 @@ public enum Animal {
 	Chicken("Chicken", 5 , 5, 10, 6, 3);
 	
 	String name;
-	int happiness;
-	int healthiness;
-	int CurrentCount;
-	int buyPrice;
-	int baseDailyIncome;
+	private int happiness;
+	private int healthiness;
+	private int CurrentCount;
+	private int buyPrice;
+	private int baseDailyIncome;
 	
 	Animal(String newName, int newHappiness, int newHealthiness, int newCurrentCount, int newbuyPrice, int newDailyIncome) {
 		this.name = newName;
@@ -19,6 +19,14 @@ public enum Animal {
 		this.CurrentCount = newCurrentCount;
 		this.buyPrice = newbuyPrice;
 		this.baseDailyIncome = (int)Math.round(newDailyIncome * Farm.getFarmType().getValueMultiplier());
+	}
+	
+	public void addAnimals(int i) {
+		this.CurrentCount += i;
+	}
+	
+	public void setAnimals(int i) {
+		this.CurrentCount = i;
 	}
 	
 	public void increaseHappiness(int i) {

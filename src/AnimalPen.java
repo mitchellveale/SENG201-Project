@@ -1,9 +1,9 @@
 
 public class AnimalPen {
 
-	Animal holdingAnimal;    // Eg cow, chicken, pig
-	int capacity;      
-	int baseCapacity = 100;
+	private Animal holdingAnimal;    
+	private int capacity;      
+	private int baseCapacity = 100;
 	
 	
 	
@@ -13,10 +13,10 @@ public class AnimalPen {
 	}
 	
 	public String toString() {
-		return holdingAnimal.name + " (" +
-			   holdingAnimal.CurrentCount + ")  " +
-			   holdingAnimal.happiness + "/10  " +
-			   holdingAnimal.healthiness + "/10  $" +
+		return holdingAnimal.getName() + " (" +
+			   holdingAnimal.getCurrentCount() + ")  " +
+			   holdingAnimal.getHappiness() + "/10  " +
+			   holdingAnimal.getHealthiness() + "/10  $" +
 			   holdingAnimal.getdailyIncome();
 	}
 	
@@ -29,9 +29,9 @@ public class AnimalPen {
 	}
 	
 	public void animalMultiplication(double i) {
-		this.holdingAnimal.CurrentCount = (int)Math.round(this.holdingAnimal.CurrentCount*i);
-		if(this.holdingAnimal.CurrentCount > this.capacity) {
-			this.holdingAnimal.CurrentCount = this.capacity;
+		this.holdingAnimal.setAnimals((int)Math.round(this.holdingAnimal.getCurrentCount()*i)); 
+		if(this.holdingAnimal.getCurrentCount() > this.capacity) {
+			this.holdingAnimal.setAnimals(this.capacity);
 		}
 	}
 	

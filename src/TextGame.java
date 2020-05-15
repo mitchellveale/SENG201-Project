@@ -240,7 +240,7 @@ public class TextGame {
 		if(FarmerActions.getRemainingActions() < 0) {
 			System.out.println("NO Actions Remaining!");
 		}
-		else if(Farm.cowPen.holdingAnimal.happiness == 10) { // As all animals have the same happiness
+		else if(Farm.cowPen.getAnimal().getHappiness() == 10) { // As all animals have the same happiness
 			System.out.println("Animals Have full happiness already");
 		}
 		else {
@@ -251,9 +251,9 @@ public class TextGame {
 	
 	public static void viewAnimalStatus() {
 		System.out.println("Name, Count, Happiness, Healthiness, Daily Income\n");
-		System.out.println(Farm.cowPen);
-		System.out.println(Farm.pigPen);
-		System.out.println(Farm.chickenPen);
+		for(int i=0; i<Farm.AnimalPens.length;i++) {
+			System.out.println(Farm.AnimalPens[i]);
+    	}
 		System.out.println("Press any character to go back to main menu");
 		String doNext = scan.next();
 	}
@@ -547,13 +547,13 @@ public class TextGame {
 
 			// if input is valid parse it otherwise make amount 0
 			int amount = (Pattern.matches("0*[1-9][0-9]*", input)) ? Integer.parseInt(input) : 0;
-			if(amount + animals[choice-1].CurrentCount > Farm.cowPen.getCapacity()) {
+			if(amount + animals[choice-1].getCurrentCount() > Farm.cowPen.getCapacity()) {
 				System.out.println("This would exceed the max capacity!");
 			}
 
 			else if (Farm.money >= (animals[choice-1].getbuyPrice() * amount)){
 				if (amount > 0) {
-					animals[choice - 1].CurrentCount += amount;
+					animals[choice - 1].addAnimals(amount);
 					System.out.println("You purchased " + amount + " " + animals[choice-1].getName());
 					Farm.money -= animals[choice-1].getbuyPrice() * amount;
 				}

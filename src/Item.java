@@ -1,9 +1,9 @@
 public enum Item {
     FERTILIZER ("Fertilizer", "Increases yield of next planted crop by 50%. Use on empty crop field", 50),
-    BREEDING_COMPOUND ("Breeding Compound", "Increases amount of an animals gained when pressing next day by 50%", 150),
-    ANIMAL_TREATS ("Animal Treats", "Improves all animal happiness by 30", 100),
+    BREEDING_COMPOUND ("Breeding Compound", "Increases amount of an animals the next day by 50%", 150),
+    ANIMAL_TREATS ("Animal Treats", "Improves all animal happiness and healthiness by 3", 100),
     GROWTH_COMPOUND ("Growth Compound", "Increases a crop's growing speed by 100%", 200),
-    HAY ("Hay", "Increases all animal healthiness by 30", 100),
+    HAY ("Hay", "Increases all animal healthiness by 3", 100),
     LOTTO_TICKET ("Lotto Ticket", "Wanna try your luck?", 500);
     private final String name;
     private final String description;

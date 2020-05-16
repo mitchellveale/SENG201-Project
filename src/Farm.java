@@ -9,6 +9,7 @@ public class Farm {
     public static int money = 1000;
 
     public static final CropField[] cropFields = new CropField[6];
+    public static AnimalPen[] AnimalPens = new AnimalPen[3];
     public  static AnimalPen cowPen;
     public  static AnimalPen chickenPen;
     public  static AnimalPen pigPen;
@@ -38,6 +39,9 @@ public class Farm {
         cowPen = new AnimalPen(Animal.COW);
         chickenPen = new AnimalPen(Animal.Chicken);
         pigPen = new AnimalPen(Animal.PIG);
+        AnimalPens[0] = cowPen;
+        AnimalPens[1] = chickenPen;
+        AnimalPens[2] = pigPen;
         for(int i=0;i<=cropFields.length-1;i++) {
         	cropFields[i] = new CropField();
         }
@@ -55,18 +59,25 @@ public class Farm {
         for(CropField field : cropFields){
             field.grow();
         }
-        money += farmType.getExtraCash();
-        money += (cowPen.getAnimal().getdailyIncome() * cowPen.getAnimal().CurrentCount);
-        money += (chickenPen.getAnimal().getdailyIncome() * chickenPen.getAnimal().CurrentCount);
-        money += (pigPen.getAnimal().getdailyIncome() * pigPen.getAnimal().CurrentCount);
+        for(int i=0; i<AnimalPens.length;i++) {
+        	money += (AnimalPens[i].getAnimal().getdailyIncome() * AnimalPens[i].getAnimal().getCurrentCount());
+        }
+        for(int i=0; i<AnimalPens.length;i++) {
+        	AnimalPens[i].getAnimal().increaseHappiness(-1);
+        }
+        for(int i=0; i<AnimalPens.length;i++) {
+        	AnimalPens[i].getAnimal().increaseHealthiness(-1);
+        }
         farmCondition -= 0.2;
+
         if (farmCondition < 0)
             farmCondition = 0;
+
         FarmerActions.resetActions();
         if(Item.BREEDING_COMPOUND.getAmount()>0) {
-        	cowPen.animalMultiplication(1.5); 
-        	chickenPen.animalMultiplication(1.5);
-        	pigPen.animalMultiplication(1.5);
+        	for(int i=0; i<AnimalPens.length;i++) {
+        		AnimalPens[i].animalMultiplication(1.5);
+        	}
         	Item.BREEDING_COMPOUND.use();
         	}
     }

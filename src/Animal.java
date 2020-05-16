@@ -1,16 +1,16 @@
 
 public enum Animal {
 
-	COW ("Cow", 7, 7, 10, 15, 5),
-	PIG ("Pig", 7, 7, 10, 5, 1),
-	Chicken("Chicken", 7 , 7, 10, 6, 3);
+	COW ("Cow", 5, 5, 10, 20, 5),
+	PIG ("Pig", 5, 5, 10, 10, 1),
+	Chicken("Chicken", 5 , 5, 10, 6, 3);
 	
 	String name;
-	int happiness;
-	int healthiness;
-	double CurrentCount;
-	int buyPrice;
-	double baseDailyIncome;
+	private int happiness;
+	private int healthiness;
+	private int CurrentCount;
+	private int buyPrice;
+	private int baseDailyIncome;
 	
 	Animal(String newName, int newHappiness, int newHealthiness, int newCurrentCount, int newbuyPrice, int newDailyIncome) {
 		this.name = newName;
@@ -18,7 +18,15 @@ public enum Animal {
 		this.healthiness = newHealthiness;
 		this.CurrentCount = newCurrentCount;
 		this.buyPrice = newbuyPrice;
-		this.baseDailyIncome = newDailyIncome * Farm.getFarmType().getValueMultiplier();
+		this.baseDailyIncome = (int)Math.round(newDailyIncome * Farm.getFarmType().getValueMultiplier());
+	}
+	
+	public void addAnimals(int i) {
+		this.CurrentCount += i;
+	}
+	
+	public void setAnimals(int i) {
+		this.CurrentCount = i;
 	}
 	
 	public void increaseHappiness(int i) {
@@ -48,7 +56,7 @@ public enum Animal {
 		return healthiness;
 	}
 	
-	public double getCurrentCount() {
+	public int getCurrentCount() {
 		return CurrentCount;
 	}
 	
@@ -56,7 +64,7 @@ public enum Animal {
 		return buyPrice;
 	}
 	
-	public double getdailyIncome() {
+	public int getdailyIncome() {
 		return baseDailyIncome * ((happiness+healthiness)/10);
 	}
 	

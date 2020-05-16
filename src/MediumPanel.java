@@ -114,7 +114,7 @@ public class MediumPanel extends JPanel{
                 return;
             SmallPanel newPanel = new SmallPanel(thisPanel, "Tend to crop");
             newPanel.designateAsTendToCropPanel(cropField);
-            GraphicalGame.addPanel(newPanel, thisPanel);
+            GraphicalGame.addPanel(newPanel);
         });
 
         // Harvest Crops button listener
@@ -123,7 +123,7 @@ public class MediumPanel extends JPanel{
                 return;
             SmallPanel newPanel = new SmallPanel(thisPanel, "Harvest crops");
             newPanel.designateAsHarvestCropsPanel(cropField);
-            GraphicalGame.addPanel(newPanel, thisPanel);
+            GraphicalGame.addPanel(newPanel);
         });
 
         // Plant crop button listener
@@ -133,7 +133,7 @@ public class MediumPanel extends JPanel{
             // Create A large panel and assign it to plant seeds
             LargePanel newPanel = new LargePanel(this, "Plant crop");
             newPanel.designateAsPlantPanel(cropField);
-            GraphicalGame.addPanel(newPanel, this);
+            GraphicalGame.addPanel(newPanel);
         });
 
         // Fertilize button listener
@@ -143,7 +143,7 @@ public class MediumPanel extends JPanel{
             thisCropField.fertilize();
             MediumPanel newPanel = new MediumPanel(previousPanel, titleLabel.getText());
             newPanel.designateAsCropFieldPanel(cropField);
-            GraphicalGame.addPanel(newPanel, previousPanel);
+            GraphicalGame.addPanel(newPanel);
             GraphicalGame.deletePanel(thisPanel, newPanel);
             MainScreen.updateImages();
         });
@@ -180,7 +180,7 @@ public class MediumPanel extends JPanel{
                 return;
             LargePanel newPanel = new LargePanel(thisPanel, "Buy seeds");
             newPanel.designateAsBuySeedsPanel();
-            GraphicalGame.addPanel(newPanel, thisPanel);
+            GraphicalGame.addPanel(newPanel);
         });
 
         //Buy items button listener
@@ -189,7 +189,7 @@ public class MediumPanel extends JPanel{
                 return;
             LargePanel newPanel = new LargePanel(thisPanel, "Buy items");
             newPanel.designateAsBuyItemsPanel();
-            GraphicalGame.addPanel(newPanel, thisPanel);
+            GraphicalGame.addPanel(newPanel);
         });
 
         // Buy animals button listener
@@ -198,7 +198,7 @@ public class MediumPanel extends JPanel{
                 return;
             MediumPanel newPanel = new MediumPanel(thisPanel, "Buy animals");
             newPanel.designateAsBuyAnimalsPanel();
-            GraphicalGame.addPanel(newPanel, thisPanel);
+            GraphicalGame.addPanel(newPanel);
         });
 
 
@@ -235,7 +235,7 @@ public class MediumPanel extends JPanel{
                 return;
             SmallPanel newPanel = new SmallPanel(thisPanel, "Buy cows");
             newPanel.designateAsBuyAnimalsPanel(Farm.cowPen);
-            GraphicalGame.addPanel(newPanel, thisPanel);
+            GraphicalGame.addPanel(newPanel);
         });
 
         // Buy pig listener
@@ -244,7 +244,7 @@ public class MediumPanel extends JPanel{
                 return;
             SmallPanel newPanel = new SmallPanel(thisPanel, "Buy pigs");
             newPanel.designateAsBuyAnimalsPanel(Farm.pigPen);
-            GraphicalGame.addPanel(newPanel, thisPanel);
+            GraphicalGame.addPanel(newPanel);
         });
 
         // Buy chicken listener
@@ -253,7 +253,7 @@ public class MediumPanel extends JPanel{
                 return;
             SmallPanel newPanel = new SmallPanel(thisPanel, "Buy chickens");
             newPanel.designateAsBuyAnimalsPanel(Farm.chickenPen);
-            GraphicalGame.addPanel(newPanel, thisPanel);
+            GraphicalGame.addPanel(newPanel);
         });
 
         // Exit button listener
@@ -282,12 +282,97 @@ public class MediumPanel extends JPanel{
 
         JPanel thisPanel = this;
 
+        tendToFarmButton.addActionListener(e -> {
+            if (thisPanel != GraphicalGame.getActivePanel())
+                return;
+            SmallPanel newPanel = new SmallPanel(thisPanel, "Tend to farm land");
+            newPanel.designateAsTendToFarmPanel();
+            GraphicalGame.addPanel(newPanel);
+        });
+
+        nextDayButton.addActionListener(e -> {
+            if (thisPanel != GraphicalGame.getActivePanel())
+                return;
+            if (Farm.isFinalDay()){
+                ScoreScreen.createScoreScreen();
+                GraphicalGame.addPanel(ScoreScreen.getPanel());
+            }
+            else {
+                Farm.nextDay();
+                MainScreen.update();
+                GraphicalGame.deletePanel(thisPanel, previousPanel);
+            }
+        });
+
+        if(Item.LOTTO_TICKET.getAmount() > 0) {
+            lottoTicketButton.addActionListener(e -> {
+                if (thisPanel != GraphicalGame.getActivePanel())
+                    return;
+                SmallPanel newPanel = new SmallPanel(thisPanel, "Lotto Ticket");
+                newPanel.designateAsLottoTicketPanel();
+                GraphicalGame.addPanel(newPanel);
+            });
+        }
 
         // Exit button listener
         exitButton.addActionListener(e -> {
             if (thisPanel != GraphicalGame.getActivePanel()){
                 System.out.println("Not the active panel active is" + GraphicalGame.getActivePanel());
                 return;}
+            GraphicalGame.deletePanel(thisPanel, previousPanel);
+        });
+    }
+
+    public void designateAsAnimalPenPanel(AnimalPen animal){
+        JLabel amountLabel = new JLabel("Amount: " + animal.holdingAnimal.getCurrentCount() + "/" + animal.capacity);
+        JLabel happinessLabel = new JLabel("Happiness: " + animal.holdingAnimal.getHappiness() + "/10");
+        JLabel healthinessLabel = new JLabel("Healthiness: " + animal.holdingAnimal.getHealthiness() + "/10");
+        JLabel dailyIncomeLabel = new JLabel("Daily income: $" + animal.holdingAnimal.getdailyIncome() + " per " + animal.holdingAnimal.getName());
+
+        amountLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        happinessLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        healthinessLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        dailyIncomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+        amountLabel.setFont(GraphicalGame.sizedFont(30f));
+        happinessLabel.setFont(GraphicalGame.sizedFont(30f));
+        healthinessLabel.setFont(GraphicalGame.sizedFont(30f));
+        dailyIncomeLabel.setFont(GraphicalGame.sizedFont(30f));
+
+        amountLabel.setForeground(GraphicalGame.resources.secondaryColor);
+        happinessLabel.setForeground(GraphicalGame.resources.secondaryColor);
+        healthinessLabel.setForeground(GraphicalGame.resources.secondaryColor);
+        dailyIncomeLabel.setForeground(GraphicalGame.resources.secondaryColor);
+
+        amountLabel.setBounds(GraphicalGame.scaled(0, 60, 411, 30));
+        happinessLabel.setBounds(GraphicalGame.scaled(0, 90, 411, 30));
+        healthinessLabel.setBounds(GraphicalGame.scaled(0, 120, 411, 30));
+        dailyIncomeLabel.setBounds(GraphicalGame.scaled(0, 150, 411, 30));
+
+        add(amountLabel);
+        add(happinessLabel);
+        add(healthinessLabel);
+        add(dailyIncomeLabel);
+
+        JButton backButton = new JButton("Back");
+        JButton feedButton = new JButton("Feed");
+        JButton playButton = new JButton("Play");
+
+        // needed for referring to this object in action listener overrides
+        JPanel thisPanel = this;
+
+        backButton.setBounds(GraphicalGame.scaled(325, 222, 71, 30));
+        feedButton.setBounds(GraphicalGame.scaled(15, 222, 141, 30));
+        playButton.setBounds(GraphicalGame.scaled(165, 222, 151, 30));
+
+        add(backButton);
+        add(feedButton);
+        add(playButton);
+
+        // Back button listener
+        backButton.addActionListener(e -> {
+            if (thisPanel != GraphicalGame.getActivePanel())
+                return;
             GraphicalGame.deletePanel(thisPanel, previousPanel);
         });
     }

@@ -79,13 +79,13 @@ public class SmallPanel extends JPanel{
                 MainScreen.update();
                 MediumPanel newPanel = new MediumPanel(MainScreen.getPanel(), "Crop field " + cropField);
                 newPanel.designateAsCropFieldPanel(cropField);
-                GraphicalGame.addPanel(newPanel, MainScreen.getPanel());
+                GraphicalGame.addPanel(newPanel);
                 GraphicalGame.deletePanel(this, newPanel);
                 GraphicalGame.deletePanel(previousPanel, newPanel);
             }else{
                 SmallPanel newPanel = new SmallPanel(thisPanel, "No actions remaining");
                 newPanel.designateAsNoActionsPanel();
-                GraphicalGame.addPanel(newPanel, thisPanel);
+                GraphicalGame.addPanel(newPanel);
             }
         });
 
@@ -98,13 +98,13 @@ public class SmallPanel extends JPanel{
                 MainScreen.update();
                 MediumPanel newPanel = new MediumPanel(MainScreen.getPanel(), "Crop field " + cropField);
                 newPanel.designateAsCropFieldPanel(cropField);
-                GraphicalGame.addPanel(newPanel, MainScreen.getPanel());
+                GraphicalGame.addPanel(newPanel);
                 GraphicalGame.deletePanel(this, newPanel);
                 GraphicalGame.deletePanel(previousPanel, newPanel);
             }else{
                 SmallPanel newPanel = new SmallPanel(thisPanel, "No actions remaining");
                 newPanel.designateAsNoActionsPanel();
-                GraphicalGame.addPanel(newPanel, thisPanel);
+                GraphicalGame.addPanel(newPanel);
             }
         });
 
@@ -164,14 +164,14 @@ public class SmallPanel extends JPanel{
                 MainScreen.update();
                 MediumPanel newPanel = new MediumPanel(MainScreen.getPanel(), "Crop field " + cropField);
                 newPanel.designateAsCropFieldPanel(cropField);
-                GraphicalGame.addPanel(newPanel, MainScreen.getPanel());
+                GraphicalGame.addPanel(newPanel);
                 GraphicalGame.deletePanel(this, newPanel);
                 GraphicalGame.deletePanel(previousPanel, newPanel);
                 MainScreen.updateImages();
             }else{
                 SmallPanel newPanel = new SmallPanel(thisPanel, "No actions remaining");
                 newPanel.designateAsNoActionsPanel();
-                GraphicalGame.addPanel(newPanel, thisPanel);
+                GraphicalGame.addPanel(newPanel);
             }
 
         });
@@ -194,7 +194,7 @@ public class SmallPanel extends JPanel{
         add(infoLabel);
 
         //Slider
-        int maxAnimals = Math.min(Farm.money / animal.holdingAnimal.getbuyPrice(), (int) animal.capacity - animal.holdingAnimal.getCurrentCount());
+        int maxAnimals = Math.min((int)(Farm.money / animal.holdingAnimal.getbuyPrice()), (int) (animal.capacity - animal.holdingAnimal.getCurrentCount()));
         JSlider animalSlider = new JSlider(JSlider.HORIZONTAL, 0, maxAnimals, 0);
         animalSlider.setBounds(GraphicalGame.scaled(51, 108, 241, 20));
         animalSlider.setOpaque(false);
@@ -268,7 +268,7 @@ public class SmallPanel extends JPanel{
                 return;
             LargePanel newPanel = new LargePanel(thisPanel, "View seeds");
             newPanel.designateAsViewSeedsPanel();
-            GraphicalGame.addPanel(newPanel, thisPanel);
+            GraphicalGame.addPanel(newPanel);
         });
 
         itemsButton.addActionListener(e -> {
@@ -276,7 +276,7 @@ public class SmallPanel extends JPanel{
                 return;
             LargePanel newPanel = new LargePanel(thisPanel, "View items");
             newPanel.designateAsViewItemsPanel();
-            GraphicalGame.addPanel(newPanel, thisPanel);
+            GraphicalGame.addPanel(newPanel);
         });
 
         exitButton.addActionListener(e -> {
@@ -284,6 +284,107 @@ public class SmallPanel extends JPanel{
                 return;
             GraphicalGame.deletePanel(thisPanel, previousPanel);
         });
+    }
+
+
+    public void designateAsTendToFarmPanel(){
+        // i hate this, but this seems like the easiest way to get multiple *centered* lines of text
+        JLabel line1 = new JLabel("Do you want to tend to your");
+        JLabel line2 = new JLabel("farm's land? This will use an");
+        JLabel line3 = new JLabel("Action and will increase your");
+        JLabel line4 = new JLabel("farm's condition by 50%");
+
+
+        line1.setHorizontalAlignment(SwingConstants.CENTER);
+        line2.setHorizontalAlignment(SwingConstants.CENTER);
+        line3.setHorizontalAlignment(SwingConstants.CENTER);
+        line4.setHorizontalAlignment(SwingConstants.CENTER);
+        line1.setBounds(GraphicalGame.scaled(0, 57, 345, 20));
+        line2.setBounds(GraphicalGame.scaled(0, 77, 345, 20));
+        line3.setBounds(GraphicalGame.scaled(0, 97, 345, 20));
+        line4.setBounds(GraphicalGame.scaled(0, 117, 345, 20));
+        line1.setFont(GraphicalGame.sizedFont(30f));
+        line2.setFont(GraphicalGame.sizedFont(30f));
+        line3.setFont(GraphicalGame.sizedFont(30f));
+        line4.setFont(GraphicalGame.sizedFont(30f));
+        line1.setForeground(GraphicalGame.resources.secondaryColor);
+        line2.setForeground(GraphicalGame.resources.secondaryColor);
+        line3.setForeground(GraphicalGame.resources.secondaryColor);
+        line4.setForeground(GraphicalGame.resources.secondaryColor);
+
+        add(line1);
+        add(line2);
+        add(line3);
+        add(line4);
+
+        // Buttons
+        JButton backButton = new JButton("Back");
+        JButton tendToFarmButton = new JButton("Tend to farm");
+
+        JPanel thisPanel = this;
+
+        tendToFarmButton.setBounds(GraphicalGame.scaled(15, 147, 145, 30));
+        backButton.setBounds(GraphicalGame.scaled(185, 147, 145, 30));
+
+        add(tendToFarmButton);
+        add(backButton);
+
+        tendToFarmButton.addActionListener(e -> {
+            if (FarmerActions.getRemainingActions() > 0) {
+                FarmerActions.tendToFarm();
+                MediumPanel newPanel = new MediumPanel(MainScreen.getPanel(), Farm.getFarmerName() + "'s farmhouse");
+                newPanel.designateAsHousePanel();
+                GraphicalGame.addPanel(newPanel);
+                GraphicalGame.deletePanel(thisPanel, newPanel);
+                GraphicalGame.deletePanel(previousPanel, newPanel);
+                MainScreen.update();
+            }else{
+                SmallPanel newPanel = new SmallPanel(thisPanel, "No actions remaining");
+                newPanel.designateAsNoActionsPanel();
+                GraphicalGame.addPanel(newPanel);
+            }
+        });
+
+
+        // Exit button listener
+        backButton.addActionListener(e -> {
+            if (thisPanel != GraphicalGame.getActivePanel())
+                return;
+            GraphicalGame.deletePanel(thisPanel, previousPanel);
+        });
+    }
+
+    public void designateAsLottoTicketPanel(){
+        JLabel label = new JLabel("You won $" + Farm.useLottoTicket());
+        MainScreen.update();
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        label.setVerticalAlignment(SwingConstants.CENTER);
+        label.setForeground(GraphicalGame.resources.tertiaryColor);
+        label.setBounds(GraphicalGame.scaled(0, 44, 345, 139));
+        label.setFont(GraphicalGame.sizedFont(35f));
+
+        JButton okButton = new JButton("OK");
+        okButton.setBounds(GraphicalGame.scaled(15, 147, 315, 30));
+        add(label);
+        add(okButton);
+
+        JPanel thisPanel = this;
+
+        okButton.addActionListener(e -> {
+            if (thisPanel != GraphicalGame.getActivePanel())
+                return;
+            GraphicalGame.deletePanel(thisPanel, previousPanel);
+
+            MediumPanel newPanel = new MediumPanel(MainScreen.getPanel(), Farm.getFarmerName() + "'s farmhouse");
+            newPanel.designateAsHousePanel();
+            GraphicalGame.addPanel(newPanel);
+            GraphicalGame.deletePanel(thisPanel, newPanel);
+            GraphicalGame.deletePanel(previousPanel, newPanel);
+        });
+    }
+
+    public void designateAsFeedPanel(AnimalPen animal){
+
     }
 
     public void designateAsNoActionsPanel(){

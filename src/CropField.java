@@ -11,6 +11,8 @@ public class CropField {
 
     public void PlantCrop(Crop crop){
         // Assumes seed amount has been checked in calling method
+        amount = 0;
+        growth = 0;
         crop.plant();
         plantedCrop = crop;
         resetMultipliers();

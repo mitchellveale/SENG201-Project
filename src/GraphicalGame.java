@@ -98,7 +98,7 @@ public class GraphicalGame {
         setActivePanel(newActive);
     }
 
-    public static void addPanel(JPanel panel, JPanel previousPanel){
+    public static void addPanel(JPanel panel){
         pane.add(panel);
         pane.moveToFront(panel);
         setActivePanel(panel);

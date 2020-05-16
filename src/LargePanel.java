@@ -129,7 +129,7 @@ public class LargePanel extends JPanel{
             // Regenerate this panel
             LargePanel newPanel = new LargePanel(previousPanel, "Buy items");
             newPanel.designateAsBuyItemsPanel();
-            GraphicalGame.addPanel(newPanel, previousPanel);
+            GraphicalGame.addPanel(newPanel);
             GraphicalGame.deletePanel(thisPanel, newPanel);
         });
 
@@ -192,7 +192,7 @@ public class LargePanel extends JPanel{
             // Regenerate this panel
             LargePanel newPanel = new LargePanel(previousPanel, "Buy seeds");
             newPanel.designateAsBuySeedsPanel();
-            GraphicalGame.addPanel(newPanel, previousPanel);
+            GraphicalGame.addPanel(newPanel);
             GraphicalGame.deletePanel(thisPanel, newPanel);
         });
 
@@ -261,7 +261,7 @@ public class LargePanel extends JPanel{
             // Regenerate the previous panel
             MediumPanel newPanel = new MediumPanel(MainScreen.getPanel(), "Crop field " + (cropField + 1));
             newPanel.designateAsCropFieldPanel(cropField);
-            GraphicalGame.addPanel(newPanel, MainScreen.getPanel());
+            GraphicalGame.addPanel(newPanel);
             GraphicalGame.deletePanel(previousPanel, newPanel);
             GraphicalGame.deletePanel(this, newPanel);
         });

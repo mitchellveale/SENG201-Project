@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Farm {
     private static int currentDay = 1;
 
@@ -58,6 +60,8 @@ public class Farm {
         money += (chickenPen.getAnimal().getdailyIncome() * chickenPen.getAnimal().CurrentCount);
         money += (pigPen.getAnimal().getdailyIncome() * pigPen.getAnimal().CurrentCount);
         farmCondition -= 0.2;
+        if (farmCondition < 0)
+            farmCondition = 0;
         FarmerActions.resetActions();
         if(Item.BREEDING_COMPOUND.getAmount()>0) {
         	cowPen.animalMultiplication(1.5); 
@@ -65,6 +69,14 @@ public class Farm {
         	pigPen.animalMultiplication(1.5);
         	Item.BREEDING_COMPOUND.use();
         	}
+    }
+
+    public static int useLottoTicket(){
+        Random random = new Random();
+        int amount =  random.nextInt(Item.LOTTO_TICKET.getPrice() * 2);
+        money += amount;
+        Item.LOTTO_TICKET.use();
+        return amount;
     }
 
     /**

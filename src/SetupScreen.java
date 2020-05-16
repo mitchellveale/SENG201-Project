@@ -173,11 +173,6 @@ public class SetupScreen{
         beginButton.addActionListener(e -> {
             if (warningLabel.isVisible())
                 return;
-            System.out.println("Farm created.");
-            System.out.println("Game length: " +  daySlider.getValue());
-            System.out.println("Farmer name: " + farmerNameTextField.getText());
-            System.out.println("Farm name:" +  farmNameTextField.getText());
-            System.out.println("Farm type: " + FarmType.values()[farmTypeComboBox.getSelectedIndex()].getName());
             Farm.createFarm(daySlider.getValue(), farmNameTextField.getText(), farmerNameTextField.getText(), FarmType.values()[farmTypeComboBox.getSelectedIndex()]);
             GraphicalGame.begin();
         });

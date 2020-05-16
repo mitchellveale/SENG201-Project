@@ -22,21 +22,21 @@ public class MainScreen {
 
         moneyLabel = new JLabel("" + Farm.money);
         moneyLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        moneyLabel.setFont(GraphicalGame.sizedFont(GraphicalGame.scaled(28f)));
+        moneyLabel.setFont(GraphicalGame.sizedFont(28f * 1.69f));
         moneyLabel.setForeground(textColor);
         moneyLabel.setBounds(GraphicalGame.scaled(106, 19, 88, 28));
         panel.add(moneyLabel);
 
         actionsLabel = new JLabel("" + FarmerActions.getRemainingActions());
         actionsLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        actionsLabel.setFont(GraphicalGame.sizedFont(GraphicalGame.scaled(28f)));
+        actionsLabel.setFont(GraphicalGame.sizedFont(28f * 1.69f));
         actionsLabel.setForeground(textColor);
         actionsLabel.setBounds(GraphicalGame.scaled(253, 19, 30, 28));
         panel.add(actionsLabel);
 
         dayLabel = new JLabel("Day " + Farm.getCurrentDay() + "/" + Farm.getGameLength());
         dayLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        dayLabel.setFont(GraphicalGame.sizedFont(GraphicalGame.scaled(28f)));
+        dayLabel.setFont(GraphicalGame.sizedFont(28f * 1.69f));
         dayLabel.setForeground(textColor);
         dayLabel.setBounds(GraphicalGame.scaled(531, 19, 158, 28));
         panel.add(dayLabel);
@@ -122,7 +122,7 @@ public class MainScreen {
         farmLandscape.setBounds(0, 0, GraphicalGame.getWidth(), GraphicalGame.getHeight());
         panel.add(farmLandscape);
 
-
+        // Crop field button listeners
         for(int i = 0; i < 6; i++){
             int finalI = i;
             cropFieldButtons[i].addActionListener(e -> {
@@ -130,9 +130,33 @@ public class MainScreen {
                     return;
                 MediumPanel newPanel = new MediumPanel(panel, "Crop Field " + (finalI + 1));
                 newPanel.designateAsCropFieldPanel(finalI);
-                GraphicalGame.addPanel(newPanel, panel);
+                GraphicalGame.addPanel(newPanel);
             });
         }
+
+        cowPenButton.addActionListener(e -> {
+            if (panel != GraphicalGame.getActivePanel())
+                return;
+            MediumPanel newPanel = new MediumPanel(panel, "Cow pen");
+            newPanel.designateAsAnimalPenPanel(Farm.cowPen);
+            GraphicalGame.addPanel(newPanel);
+        });
+
+        pigPenButton.addActionListener(e -> {
+            if (panel != GraphicalGame.getActivePanel())
+                return;
+            MediumPanel newPanel = new MediumPanel(panel, "Pig pen");
+            newPanel.designateAsAnimalPenPanel(Farm.pigPen);
+            GraphicalGame.addPanel(newPanel);
+        });
+
+        chickenPenButton.addActionListener(e -> {
+            if (panel != GraphicalGame.getActivePanel())
+                return;
+            MediumPanel newPanel = new MediumPanel(panel, "Chicken pen");
+            newPanel.designateAsAnimalPenPanel(Farm.chickenPen);
+            GraphicalGame.addPanel(newPanel);
+        });
 
         // Store action listener
         storeButton.addActionListener(e -> {
@@ -140,7 +164,7 @@ public class MainScreen {
                 return;
             MediumPanel newPanel = new MediumPanel(panel, "Store");
             newPanel.designateAsStorePanel();
-            GraphicalGame.addPanel(newPanel, panel);
+            GraphicalGame.addPanel(newPanel);
         });
 
         // Barn action listener
@@ -149,15 +173,16 @@ public class MainScreen {
                 return;
             SmallPanel newPanel = new SmallPanel(panel, "Inventory");
             newPanel.designateAsInventoryPanel();
-            GraphicalGame.addPanel(newPanel, panel);
+            GraphicalGame.addPanel(newPanel);
         });
 
+        // house button action listener
         houseButton.addActionListener(e -> {
             if (panel != GraphicalGame.getActivePanel())
                 return;
             MediumPanel newPanel = new MediumPanel(panel, Farm.getFarmerName() + "'s farmhouse");
             newPanel.designateAsHousePanel();
-            GraphicalGame.addPanel(newPanel, panel);
+            GraphicalGame.addPanel(newPanel);
         });
     }
 

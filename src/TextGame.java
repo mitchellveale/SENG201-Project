@@ -5,7 +5,7 @@ public class TextGame {
 
 	static Scanner scan = new Scanner(System.in);
 	
-	public static void setup() {
+	private static void setup() {
 		int gameLength = 0;
 		boolean stop = false;
 		while(!stop) {
@@ -75,7 +75,7 @@ public class TextGame {
 	
 	
 	
-	public static void play() {
+	private static void play() {
 		System.out.println("Day " + Farm.getCurrentDay() + " / " + Farm.getGameLength() + "!");
 		System.out.println("Bank: $" + Farm.money);
 		System.out.println("Farm Condition: "+Farm.farmCondition);
@@ -87,9 +87,10 @@ public class TextGame {
 		System.out.println("5 : Play with Animals");
 		System.out.println("6 : Harvest crops");
 		System.out.println("7 : Tend to farm land");
+		System.out.println("8 : Use Lotto ticket");
 		if(Farm.isFinalDay()) {
-		System.out.println("8 : Finish Game");}
-		else {System.out.println("8 : Next Day");}
+		System.out.println("9 : Finish Game");}
+		else {System.out.println("9 : Next Day");}
 			
 		System.out.println("\n Please enter the number that corresponds to the action you would like to perform!");
 		
@@ -136,6 +137,15 @@ public class TextGame {
 			break;
 			
 		case "8":
+			if(Item.LOTTO_TICKET.getAmount()>0) {
+				System.out.println("You won $"+ Farm.useLottoTicket());
+			}
+			else {
+				System.out.println("You don't have a lotto ticket!");
+			}
+			break;
+			
+		case "9":
 			// next day
 			Farm.nextDay(); 
 			break;
@@ -147,7 +157,7 @@ public class TextGame {
 		play();
 	}
 	
-	public static void feedAnimals() {
+	private static void feedAnimals() {
 		boolean back = false;
 		while(!back) {
 			System.out.println("1 - Feed animals treats (You have " + Item.ANIMAL_TREATS.getAmount()+")");
@@ -197,7 +207,7 @@ public class TextGame {
 	}
 	
 	
-	public static void harvestCrops() {
+	private static void harvestCrops() {
 		boolean back = false;
 		int ready = 0;
 		while(!back) {
@@ -236,7 +246,7 @@ public class TextGame {
 		}
 	}
 	
-	public static void playAnimals() {
+	private static void playAnimals() {
 		if(FarmerActions.getRemainingActions() < 0) {
 			System.out.println("NO Actions Remaining!");
 		}
@@ -249,7 +259,7 @@ public class TextGame {
 		}
 	}
 	
-	public static void viewAnimalStatus() {
+	private static void viewAnimalStatus() {
 		System.out.println("Name, Count, Happiness, Healthiness, Daily Income\n");
 		for(int i=0; i<Farm.AnimalPens.length;i++) {
 			System.out.println(Farm.AnimalPens[i]);
@@ -258,7 +268,7 @@ public class TextGame {
 		String doNext = scan.next();
 	}
 	
-	public static void viewCropStatus() {
+	private static void viewCropStatus() {
 		boolean exit = false;
 		while(!exit) {
 		for(int i = 1; i <= Farm.cropFields.length;i++) {
@@ -282,7 +292,7 @@ public class TextGame {
 		}
 	}
 	
-	public static void cropOptions(CropField o) {
+	private static void cropOptions(CropField o) {
 		boolean stop = false;
 		while(!stop) {
 		System.out.println(o);
@@ -329,7 +339,7 @@ public class TextGame {
 		}
 	}
 	
-	public static void tendCrop(CropField o) {
+	private static void tendCrop(CropField o) {
 		boolean exit = false;
 		while(!exit) {
 			System.out.println("1 - Water crop");
@@ -366,7 +376,7 @@ public class TextGame {
 		}
 	}
 	
-	public static void spreadFert(CropField o) {
+	private static void spreadFert(CropField o) {
 		if(FarmerActions.remainingActions>0) {
 		if(Item.FERTILIZER.getAmount()>0) {
 			o.fertilize();
@@ -379,7 +389,7 @@ public class TextGame {
 		else {System.out.println("No remaining actions!");}
 	}
 	
-	public static void plantCrop(CropField o) {
+	private static void plantCrop(CropField o) {
 		Crop[] crops = Crop.values();
 		boolean back = false;
 		while(!back) {
@@ -411,7 +421,7 @@ public class TextGame {
 	}
 
 	
-	public static void store(){
+	private static void store(){
 		boolean exit = false;
 		while (!exit) {
 			System.out.println("What would you like to buy?");
@@ -440,7 +450,7 @@ public class TextGame {
 		}
 	}
 
-	public static void buySeeds(){
+	private static void buySeeds(){
 		Crop[] crops = Crop.values();
 		boolean back = false;
 		while (!back){
@@ -482,7 +492,7 @@ public class TextGame {
 		}
 	}
 
-	public static void buyItems(){
+	private static void buyItems(){
 		Item[] items = Item.values();
 		boolean back = false;
 		while (!back){
@@ -523,7 +533,7 @@ public class TextGame {
 		}
 	}
 	
-	public static void buyAnimals() {
+	private static void buyAnimals() {
 		Animal[] animals = Animal.values();
 		boolean back = false;
 		while(!back) {
@@ -571,7 +581,9 @@ public class TextGame {
 	}
 	
 	
-	
+	/**
+	 * Sets up the text game and then runs it.
+	 */
 	public static void startGame(){
 		//TextGame game = new TextGame();
 		setup();

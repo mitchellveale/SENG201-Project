@@ -68,7 +68,7 @@ public class Farm {
         for(int i=0; i<AnimalPens.length;i++) {
         	AnimalPens[i].getAnimal().increaseHealthiness(-1);
         }
-        farmCondition -= 0.2;
+        farmCondition = ((farmCondition * 100)-20)/100;
 
         if (farmCondition < 0)
             farmCondition = 0;

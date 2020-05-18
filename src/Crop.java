@@ -15,6 +15,17 @@ public enum Crop{
     private final boolean fertilizes;
     private int seedAmount;
 
+    /**
+     * Initializes a Crop
+     * @param name
+     * @param buyPrice
+     * @param sellPrice
+     * @param baseYield
+     * @param baseGrowTime
+     * @param healthBoost
+     * @param environmentResistance
+     * @param fertilizes
+     */
     Crop(String name, int buyPrice, int sellPrice, int baseYield, int baseGrowTime, int healthBoost, boolean environmentResistance, boolean fertilizes) {
         this.name = name;
         this.buyPrice = buyPrice;
@@ -27,38 +38,74 @@ public enum Crop{
         seedAmount = 0;
     }
 
+    /**
+     * 
+     * @return The Crops name
+     */
     public String getName() {
         return name;
     }
-
+    
+    /**
+     * 
+     * @return Crops purchase price
+     */
     public int getBuyPrice() {
         return buyPrice;
     }
-
+    
+    /**
+     * 
+     * @return Crops selling price
+     */
     public int getSellPrice() {
         return sellPrice;
     }
-
+    
+    /**
+     * 
+     * @return Base yield of a crop
+     */
     public int getBaseYield() {
         return baseYield;
     }
-
+    
+    /**
+     * 
+     * @return Base growing time of a crop
+     */
     public int getBaseGrowTime() {
         return baseGrowTime;
     }
-
+    
+    /**
+     * 
+     * @return Amount of health boost animals get upon harvest of crop
+     */
     public int getHealthBoost() {
         return healthBoost;
     }
-
+    
+    /**
+     * 
+     * @return True if crop is resistant to environmental event, otherwise false
+     */
     public boolean hasEnvironmentalResistance() {
         return environmentResistance;
     }
-
+    
+    /**
+     * 
+     * @return True if Crop fertilizes crop field on harvesting, otherwise false
+     */
     public boolean doesFertilize() {
         return fertilizes;
     }
-
+    
+    /**
+     * 
+     * @return A description of abilities should a crop have special abilities
+     */
     public String abilities() {
         String ans = "";
         if (healthBoost > 0)
@@ -69,27 +116,45 @@ public enum Crop{
             ans += "Fertilizes the field it was grown in when harvested. ";
         return ans;
     }
-
+    
+    /**
+     * 
+     * @return Standard description of a crop
+     */
     public String description(){
         return "Grows in " + baseGrowTime + " day(s)\n    Sells for $" + sellPrice * baseYield;
     }
-
+    
+    /**
+     * Buys a crop seed, takes care of payment, increments seed count
+     */
     public void buy(){
         Farm.money -= buyPrice;
         seedAmount++;
     }
-
+    
+    /**
+     * 
+     * @return Number of seed for a crop type
+     */
     public int getSeedAmount() {
         return seedAmount;
     }
-
+    
+    /**
+     * Buys x amount of crop seeds, takes care of payment, increments seed count
+     * @param amount
+     */
     public void buy(int amount){
         if (amount > 0) {
             Farm.money -= buyPrice * amount;
             seedAmount += amount;
         }
     }
-
+    
+    /**
+     * Decrements seed amount
+     */
     public void plant(){
         seedAmount--;
     }

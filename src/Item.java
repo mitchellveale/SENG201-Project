@@ -11,6 +11,12 @@ public enum Item {
     private int amount;
 
 
+    /**
+     * Initializes an Item
+     * @param name
+     * @param description
+     * @param price
+     */
     Item(String name, String description, int price) {
         this.name = name;
         this.description = description;
@@ -18,27 +24,50 @@ public enum Item {
         amount = 0;
     }
 
+    /**
+     * 
+     * @return Items name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * 
+     * @return Items description
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * 
+     * @return Items price
+     */
     public int getPrice() {
         return price;
     }
 
+    /**
+     * 
+     * @return Amount of the Item
+     */
     public int getAmount() {
         return amount;
     }
 
+    /**
+     * Increments the Items amount, deducts price from Farms money
+     */
     public void buy(){
         amount++;
         Farm.money -= price;
     }
 
+    /**
+     * Increments the Items amount by an amount, deducts total cost from Farms money
+     * @param amount
+     */
     public void buy(int amount){
         if (amount > 0) {
             Farm.money -= price * amount;
@@ -46,6 +75,9 @@ public enum Item {
         }
     }
 
+    /**
+     * decrements the amount of the Item
+     */
     public void use(){
         amount--;
     }

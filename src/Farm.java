@@ -104,18 +104,43 @@ public class Farm {
         return (currentDay == gameLength);
     }
     
+    /**
+     * 
+     * @return The current day
+     */
     public static int getCurrentDay() {
     	return currentDay;
     }
     
+    /**
+     * 
+     * @return The length of the game in days
+     */
     public static int getGameLength() {
     	return gameLength;
     }
     
+    /**
+     * 
+     * @return The final score of the game
+     */
     public static int getScore() {
-    	return (Farm.money);	// for now 
+        int a = 0;
+        int c =0;
+        for(int i=0; i<AnimalPens.length;i++) {
+        	a += AnimalPens[i].getAnimal().getCurrentCount() * AnimalPens[i].getAnimal().getbuyPrice();
+        }
+        for(int i=0;i<=cropFields.length-1;i++) {
+        	if(cropFields[i].getPlantedCrop() != null) {
+        	c += cropFields[i].getGrowthPercent() * cropFields[i].getPlantedCrop().getSellPrice();
+        }}
+        	return (money + a + c); 
     }
 
+    /**
+     * 
+     * @return The farmers name
+     */
     public static String getFarmerName() {
         return farmerName;
     }

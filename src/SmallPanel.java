@@ -185,7 +185,7 @@ public class SmallPanel extends JPanel{
     }
 
     public void designateAsBuyAnimalsPanel(AnimalPen animal){
-        JLabel infoLabel = new JLabel("Buy 0 " + animal.holdingAnimal.getName() + "s for $0?");
+        JLabel infoLabel = new JLabel("Buy 0 " + animal.getAnimal().getName() + "s for $0?");
         infoLabel.setHorizontalAlignment(SwingConstants.CENTER);
         infoLabel.setForeground(GraphicalGame.resources.tertiaryColor);
         infoLabel.setBounds(GraphicalGame.scaled(0, 44, 345, 63));
@@ -194,7 +194,7 @@ public class SmallPanel extends JPanel{
         add(infoLabel);
 
         //Slider
-        int maxAnimals = Math.min((int)(Farm.money / animal.holdingAnimal.getbuyPrice()), (int) (animal.capacity - animal.holdingAnimal.getCurrentCount()));
+        int maxAnimals = Math.min((int)(Farm.money / animal.getAnimal().getbuyPrice()), (int) (animal.getCapacity() - animal.getAnimal().getCurrentCount()));
         JSlider animalSlider = new JSlider(JSlider.HORIZONTAL, 0, maxAnimals, 0);
         animalSlider.setBounds(GraphicalGame.scaled(51, 108, 241, 20));
         animalSlider.setOpaque(false);
@@ -225,17 +225,17 @@ public class SmallPanel extends JPanel{
         // Slider listener
         animalSlider.addChangeListener(e -> {
             if (animalSlider.getValue() == 1)
-                infoLabel.setText("Buy 1 " + animal.holdingAnimal.getName() + " for $" + animal.holdingAnimal.getbuyPrice());
+                infoLabel.setText("Buy 1 " + animal.getAnimal().getName() + " for $" + animal.getAnimal().getbuyPrice());
             else
-                infoLabel.setText("Buy " + animalSlider.getValue() + " " + animal.holdingAnimal.getName() + "s for $" + animal.holdingAnimal.getbuyPrice() * animalSlider.getValue());
+                infoLabel.setText("Buy " + animalSlider.getValue() + " " + animal.getAnimal().getName() + "s for $" + animal.getAnimal().getbuyPrice() * animalSlider.getValue());
         });
 
         //buy button listener
         buyButton.addActionListener(e -> {
             if (thisPanel != GraphicalGame.getActivePanel())
                 return;
-            animal.holdingAnimal.CurrentCount += animalSlider.getValue();
-            Farm.money -= animal.holdingAnimal.getbuyPrice() * animalSlider.getValue();
+            animal.getAnimal().addAnimals(animalSlider.getValue());
+            Farm.money -= animal.getAnimal().getbuyPrice() * animalSlider.getValue();
             MainScreen.update();
             GraphicalGame.deletePanel(thisPanel, previousPanel);
         });
@@ -384,7 +384,159 @@ public class SmallPanel extends JPanel{
     }
 
     public void designateAsFeedPanel(AnimalPen animal){
+        // JTextArea doesn't seem to have the ability to center text :(
+        // also i hate this
+        JLabel line1 = new JLabel("Would you like to feed your " + animal.getAnimal().getName() + "s");
+        JLabel line2 = new JLabel("hay (" + Item.HAY.getAmount() + ") or breeding compound (" + Item.BREEDING_COMPOUND.getAmount() + ")");
+        JLabel line3 = new JLabel("This uses an action");
+        line1.setHorizontalAlignment(SwingConstants.CENTER);
+        line2.setHorizontalAlignment(SwingConstants.CENTER);
+        line3.setHorizontalAlignment(SwingConstants.CENTER);
+        line1.setBounds(GraphicalGame.scaled(0, 67, 345, 20));
+        line2.setBounds(GraphicalGame.scaled(0, 87, 345, 20));
+        line3.setBounds(GraphicalGame.scaled(0, 107, 345, 20));
+        line1.setFont(GraphicalGame.sizedFont(30f));
+        line2.setFont(GraphicalGame.sizedFont(30f));
+        line3.setFont(GraphicalGame.sizedFont(30f));
+        line1.setForeground(GraphicalGame.resources.secondaryColor);
+        line2.setForeground(GraphicalGame.resources.secondaryColor);
+        line3.setForeground(GraphicalGame.resources.secondaryColor);
 
+        add(line1);
+        add(line2);
+        add(line3);
+
+        // Buttons
+        JButton backButton = new JButton("Back");
+        JButton hayButton = new JButton("Hay");
+        JButton breedingCompoundButton = new JButton("Breeding Compound");
+
+        hayButton.setBounds(GraphicalGame.scaled(15, 147, 69, 30));
+        breedingCompoundButton.setBounds(GraphicalGame.scaled(94, 147, 174, 30));
+        backButton.setBounds(GraphicalGame.scaled(278, 147, 52, 30));
+
+        add(backButton);
+        add(breedingCompoundButton);
+        add(hayButton);
+
+        JPanel thisPanel = this;
+
+        // Hay button listener
+        if (Item.HAY.getAmount() > 0) {
+            hayButton.addActionListener(e -> {
+                if (thisPanel != GraphicalGame.getActivePanel())
+                    return;
+                if (FarmerActions.getRemainingActions() > 0) {
+                    FarmerActions.feedAnimalsHay();
+                    MainScreen.update();
+                    MediumPanel newPanel = new MediumPanel(MainScreen.getPanel(), animal.getAnimal().getName() + " pen");
+                    newPanel.designateAsAnimalPenPanel(animal);
+                    GraphicalGame.addPanel(newPanel);
+                    GraphicalGame.deletePanel(thisPanel, previousPanel);
+                    GraphicalGame.deletePanel(previousPanel, newPanel);
+                }
+            });
+        }
+
+        if (Item.BREEDING_COMPOUND.getAmount() > 0){
+            breedingCompoundButton.addActionListener(e -> {
+                if (thisPanel != GraphicalGame.getActivePanel())
+                    return;
+                if (FarmerActions.getRemainingActions() > 0) {
+                    //TODO: What is the method for using breeding compound??
+                    MainScreen.update();
+                    MediumPanel newPanel = new MediumPanel(MainScreen.getPanel(), animal.getAnimal().getName() + " pen");
+                    newPanel.designateAsAnimalPenPanel(animal);
+                    GraphicalGame.addPanel(newPanel);
+                    GraphicalGame.deletePanel(thisPanel, previousPanel);
+                    GraphicalGame.deletePanel(previousPanel, newPanel);
+                }
+            });
+        }
+
+        // Back button listener
+        backButton.addActionListener(e -> {
+            if (thisPanel != GraphicalGame.getActivePanel())
+                return;
+            GraphicalGame.deletePanel(thisPanel, previousPanel);
+        });
+    }
+
+    public void designateAsPlayPanel(AnimalPen animal){
+        // JTextArea doesn't seem to have the ability to center text :(
+        // also i hate this
+        JLabel line1 = new JLabel("Would you like to play your animals");
+        JLabel line2 = new JLabel("or give them treats (you have " + Item.ANIMAL_TREATS.getAmount() + ")");
+        JLabel line3 = new JLabel("This uses an action");
+        line1.setHorizontalAlignment(SwingConstants.CENTER);
+        line2.setHorizontalAlignment(SwingConstants.CENTER);
+        line3.setHorizontalAlignment(SwingConstants.CENTER);
+        line1.setBounds(GraphicalGame.scaled(0, 67, 345, 20));
+        line2.setBounds(GraphicalGame.scaled(0, 87, 345, 20));
+        line3.setBounds(GraphicalGame.scaled(0, 107, 345, 20));
+        line1.setFont(GraphicalGame.sizedFont(30f));
+        line2.setFont(GraphicalGame.sizedFont(30f));
+        line3.setFont(GraphicalGame.sizedFont(30f));
+        line1.setForeground(GraphicalGame.resources.secondaryColor);
+        line2.setForeground(GraphicalGame.resources.secondaryColor);
+        line3.setForeground(GraphicalGame.resources.secondaryColor);
+
+        add(line1);
+        add(line2);
+        add(line3);
+
+        // Buttons
+        JButton backButton = new JButton("Back");
+        JButton playButton = new JButton("Play");
+        JButton giveTreatsButton = new JButton("Give treats");
+
+        playButton.setBounds(GraphicalGame.scaled(15, 147, 69, 30));
+        giveTreatsButton.setBounds(GraphicalGame.scaled(94, 147, 174, 30));
+        backButton.setBounds(GraphicalGame.scaled(278, 147, 52, 30));
+
+        add(backButton);
+        add(giveTreatsButton);
+        add(playButton);
+
+        JPanel thisPanel = this;
+
+        // play button listener
+        playButton.addActionListener(e -> {
+            if (thisPanel != GraphicalGame.getActivePanel())
+                return;
+            if (FarmerActions.getRemainingActions() > 0) {
+                FarmerActions.playWithAnimals();
+                MainScreen.update();
+                MediumPanel newPanel = new MediumPanel(MainScreen.getPanel(), animal.getAnimal().getName() + " pen");
+                newPanel.designateAsAnimalPenPanel(animal);
+                GraphicalGame.addPanel(newPanel);
+                GraphicalGame.deletePanel(thisPanel, previousPanel);
+                GraphicalGame.deletePanel(previousPanel, newPanel);
+            }
+        });
+
+        if (Item.ANIMAL_TREATS.getAmount() > 0){
+            giveTreatsButton.addActionListener(e -> {
+                if (thisPanel != GraphicalGame.getActivePanel())
+                    return;
+                if (FarmerActions.getRemainingActions() > 0) {
+                    FarmerActions.feedAnimalsTreats();
+                    MainScreen.update();
+                    MediumPanel newPanel = new MediumPanel(MainScreen.getPanel(), animal.getAnimal().getName() + " pen");
+                    newPanel.designateAsAnimalPenPanel(animal);
+                    GraphicalGame.addPanel(newPanel);
+                    GraphicalGame.deletePanel(thisPanel, previousPanel);
+                    GraphicalGame.deletePanel(previousPanel, newPanel);
+                }
+            });
+        }
+
+        // Back button listener
+        backButton.addActionListener(e -> {
+            if (thisPanel != GraphicalGame.getActivePanel())
+                return;
+            GraphicalGame.deletePanel(thisPanel, previousPanel);
+        });
     }
 
     public void designateAsNoActionsPanel(){

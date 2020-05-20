@@ -317,17 +317,16 @@ public class MediumPanel extends JPanel{
         // Exit button listener
         exitButton.addActionListener(e -> {
             if (thisPanel != GraphicalGame.getActivePanel()){
-                System.out.println("Not the active panel active is" + GraphicalGame.getActivePanel());
                 return;}
             GraphicalGame.deletePanel(thisPanel, previousPanel);
         });
     }
 
     public void designateAsAnimalPenPanel(AnimalPen animal){
-        JLabel amountLabel = new JLabel("Amount: " + animal.holdingAnimal.getCurrentCount() + "/" + animal.capacity);
-        JLabel happinessLabel = new JLabel("Happiness: " + animal.holdingAnimal.getHappiness() + "/10");
-        JLabel healthinessLabel = new JLabel("Healthiness: " + animal.holdingAnimal.getHealthiness() + "/10");
-        JLabel dailyIncomeLabel = new JLabel("Daily income: $" + animal.holdingAnimal.getdailyIncome() + " per " + animal.holdingAnimal.getName());
+        JLabel amountLabel = new JLabel("Amount: " + animal.getAnimal().getCurrentCount() + "/" + animal.getCapacity());
+        JLabel happinessLabel = new JLabel("Happiness: " + animal.getAnimal().getHappiness() + "/10");
+        JLabel healthinessLabel = new JLabel("Healthiness: " + animal.getAnimal().getHealthiness() + "/10");
+        JLabel dailyIncomeLabel = new JLabel("Daily income: $" + animal.getAnimal().getdailyIncome() + " per " + animal.getAnimal().getName());
 
         amountLabel.setHorizontalAlignment(SwingConstants.CENTER);
         happinessLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -368,6 +367,22 @@ public class MediumPanel extends JPanel{
         add(backButton);
         add(feedButton);
         add(playButton);
+
+        feedButton.addActionListener(e -> {
+            if (thisPanel != GraphicalGame.getActivePanel())
+                return;
+            SmallPanel newPanel = new SmallPanel(thisPanel, "Feed Animals");
+            newPanel.designateAsFeedPanel(animal);
+            GraphicalGame.addPanel(newPanel);
+        });
+
+        playButton.addActionListener(e -> {
+            if (thisPanel != GraphicalGame.getActivePanel())
+                return;
+            SmallPanel newPanel = new SmallPanel(thisPanel, "Play With Animals");
+            newPanel.designateAsPlayPanel(animal);
+            GraphicalGame.addPanel(newPanel);
+        });
 
         // Back button listener
         backButton.addActionListener(e -> {

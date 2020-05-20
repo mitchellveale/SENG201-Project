@@ -14,7 +14,7 @@ public class SetupScreen{
         panel.setBounds(0, 0, GraphicalGame.getWidth(), GraphicalGame.getHeight());
         panel.setLayout(null);
 
-        Color primaryColor = new Color(255, 202, 112);
+        Color primaryColor = new Color(50, 50, 51);
 
         // "Create your farm!" title
         JLabel title = new JLabel("Create your new farm!");

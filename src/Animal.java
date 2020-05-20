@@ -52,6 +52,9 @@ public enum Animal {
 		if(this.happiness > 10) {
 			this.happiness = 10;
 		}
+		if(this.happiness < 0) {
+			this.happiness = 0;
+		}
 	}
 	/**
 	 * Increases Healthiness of Animal by i
@@ -61,6 +64,9 @@ public enum Animal {
 		this.healthiness += i;
 		if(this.healthiness > 10) {
 			this.healthiness = 10;
+		}
+		if(this.healthiness < 0) {
+			this.healthiness = 0;
 		}
 	}
 	
@@ -103,8 +109,8 @@ public enum Animal {
 	 * 
 	 * @return dailyIncome of Animal
 	 */
-	public int getdailyIncome() {
-		return baseDailyIncome * ((happiness+healthiness)/10);
+	public double getdailyIncome() {
+		return baseDailyIncome * ((happiness+healthiness)/10.0);
 	}
 	
 	

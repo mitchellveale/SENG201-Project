@@ -11,6 +11,15 @@ public enum FarmType {
     private final double animalPenSizeMultiplier;
     private final double valueMultiplier;
 
+    /**
+     * Initializes a FarmType
+     * @param name
+     * @param description
+     * @param extraCash
+     * @param cropYieldMultiplier
+     * @param animalPenSizeMultiplier
+     * @param valueMultiplier
+     */
     FarmType(String name, String description, int extraCash, double cropYieldMultiplier, double animalPenSizeMultiplier, double valueMultiplier){
         this.name = name;
         this.description = description;
@@ -20,26 +29,50 @@ public enum FarmType {
         this.valueMultiplier = valueMultiplier;
     }
 
+    /**
+     * 
+     * @return Name of the FarmType
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * 
+     * @return Description of the FarmType
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * 
+     * @return extraCash value of the FarmType
+     */
     public int getExtraCash() {
         return extraCash;
     }
 
+    /**
+     * 
+     * @return CropYieldMultiplier of the FarmType
+     */
     public double getCropYieldMultiplier() {
         return cropYieldMultiplier;
     }
 
+    /**
+     * 
+     * @return AnimalPenSizeMultiplier of the FarmType
+     */
     public double getAnimalPenSizeMultiplier() {
         return animalPenSizeMultiplier;
     }
 
+    /**
+     * 
+     * @return ValueMultiplier of the FarmType
+     */
     public double getValueMultiplier() {
         return valueMultiplier;
     }

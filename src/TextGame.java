@@ -88,9 +88,10 @@ public class TextGame {
 		System.out.println("6 : Harvest crops");
 		System.out.println("7 : Tend to farm land");
 		System.out.println("8 : Use Lotto ticket");
+		System.out.println("9 : Use Animal Growth Compound");
 		if(Farm.isFinalDay()) {
-		System.out.println("9 : Finish Game");}
-		else {System.out.println("9 : Next Day");}
+		System.out.println("10 : Finish Game");}
+		else {System.out.println("10 : Next Day");}
 			
 		System.out.println("\n Please enter the number that corresponds to the action you would like to perform!");
 		
@@ -146,6 +147,19 @@ public class TextGame {
 			break;
 			
 		case "9":
+			// Use animal growth compound
+			if(FarmerActions.getRemainingActions()>0) {
+				if(Item.BREEDING_COMPOUND.getAmount()>0) {
+				FarmerActions.useBreedingCompound();
+				System.out.println("Breeding Compound used");
+				}
+				else {System.out.println("You don't have enough Breeding Compound");
+				}
+			}
+			else {System.out.println("No remaining Actions!\n");}
+				break;
+			
+		case "10":
 			// next day
 			Farm.nextDay(); 
 			break;

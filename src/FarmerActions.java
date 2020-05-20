@@ -18,6 +18,7 @@ public class FarmerActions {
     		Farm.AnimalPens[i].animalMultiplication(1.5);
     	}
     	Item.BREEDING_COMPOUND.use();
+    	remainingActions --;
     }
     
     

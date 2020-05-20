@@ -443,7 +443,7 @@ public class SmallPanel extends JPanel{
                 if (thisPanel != GraphicalGame.getActivePanel())
                     return;
                 if (FarmerActions.getRemainingActions() > 0) {
-                    //TODO: What is the method for using breeding compound??
+                    FarmerActions.useBreedingCompound();
                     MainScreen.update();
                     MediumPanel newPanel = new MediumPanel(MainScreen.getPanel(), animal.getAnimal().getName() + " pen");
                     newPanel.designateAsAnimalPenPanel(animal);

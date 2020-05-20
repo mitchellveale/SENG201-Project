@@ -20,6 +20,9 @@ public class CropField {
             addYieldMultiplier(1.5);
     }
 
+    /**
+     * resets growth and yield multipliers
+     */
     private void resetMultipliers(){
         growthMultiplier = 1;
         yieldMultiplier = 1 * Farm.getFarmType().getCropYieldMultiplier();

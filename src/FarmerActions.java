@@ -11,6 +11,17 @@ public class FarmerActions {
     }
 
     /**
+     * Multiplies the amount of all animals, decrements growthCompound
+     */
+    public static void useBreedingCompound() {
+    	for(int i=0; i<Farm.AnimalPens.length;i++) {
+    		Farm.AnimalPens[i].animalMultiplication(1.5);
+    	}
+    	Item.BREEDING_COMPOUND.use();
+    }
+    
+    
+    /**
      * Harvests all mature crops
      */
     public static void harvestCrops(){

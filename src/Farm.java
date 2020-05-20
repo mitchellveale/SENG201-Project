@@ -75,10 +75,7 @@ public class Farm {
 
         FarmerActions.resetActions();
         if(Item.BREEDING_COMPOUND.getAmount()>0) {
-        	for(int i=0; i<AnimalPens.length;i++) {
-        		AnimalPens[i].animalMultiplication(1.5);
-        	}
-        	Item.BREEDING_COMPOUND.use();
+        	FarmerActions.useBreedingCompound();
         	}
     }
 

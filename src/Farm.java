@@ -1,12 +1,12 @@
 import java.util.Random;
 
 public class Farm {
-    private static int currentDay = 1;
+    private static int currentDay;
 
     /**
      * the farmer's total money
      */
-    public static int money = 1000;
+    public static int money;
 
     public static final CropField[] cropFields = new CropField[6];
     public static AnimalPen[] AnimalPens = new AnimalPen[3];
@@ -42,6 +42,8 @@ public class Farm {
         AnimalPens[0] = cowPen;
         AnimalPens[1] = chickenPen;
         AnimalPens[2] = pigPen;
+        currentDay = 1;
+        money = 1000;
         for(int i=0;i<=cropFields.length-1;i++) {
         	cropFields[i] = new CropField();
         }

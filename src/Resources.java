@@ -85,7 +85,8 @@ public class Resources {
         try {
             bufferedImage = ImageIO.read(new File(path));
         } catch (IOException e) {
-            System.out.println("Something went wrong when scaling required images");
+            System.out.println("Something went wrong when loading image '" + path + "'. Stack trace printed below\n\n");
+            e.printStackTrace();
         }
         return Objects.requireNonNull(bufferedImage).getScaledInstance(GraphicalGame.scaled(bufferedImage.getWidth()),GraphicalGame.scaled(bufferedImage.getHeight()), Image.SCALE_SMOOTH);
     }

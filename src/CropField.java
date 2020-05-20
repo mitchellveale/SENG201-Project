@@ -65,11 +65,10 @@ public class CropField {
         if (plantedCrop.getHealthBoost() > 0){
         	for(int i=0; i<Farm.AnimalPens.length;i++) {
             	Farm.AnimalPens[i].getAnimal().increaseHealthiness(plantedCrop.getHealthBoost());
+            }
         }
-
         fertilized = plantedCrop.doesFertilize();
         plantedCrop = null;
-        }
     }
 
     /**

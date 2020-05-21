@@ -14,8 +14,8 @@ public class FarmerActions {
      * Multiplies the amount of all animals, decrements growthCompound
      */
     public static void useBreedingCompound() {
-    	for(int i=0; i<Farm.AnimalPens.length;i++) {
-    		Farm.AnimalPens[i].animalMultiplication(1.5);
+    	for(AnimalPen pen : Farm.AnimalPens) {
+    		pen.animalMultiplication(1.5);
     	}
     	Item.BREEDING_COMPOUND.use();
     	remainingActions --;
@@ -52,23 +52,23 @@ public class FarmerActions {
      * Increases healthiness of all animals, uses an action
      */
     public static void feedAnimalsHay() {
-    	for(int i=0; i<Farm.AnimalPens.length;i++) {
-    		Farm.AnimalPens[i].getAnimal().increaseHealthiness(3);
+    	for(AnimalPen pen :  Farm.AnimalPens) {
+    		pen.getAnimal().increaseHealthiness(3);
     	}
     	remainingActions -= 1;
+    	Item.HAY.use();
     }
 
     /**
      * Increases happiness and healthiness of all animals, uses an action
      */
     public static void feedAnimalsTreats(){
-    	for(int i=0; i<Farm.AnimalPens.length;i++) {
-    		Farm.AnimalPens[i].getAnimal().increaseHappiness(3);
-    	}
-    	for(int i=0; i<Farm.AnimalPens.length;i++) {
-    		Farm.AnimalPens[i].getAnimal().increaseHealthiness(3);
+    	for(AnimalPen pen : Farm.AnimalPens) {
+    		pen.getAnimal().increaseHappiness(3);
+    		pen.getAnimal().increaseHealthiness(3);
     	}
     	remainingActions -= 1;
+    	Item.ANIMAL_TREATS.use();
     }
 
     /**
@@ -76,8 +76,8 @@ public class FarmerActions {
      */
     public static void playWithAnimals(){
     	
-    	for(int i=0; i<Farm.AnimalPens.length;i++) {
-    		Farm.AnimalPens[i].getAnimal().increaseHappiness(2);
+    	for(AnimalPen pen : Farm.AnimalPens) {
+    		pen.getAnimal().increaseHappiness(2);
     	}
     	remainingActions -= 1;
     }

@@ -61,14 +61,10 @@ public class Farm {
         for(CropField field : cropFields){
             field.grow();
         }
-        for(int i=0; i<AnimalPens.length;i++) {
-        	money += (AnimalPens[i].getAnimal().getdailyIncome() * AnimalPens[i].getAnimal().getCurrentCount());
-        }
-        for(int i=0; i<AnimalPens.length;i++) {
-        	AnimalPens[i].getAnimal().increaseHappiness(-1);
-        }
-        for(int i=0; i<AnimalPens.length;i++) {
-        	AnimalPens[i].getAnimal().increaseHealthiness(-1);
+        for(AnimalPen pen : AnimalPens) {
+        	money += (pen.getAnimal().getdailyIncome() * pen.getAnimal().getCurrentCount());
+        	pen.getAnimal().increaseHappiness(-1);
+        	pen.getAnimal().increaseHealthiness(-1);
         }
         farmCondition = ((farmCondition * 100)-20)/100;
 
@@ -123,12 +119,12 @@ public class Farm {
     public static int getScore() {
         int a = 0;
         int c =0;
-        for(int i=0; i<AnimalPens.length;i++) {
-        	a += AnimalPens[i].getAnimal().getCurrentCount() * AnimalPens[i].getAnimal().getbuyPrice();
+        for(AnimalPen pen : AnimalPens) {
+        	a += pen.getAnimal().getCurrentCount() * pen.getAnimal().getbuyPrice();
         }
-        for(int i=0;i<=cropFields.length-1;i++) {
-        	if(cropFields[i].getPlantedCrop() != null) {
-        	c += cropFields[i].getGrowthPercent() * cropFields[i].getPlantedCrop().getSellPrice();
+        for(CropField field : cropFields) {
+        	if(field.getPlantedCrop() != null) {
+        	c += field.getGrowthPercent() * field.getPlantedCrop().getSellPrice();
         }}
         	return (money + a + c); 
     }

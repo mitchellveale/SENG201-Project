@@ -1,7 +1,7 @@
 public class GameManager {
     public static void main(String[] args) {
         //We will probably want to default to using the gui when it is implemented
-        boolean gui = false; // Make this default to true when the GUI has been implemented
+        boolean gui = true; // Make this default to true when the GUI has been implemented
         double scale = 1;
         for (int i = 0; i < args.length; i+=2){
             try {

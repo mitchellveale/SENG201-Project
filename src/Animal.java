@@ -8,7 +8,7 @@ public enum Animal {
 	private String name;
 	private int happiness;
 	private int healthiness;
-	private int CurrentCount;
+	private int currentCount;
 	private int buyPrice;
 	private int baseDailyIncome;
 	
@@ -21,27 +21,27 @@ public enum Animal {
 	 * @param newbuyPrice Price of Animal
 	 * @param newDailyIncome Base daily income
 	 */
-	Animal(String newName, int newHappiness, int newHealthiness, int newCurrentCount, int newbuyPrice, int newDailyIncome) {
-		this.name = newName;
-		this.happiness = newHappiness;
-		this.healthiness = newHealthiness;
-		this.CurrentCount = newCurrentCount;
-		this.buyPrice = newbuyPrice;
-		this.baseDailyIncome = (int)Math.round(newDailyIncome * Farm.getFarmType().getValueMultiplier());
+	Animal(String name, int happiness, int healthiness, int currentCount, int buyPrice, int dailyIncome) {
+		this.name = name;
+		this.happiness = happiness;
+		this.healthiness = healthiness;
+		this.currentCount = currentCount;
+		this.buyPrice = buyPrice;
+		this.baseDailyIncome = (int)Math.round(dailyIncome * Farm.getFarmType().getValueMultiplier());
 	}
 	/**
 	 * Adds i to the currentCount of Animal
 	 * @param i
 	 */
 	public void addAnimals(int i) {
-		this.CurrentCount += i;
+		this.currentCount += i;
 	}
 	/**
 	 * Sets currentCount of Animal to i
 	 * @param i
 	 */
 	public void setAnimals(int i) {
-		this.CurrentCount = i;
+		this.currentCount = i;
 	}
 	/**
 	 * Increases Happiness of Animal by i
@@ -96,7 +96,7 @@ public enum Animal {
 	 * @return currentCount of Animals
 	 */
 	public int getCurrentCount() {
-		return CurrentCount;
+		return currentCount;
 	}
 	/**
 	 * 

@@ -183,7 +183,6 @@ public class TextGame {
 				if(FarmerActions.remainingActions>0) {
 				    if(Item.ANIMAL_TREATS.getAmount()>0) {
 					    FarmerActions.feedAnimalsTreats();
-					    Item.ANIMAL_TREATS.use();
 					    System.out.println("All Animals recieved a health and happiness boost!");
 				    } 
 				    else {
@@ -198,7 +197,6 @@ public class TextGame {
 				if(FarmerActions.remainingActions>0) {
 				    if(Item.HAY.getAmount()>0) {
 					    FarmerActions.feedAnimalsHay();
-					    Item.HAY.use();
 					    System.out.println("All Animals recieved a health boost!\n");
 				    }
 				    else {
@@ -278,7 +276,7 @@ public class TextGame {
 		for(int i=0; i<Farm.AnimalPens.length;i++) {
 			System.out.println(Farm.AnimalPens[i]);
     	}
-		System.out.println("Press any character to go back to main menu");
+		System.out.println("Press any character and enter to go back to main menu");
 		String doNext = scan.next();
 	}
 	

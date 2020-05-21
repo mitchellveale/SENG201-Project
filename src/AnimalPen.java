@@ -10,8 +10,8 @@ public class AnimalPen {
 	 * Constructs AnimalPen
 	 * @param newholdingAnimal
 	 */
-	public AnimalPen(Animal newholdingAnimal) {
-		this.holdingAnimal = newholdingAnimal;
+	public AnimalPen(Animal holdingAnimal) {
+		this.holdingAnimal = holdingAnimal;
 		this.capacity = (int)Math.round(baseCapacity * Farm.getFarmType().getAnimalPenSizeMultiplier());
 	}
 	

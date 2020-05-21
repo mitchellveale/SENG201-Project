@@ -21,7 +21,7 @@ public class GameManager {
             }
         }
         if (gui)
-            GraphicalGame.startGame(scale);
+            GUIGame.startGame(scale);
         else
             TextGame.startGame();
     }

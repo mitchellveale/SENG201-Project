@@ -1,9 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class GraphicalGame {
+/**
+ * Manages the GUI Window and what to display
+ */
+public class GUIGame {
 
-    private static final String windowTitle = "Shitty farm game";
+    private static final String windowTitle = "SENG 201 Project";
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
     private static int width;
@@ -18,7 +21,7 @@ public class GraphicalGame {
     private static JPanel activePanel;
 
     public static void startGame(double scale){
-        GraphicalGame.scale = scale;
+        GUIGame.scale = scale;
         width = (int)(WIDTH * scale);
         height = (int)(HEIGHT * scale);
 
@@ -27,15 +30,8 @@ public class GraphicalGame {
         initializeFrame();
         initializePanels();
 
-        //pane.add(SetupScreen.getPanel());
-        //activePanel = SetupScreen.getPanel();
-
-        // TESTING
-        Farm.createFarm(7, "Bob's Farm", "Bob", FarmType.SUBSIDISED_FARM);
-        pane.add(MainScreen.getPanel());
-        pane.moveToBack(MainScreen.getPanel());
-        MainScreen.update();
-        activePanel = MainScreen.getPanel();
+        pane.add(SetupScreen.getPanel());
+        activePanel = SetupScreen.getPanel();
 
         frame.setVisible(true);
 
@@ -86,12 +82,6 @@ public class GraphicalGame {
         return new Rectangle(scaled(x), scaled(y), scaled(width), scaled(height));
     }
 
-    public static void centerBounds(Component component, int x, int y, int width, int height){
-        int newX = x - (width / 2);
-        int newY = y - (height / 2);
-        component.setBounds(newX, newY, width, height);
-    }
-
     public static void deletePanel(JPanel panel, JPanel newActive){
         panel.setVisible(false);
         pane.remove(panel);
@@ -117,6 +107,6 @@ public class GraphicalGame {
     }
 
     public static void setActivePanel(JPanel activePanel) {
-        GraphicalGame.activePanel = activePanel;
+        GUIGame.activePanel = activePanel;
     }
 }

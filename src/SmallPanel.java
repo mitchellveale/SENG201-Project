@@ -7,17 +7,17 @@ public class SmallPanel extends JPanel{
     public SmallPanel(JPanel previousPanel, String title){
         super();
         this.previousPanel = previousPanel;
-        setBounds(GraphicalGame.scaled(228, 229, 345, 183));
+        setBounds(GUIGame.scaled(228, 229, 345, 183));
         setLayout(null);
-        setBorder(new LineBorder(GraphicalGame.resources.secondaryColor, GraphicalGame.scaled(3)));
-        setBackground(GraphicalGame.resources.primaryColor);
+        setBorder(new LineBorder(GUIGame.resources.secondaryColor, GUIGame.scaled(3)));
+        setBackground(GUIGame.resources.primaryColor);
         //TODO: Maybe add a picture background later but for now this is fine
         JLabel titleLabel = new JLabel(title);
-        titleLabel.setBounds(GraphicalGame.scaled(0, 0, 345, 44));
+        titleLabel.setBounds(GUIGame.scaled(0, 0, 345, 44));
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        titleLabel.setForeground(GraphicalGame.resources.tertiaryColor);
-        titleLabel.setBackground(GraphicalGame.resources.secondaryColor);
-        titleLabel.setFont(GraphicalGame.sizedFont(35f));
+        titleLabel.setForeground(GUIGame.resources.tertiaryColor);
+        titleLabel.setBackground(GUIGame.resources.secondaryColor);
+        titleLabel.setFont(GUIGame.sizedFont(35f));
         titleLabel.setOpaque(true);
         add(titleLabel);
     }
@@ -32,15 +32,15 @@ public class SmallPanel extends JPanel{
         line1.setHorizontalAlignment(SwingConstants.CENTER);
         line2.setHorizontalAlignment(SwingConstants.CENTER);
         line3.setHorizontalAlignment(SwingConstants.CENTER);
-        line1.setBounds(GraphicalGame.scaled(0, 67, 345, 20));
-        line2.setBounds(GraphicalGame.scaled(0, 87, 345, 20));
-        line3.setBounds(GraphicalGame.scaled(0, 107, 345, 20));
-        line1.setFont(GraphicalGame.sizedFont(30f));
-        line2.setFont(GraphicalGame.sizedFont(30f));
-        line3.setFont(GraphicalGame.sizedFont(30f));
-        line1.setForeground(GraphicalGame.resources.secondaryColor);
-        line2.setForeground(GraphicalGame.resources.secondaryColor);
-        line3.setForeground(GraphicalGame.resources.secondaryColor);
+        line1.setBounds(GUIGame.scaled(0, 67, 345, 20));
+        line2.setBounds(GUIGame.scaled(0, 87, 345, 20));
+        line3.setBounds(GUIGame.scaled(0, 107, 345, 20));
+        line1.setFont(GUIGame.sizedFont(30f));
+        line2.setFont(GUIGame.sizedFont(30f));
+        line3.setFont(GUIGame.sizedFont(30f));
+        line1.setForeground(GUIGame.resources.secondaryColor);
+        line2.setForeground(GUIGame.resources.secondaryColor);
+        line3.setForeground(GUIGame.resources.secondaryColor);
 
         add(line1);
         add(line2);
@@ -56,13 +56,13 @@ public class SmallPanel extends JPanel{
 
         if (Item.GROWTH_COMPOUND.getAmount() == 0){
             // 2 button config
-            waterButton.setBounds(GraphicalGame.scaled(15, 147, 145, 30));
-            backButton.setBounds(GraphicalGame.scaled(185, 147, 145, 30));
+            waterButton.setBounds(GUIGame.scaled(15, 147, 145, 30));
+            backButton.setBounds(GUIGame.scaled(185, 147, 145, 30));
         }else{
             // 3 button config
-            waterButton.setBounds(GraphicalGame.scaled(15, 147, 69, 30));
-            growthButton.setBounds(GraphicalGame.scaled(94, 147, 174, 30));
-            backButton.setBounds(GraphicalGame.scaled(278, 147, 52, 30));
+            waterButton.setBounds(GUIGame.scaled(15, 147, 69, 30));
+            growthButton.setBounds(GUIGame.scaled(94, 147, 174, 30));
+            backButton.setBounds(GUIGame.scaled(278, 147, 52, 30));
 
             add(growthButton);
         }
@@ -72,47 +72,47 @@ public class SmallPanel extends JPanel{
 
         // Water button listener
         waterButton.addActionListener(e -> {
-            if (thisPanel != GraphicalGame.getActivePanel())
+            if (thisPanel != GUIGame.getActivePanel())
                 return;
             if (FarmerActions.getRemainingActions() > 0){
                 FarmerActions.tendToCrop(Farm.cropFields[cropField], false);
                 MainScreen.update();
                 MediumPanel newPanel = new MediumPanel(MainScreen.getPanel(), "Crop field " + cropField);
                 newPanel.designateAsCropFieldPanel(cropField);
-                GraphicalGame.addPanel(newPanel);
-                GraphicalGame.deletePanel(this, newPanel);
-                GraphicalGame.deletePanel(previousPanel, newPanel);
+                GUIGame.addPanel(newPanel);
+                GUIGame.deletePanel(this, newPanel);
+                GUIGame.deletePanel(previousPanel, newPanel);
             }else{
                 SmallPanel newPanel = new SmallPanel(thisPanel, "No actions remaining");
                 newPanel.designateAsNoActionsPanel();
-                GraphicalGame.addPanel(newPanel);
+                GUIGame.addPanel(newPanel);
             }
         });
 
         // Growth compound button
         growthButton.addActionListener(e -> {
-            if (thisPanel != GraphicalGame.getActivePanel())
+            if (thisPanel != GUIGame.getActivePanel())
                 return;
             if (FarmerActions.getRemainingActions() > 0){
                 FarmerActions.tendToCrop(Farm.cropFields[cropField], true);
                 MainScreen.update();
                 MediumPanel newPanel = new MediumPanel(MainScreen.getPanel(), "Crop field " + cropField);
                 newPanel.designateAsCropFieldPanel(cropField);
-                GraphicalGame.addPanel(newPanel);
-                GraphicalGame.deletePanel(this, newPanel);
-                GraphicalGame.deletePanel(previousPanel, newPanel);
+                GUIGame.addPanel(newPanel);
+                GUIGame.deletePanel(this, newPanel);
+                GUIGame.deletePanel(previousPanel, newPanel);
             }else{
                 SmallPanel newPanel = new SmallPanel(thisPanel, "No actions remaining");
                 newPanel.designateAsNoActionsPanel();
-                GraphicalGame.addPanel(newPanel);
+                GUIGame.addPanel(newPanel);
             }
         });
 
         // Back button listener
         backButton.addActionListener(e -> {
-            if (thisPanel != GraphicalGame.getActivePanel())
+            if (thisPanel != GUIGame.getActivePanel())
                 return;
-            GraphicalGame.deletePanel(thisPanel, previousPanel);
+            GUIGame.deletePanel(thisPanel, previousPanel);
         });
     }
 
@@ -130,15 +130,15 @@ public class SmallPanel extends JPanel{
         line1.setHorizontalAlignment(SwingConstants.CENTER);
         line2.setHorizontalAlignment(SwingConstants.CENTER);
         line3.setHorizontalAlignment(SwingConstants.CENTER);
-        line1.setBounds(GraphicalGame.scaled(0, 67, 345, 20));
-        line2.setBounds(GraphicalGame.scaled(0, 87, 345, 20));
-        line3.setBounds(GraphicalGame.scaled(0, 107, 345, 20));
-        line1.setFont(GraphicalGame.sizedFont(30f));
-        line2.setFont(GraphicalGame.sizedFont(30f));
-        line3.setFont(GraphicalGame.sizedFont(30f));
-        line1.setForeground(GraphicalGame.resources.secondaryColor);
-        line2.setForeground(GraphicalGame.resources.secondaryColor);
-        line3.setForeground(GraphicalGame.resources.tertiaryColor);
+        line1.setBounds(GUIGame.scaled(0, 67, 345, 20));
+        line2.setBounds(GUIGame.scaled(0, 87, 345, 20));
+        line3.setBounds(GUIGame.scaled(0, 107, 345, 20));
+        line1.setFont(GUIGame.sizedFont(30f));
+        line2.setFont(GUIGame.sizedFont(30f));
+        line3.setFont(GUIGame.sizedFont(30f));
+        line1.setForeground(GUIGame.resources.secondaryColor);
+        line2.setForeground(GUIGame.resources.secondaryColor);
+        line3.setForeground(GUIGame.resources.tertiaryColor);
 
         add(line1);
         add(line2);
@@ -150,64 +150,64 @@ public class SmallPanel extends JPanel{
 
         JPanel thisPanel = this;
 
-        harvestButton.setBounds(GraphicalGame.scaled(15, 147, 145, 30));
-        backButton.setBounds(GraphicalGame.scaled(185, 147, 145, 30));
+        harvestButton.setBounds(GUIGame.scaled(15, 147, 145, 30));
+        backButton.setBounds(GUIGame.scaled(185, 147, 145, 30));
 
         add(harvestButton);
         add(backButton);
         // Harvest button listener
         harvestButton.addActionListener(e -> {
-            if (thisPanel != GraphicalGame.getActivePanel())
+            if (thisPanel != GUIGame.getActivePanel())
                 return;
             if (FarmerActions.getRemainingActions() > 0) {
                 FarmerActions.harvestCrops();
                 MainScreen.update();
                 MediumPanel newPanel = new MediumPanel(MainScreen.getPanel(), "Crop field " + cropField);
                 newPanel.designateAsCropFieldPanel(cropField);
-                GraphicalGame.addPanel(newPanel);
-                GraphicalGame.deletePanel(this, newPanel);
-                GraphicalGame.deletePanel(previousPanel, newPanel);
+                GUIGame.addPanel(newPanel);
+                GUIGame.deletePanel(this, newPanel);
+                GUIGame.deletePanel(previousPanel, newPanel);
                 MainScreen.updateImages();
             }else{
                 SmallPanel newPanel = new SmallPanel(thisPanel, "No actions remaining");
                 newPanel.designateAsNoActionsPanel();
-                GraphicalGame.addPanel(newPanel);
+                GUIGame.addPanel(newPanel);
             }
 
         });
 
         // Back button listener
         backButton.addActionListener(e -> {
-            if (thisPanel != GraphicalGame.getActivePanel())
+            if (thisPanel != GUIGame.getActivePanel())
                 return;
-            GraphicalGame.deletePanel(thisPanel, previousPanel);
+            GUIGame.deletePanel(thisPanel, previousPanel);
         });
     }
 
     public void designateAsBuyAnimalsPanel(AnimalPen animal){
         JLabel infoLabel = new JLabel("Buy 0 " + animal.getAnimal().getName() + "s for $0?");
         infoLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        infoLabel.setForeground(GraphicalGame.resources.tertiaryColor);
-        infoLabel.setBounds(GraphicalGame.scaled(0, 44, 345, 63));
-        infoLabel.setFont(GraphicalGame.sizedFont(30f));
+        infoLabel.setForeground(GUIGame.resources.tertiaryColor);
+        infoLabel.setBounds(GUIGame.scaled(0, 44, 345, 63));
+        infoLabel.setFont(GUIGame.sizedFont(30f));
 
         add(infoLabel);
 
         //Slider
         int maxAnimals = Math.min((int)(Farm.money / animal.getAnimal().getbuyPrice()), (int) (animal.getCapacity() - animal.getAnimal().getCurrentCount()));
         JSlider animalSlider = new JSlider(JSlider.HORIZONTAL, 0, maxAnimals, 0);
-        animalSlider.setBounds(GraphicalGame.scaled(51, 108, 241, 20));
+        animalSlider.setBounds(GUIGame.scaled(51, 108, 241, 20));
         animalSlider.setOpaque(false);
         add(animalSlider);
 
         JLabel minValue = new JLabel("0");
         JLabel maxValue = new JLabel("" + maxAnimals);
-        minValue.setForeground(GraphicalGame.resources.tertiaryColor);
-        maxValue.setForeground(GraphicalGame.resources.tertiaryColor);
-        minValue.setFont(GraphicalGame.sizedFont(30f));
-        maxValue.setFont(GraphicalGame.sizedFont(30f));
-        minValue.setBounds(GraphicalGame.scaled(30, 103, 30, 30));
-        maxValue.setBounds(GraphicalGame.scaled(297, 103, 40, 30));
+        minValue.setForeground(GUIGame.resources.tertiaryColor);
+        maxValue.setForeground(GUIGame.resources.tertiaryColor);
+        minValue.setFont(GUIGame.sizedFont(30f));
+        maxValue.setFont(GUIGame.sizedFont(30f));
+        minValue.setBounds(GUIGame.scaled(30, 103, 30, 30));
+        maxValue.setBounds(GUIGame.scaled(297, 103, 40, 30));
         add(minValue);
         add(maxValue);
         //buttons
@@ -216,8 +216,8 @@ public class SmallPanel extends JPanel{
 
         JPanel thisPanel = this;
 
-        buyButton.setBounds(GraphicalGame.scaled(15, 147, 145, 30));
-        backButton.setBounds(GraphicalGame.scaled(185, 147, 145, 30));
+        buyButton.setBounds(GUIGame.scaled(15, 147, 145, 30));
+        backButton.setBounds(GUIGame.scaled(185, 147, 145, 30));
 
         add(buyButton);
         add(backButton);
@@ -232,19 +232,19 @@ public class SmallPanel extends JPanel{
 
         //buy button listener
         buyButton.addActionListener(e -> {
-            if (thisPanel != GraphicalGame.getActivePanel())
+            if (thisPanel != GUIGame.getActivePanel())
                 return;
             animal.getAnimal().addAnimals(animalSlider.getValue());
             Farm.money -= animal.getAnimal().getbuyPrice() * animalSlider.getValue();
             MainScreen.update();
-            GraphicalGame.deletePanel(thisPanel, previousPanel);
+            GUIGame.deletePanel(thisPanel, previousPanel);
         });
 
         // Back button listener
         backButton.addActionListener(e -> {
-            if (thisPanel != GraphicalGame.getActivePanel())
+            if (thisPanel != GUIGame.getActivePanel())
                 return;
-            GraphicalGame.deletePanel(thisPanel, previousPanel);
+            GUIGame.deletePanel(thisPanel, previousPanel);
         });
     }
 
@@ -253,9 +253,9 @@ public class SmallPanel extends JPanel{
         JButton itemsButton = new JButton("Items");
         JButton exitButton = new JButton("Exit");
 
-        seedsButton.setBounds(GraphicalGame.scaled(73, 55, 203, 34));
-        itemsButton.setBounds(GraphicalGame.scaled(73, 97, 203, 34));
-        exitButton.setBounds(GraphicalGame.scaled(73, 140, 203, 34));
+        seedsButton.setBounds(GUIGame.scaled(73, 55, 203, 34));
+        itemsButton.setBounds(GUIGame.scaled(73, 97, 203, 34));
+        exitButton.setBounds(GUIGame.scaled(73, 140, 203, 34));
 
         add(seedsButton);
         add(itemsButton);
@@ -264,25 +264,25 @@ public class SmallPanel extends JPanel{
         JPanel thisPanel = this;
 
         seedsButton.addActionListener(e -> {
-            if (thisPanel != GraphicalGame.getActivePanel())
+            if (thisPanel != GUIGame.getActivePanel())
                 return;
             LargePanel newPanel = new LargePanel(thisPanel, "View seeds");
             newPanel.designateAsViewSeedsPanel();
-            GraphicalGame.addPanel(newPanel);
+            GUIGame.addPanel(newPanel);
         });
 
         itemsButton.addActionListener(e -> {
-            if (thisPanel != GraphicalGame.getActivePanel())
+            if (thisPanel != GUIGame.getActivePanel())
                 return;
             LargePanel newPanel = new LargePanel(thisPanel, "View items");
             newPanel.designateAsViewItemsPanel();
-            GraphicalGame.addPanel(newPanel);
+            GUIGame.addPanel(newPanel);
         });
 
         exitButton.addActionListener(e -> {
-            if (thisPanel != GraphicalGame.getActivePanel())
+            if (thisPanel != GUIGame.getActivePanel())
                 return;
-            GraphicalGame.deletePanel(thisPanel, previousPanel);
+            GUIGame.deletePanel(thisPanel, previousPanel);
         });
     }
 
@@ -299,18 +299,18 @@ public class SmallPanel extends JPanel{
         line2.setHorizontalAlignment(SwingConstants.CENTER);
         line3.setHorizontalAlignment(SwingConstants.CENTER);
         line4.setHorizontalAlignment(SwingConstants.CENTER);
-        line1.setBounds(GraphicalGame.scaled(0, 57, 345, 20));
-        line2.setBounds(GraphicalGame.scaled(0, 77, 345, 20));
-        line3.setBounds(GraphicalGame.scaled(0, 97, 345, 20));
-        line4.setBounds(GraphicalGame.scaled(0, 117, 345, 20));
-        line1.setFont(GraphicalGame.sizedFont(30f));
-        line2.setFont(GraphicalGame.sizedFont(30f));
-        line3.setFont(GraphicalGame.sizedFont(30f));
-        line4.setFont(GraphicalGame.sizedFont(30f));
-        line1.setForeground(GraphicalGame.resources.secondaryColor);
-        line2.setForeground(GraphicalGame.resources.secondaryColor);
-        line3.setForeground(GraphicalGame.resources.secondaryColor);
-        line4.setForeground(GraphicalGame.resources.secondaryColor);
+        line1.setBounds(GUIGame.scaled(0, 57, 345, 20));
+        line2.setBounds(GUIGame.scaled(0, 77, 345, 20));
+        line3.setBounds(GUIGame.scaled(0, 97, 345, 20));
+        line4.setBounds(GUIGame.scaled(0, 117, 345, 20));
+        line1.setFont(GUIGame.sizedFont(30f));
+        line2.setFont(GUIGame.sizedFont(30f));
+        line3.setFont(GUIGame.sizedFont(30f));
+        line4.setFont(GUIGame.sizedFont(30f));
+        line1.setForeground(GUIGame.resources.secondaryColor);
+        line2.setForeground(GUIGame.resources.secondaryColor);
+        line3.setForeground(GUIGame.resources.secondaryColor);
+        line4.setForeground(GUIGame.resources.secondaryColor);
 
         add(line1);
         add(line2);
@@ -323,8 +323,8 @@ public class SmallPanel extends JPanel{
 
         JPanel thisPanel = this;
 
-        tendToFarmButton.setBounds(GraphicalGame.scaled(15, 147, 145, 30));
-        backButton.setBounds(GraphicalGame.scaled(185, 147, 145, 30));
+        tendToFarmButton.setBounds(GUIGame.scaled(15, 147, 145, 30));
+        backButton.setBounds(GUIGame.scaled(185, 147, 145, 30));
 
         add(tendToFarmButton);
         add(backButton);
@@ -334,23 +334,23 @@ public class SmallPanel extends JPanel{
                 FarmerActions.tendToFarm();
                 MediumPanel newPanel = new MediumPanel(MainScreen.getPanel(), Farm.getFarmerName() + "'s farmhouse");
                 newPanel.designateAsHousePanel();
-                GraphicalGame.addPanel(newPanel);
-                GraphicalGame.deletePanel(thisPanel, newPanel);
-                GraphicalGame.deletePanel(previousPanel, newPanel);
+                GUIGame.addPanel(newPanel);
+                GUIGame.deletePanel(thisPanel, newPanel);
+                GUIGame.deletePanel(previousPanel, newPanel);
                 MainScreen.update();
             }else{
                 SmallPanel newPanel = new SmallPanel(thisPanel, "No actions remaining");
                 newPanel.designateAsNoActionsPanel();
-                GraphicalGame.addPanel(newPanel);
+                GUIGame.addPanel(newPanel);
             }
         });
 
 
         // Exit button listener
         backButton.addActionListener(e -> {
-            if (thisPanel != GraphicalGame.getActivePanel())
+            if (thisPanel != GUIGame.getActivePanel())
                 return;
-            GraphicalGame.deletePanel(thisPanel, previousPanel);
+            GUIGame.deletePanel(thisPanel, previousPanel);
         });
     }
 
@@ -359,48 +359,48 @@ public class SmallPanel extends JPanel{
         MainScreen.update();
         label.setHorizontalAlignment(SwingConstants.CENTER);
         label.setVerticalAlignment(SwingConstants.CENTER);
-        label.setForeground(GraphicalGame.resources.tertiaryColor);
-        label.setBounds(GraphicalGame.scaled(0, 44, 345, 139));
-        label.setFont(GraphicalGame.sizedFont(35f));
+        label.setForeground(GUIGame.resources.tertiaryColor);
+        label.setBounds(GUIGame.scaled(0, 44, 345, 139));
+        label.setFont(GUIGame.sizedFont(35f));
 
         JButton okButton = new JButton("OK");
-        okButton.setBounds(GraphicalGame.scaled(15, 147, 315, 30));
+        okButton.setBounds(GUIGame.scaled(15, 147, 315, 30));
         add(label);
         add(okButton);
 
         JPanel thisPanel = this;
 
         okButton.addActionListener(e -> {
-            if (thisPanel != GraphicalGame.getActivePanel())
+            if (thisPanel != GUIGame.getActivePanel())
                 return;
-            GraphicalGame.deletePanel(thisPanel, previousPanel);
+            GUIGame.deletePanel(thisPanel, previousPanel);
 
             MediumPanel newPanel = new MediumPanel(MainScreen.getPanel(), Farm.getFarmerName() + "'s farmhouse");
             newPanel.designateAsHousePanel();
-            GraphicalGame.addPanel(newPanel);
-            GraphicalGame.deletePanel(thisPanel, newPanel);
-            GraphicalGame.deletePanel(previousPanel, newPanel);
+            GUIGame.addPanel(newPanel);
+            GUIGame.deletePanel(thisPanel, newPanel);
+            GUIGame.deletePanel(previousPanel, newPanel);
         });
     }
 
     public void designateAsFeedPanel(AnimalPen animal){
         // JTextArea doesn't seem to have the ability to center text :(
         // also i hate this
-        JLabel line1 = new JLabel("Would you like to feed your " + animal.getAnimal().getName() + "s");
+        JLabel line1 = new JLabel("Would you like to feed all of your animals");
         JLabel line2 = new JLabel("hay (" + Item.HAY.getAmount() + ") or breeding compound (" + Item.BREEDING_COMPOUND.getAmount() + ")");
         JLabel line3 = new JLabel("This uses an action");
         line1.setHorizontalAlignment(SwingConstants.CENTER);
         line2.setHorizontalAlignment(SwingConstants.CENTER);
         line3.setHorizontalAlignment(SwingConstants.CENTER);
-        line1.setBounds(GraphicalGame.scaled(0, 67, 345, 20));
-        line2.setBounds(GraphicalGame.scaled(0, 87, 345, 20));
-        line3.setBounds(GraphicalGame.scaled(0, 107, 345, 20));
-        line1.setFont(GraphicalGame.sizedFont(30f));
-        line2.setFont(GraphicalGame.sizedFont(30f));
-        line3.setFont(GraphicalGame.sizedFont(30f));
-        line1.setForeground(GraphicalGame.resources.secondaryColor);
-        line2.setForeground(GraphicalGame.resources.secondaryColor);
-        line3.setForeground(GraphicalGame.resources.secondaryColor);
+        line1.setBounds(GUIGame.scaled(0, 67, 345, 20));
+        line2.setBounds(GUIGame.scaled(0, 87, 345, 20));
+        line3.setBounds(GUIGame.scaled(0, 107, 345, 20));
+        line1.setFont(GUIGame.sizedFont(30f));
+        line2.setFont(GUIGame.sizedFont(30f));
+        line3.setFont(GUIGame.sizedFont(30f));
+        line1.setForeground(GUIGame.resources.secondaryColor);
+        line2.setForeground(GUIGame.resources.secondaryColor);
+        line3.setForeground(GUIGame.resources.secondaryColor);
 
         add(line1);
         add(line2);
@@ -411,9 +411,9 @@ public class SmallPanel extends JPanel{
         JButton hayButton = new JButton("Hay");
         JButton breedingCompoundButton = new JButton("Breeding Compound");
 
-        hayButton.setBounds(GraphicalGame.scaled(15, 147, 69, 30));
-        breedingCompoundButton.setBounds(GraphicalGame.scaled(94, 147, 174, 30));
-        backButton.setBounds(GraphicalGame.scaled(278, 147, 52, 30));
+        hayButton.setBounds(GUIGame.scaled(15, 147, 69, 30));
+        breedingCompoundButton.setBounds(GUIGame.scaled(94, 147, 174, 30));
+        backButton.setBounds(GUIGame.scaled(278, 147, 52, 30));
 
         add(backButton);
         add(breedingCompoundButton);
@@ -424,62 +424,62 @@ public class SmallPanel extends JPanel{
         // Hay button listener
         if (Item.HAY.getAmount() > 0) {
             hayButton.addActionListener(e -> {
-                if (thisPanel != GraphicalGame.getActivePanel())
+                if (thisPanel != GUIGame.getActivePanel())
                     return;
                 if (FarmerActions.getRemainingActions() > 0) {
                     FarmerActions.feedAnimalsHay();
                     MainScreen.update();
                     MediumPanel newPanel = new MediumPanel(MainScreen.getPanel(), animal.getAnimal().getName() + " pen");
                     newPanel.designateAsAnimalPenPanel(animal);
-                    GraphicalGame.addPanel(newPanel);
-                    GraphicalGame.deletePanel(thisPanel, previousPanel);
-                    GraphicalGame.deletePanel(previousPanel, newPanel);
+                    GUIGame.addPanel(newPanel);
+                    GUIGame.deletePanel(thisPanel, previousPanel);
+                    GUIGame.deletePanel(previousPanel, newPanel);
                 }
             });
         }
 
         if (Item.BREEDING_COMPOUND.getAmount() > 0){
             breedingCompoundButton.addActionListener(e -> {
-                if (thisPanel != GraphicalGame.getActivePanel())
+                if (thisPanel != GUIGame.getActivePanel())
                     return;
                 if (FarmerActions.getRemainingActions() > 0) {
                     FarmerActions.useBreedingCompound();
                     MainScreen.update();
                     MediumPanel newPanel = new MediumPanel(MainScreen.getPanel(), animal.getAnimal().getName() + " pen");
                     newPanel.designateAsAnimalPenPanel(animal);
-                    GraphicalGame.addPanel(newPanel);
-                    GraphicalGame.deletePanel(thisPanel, previousPanel);
-                    GraphicalGame.deletePanel(previousPanel, newPanel);
+                    GUIGame.addPanel(newPanel);
+                    GUIGame.deletePanel(thisPanel, previousPanel);
+                    GUIGame.deletePanel(previousPanel, newPanel);
                 }
             });
         }
 
         // Back button listener
         backButton.addActionListener(e -> {
-            if (thisPanel != GraphicalGame.getActivePanel())
+            if (thisPanel != GUIGame.getActivePanel())
                 return;
-            GraphicalGame.deletePanel(thisPanel, previousPanel);
+            GUIGame.deletePanel(thisPanel, previousPanel);
         });
     }
 
     public void designateAsPlayPanel(AnimalPen animal){
         // JTextArea doesn't seem to have the ability to center text :(
         // also i hate this
-        JLabel line1 = new JLabel("Would you like to play your animals");
-        JLabel line2 = new JLabel("or give them treats (you have " + Item.ANIMAL_TREATS.getAmount() + ")");
+        JLabel line1 = new JLabel("Would you like to play all of your animals");
+        JLabel line2 = new JLabel("or give them all treats (you have " + Item.ANIMAL_TREATS.getAmount() + ")");
         JLabel line3 = new JLabel("This uses an action");
         line1.setHorizontalAlignment(SwingConstants.CENTER);
         line2.setHorizontalAlignment(SwingConstants.CENTER);
         line3.setHorizontalAlignment(SwingConstants.CENTER);
-        line1.setBounds(GraphicalGame.scaled(0, 67, 345, 20));
-        line2.setBounds(GraphicalGame.scaled(0, 87, 345, 20));
-        line3.setBounds(GraphicalGame.scaled(0, 107, 345, 20));
-        line1.setFont(GraphicalGame.sizedFont(30f));
-        line2.setFont(GraphicalGame.sizedFont(30f));
-        line3.setFont(GraphicalGame.sizedFont(30f));
-        line1.setForeground(GraphicalGame.resources.secondaryColor);
-        line2.setForeground(GraphicalGame.resources.secondaryColor);
-        line3.setForeground(GraphicalGame.resources.secondaryColor);
+        line1.setBounds(GUIGame.scaled(0, 67, 345, 20));
+        line2.setBounds(GUIGame.scaled(0, 87, 345, 20));
+        line3.setBounds(GUIGame.scaled(0, 107, 345, 20));
+        line1.setFont(GUIGame.sizedFont(30f));
+        line2.setFont(GUIGame.sizedFont(30f));
+        line3.setFont(GUIGame.sizedFont(30f));
+        line1.setForeground(GUIGame.resources.secondaryColor);
+        line2.setForeground(GUIGame.resources.secondaryColor);
+        line3.setForeground(GUIGame.resources.secondaryColor);
 
         add(line1);
         add(line2);
@@ -490,9 +490,9 @@ public class SmallPanel extends JPanel{
         JButton playButton = new JButton("Play");
         JButton giveTreatsButton = new JButton("Give treats");
 
-        playButton.setBounds(GraphicalGame.scaled(15, 147, 69, 30));
-        giveTreatsButton.setBounds(GraphicalGame.scaled(94, 147, 174, 30));
-        backButton.setBounds(GraphicalGame.scaled(278, 147, 52, 30));
+        playButton.setBounds(GUIGame.scaled(15, 147, 69, 30));
+        giveTreatsButton.setBounds(GUIGame.scaled(94, 147, 174, 30));
+        backButton.setBounds(GUIGame.scaled(278, 147, 52, 30));
 
         add(backButton);
         add(giveTreatsButton);
@@ -502,40 +502,40 @@ public class SmallPanel extends JPanel{
 
         // play button listener
         playButton.addActionListener(e -> {
-            if (thisPanel != GraphicalGame.getActivePanel())
+            if (thisPanel != GUIGame.getActivePanel())
                 return;
             if (FarmerActions.getRemainingActions() > 0) {
                 FarmerActions.playWithAnimals();
                 MainScreen.update();
                 MediumPanel newPanel = new MediumPanel(MainScreen.getPanel(), animal.getAnimal().getName() + " pen");
                 newPanel.designateAsAnimalPenPanel(animal);
-                GraphicalGame.addPanel(newPanel);
-                GraphicalGame.deletePanel(thisPanel, previousPanel);
-                GraphicalGame.deletePanel(previousPanel, newPanel);
+                GUIGame.addPanel(newPanel);
+                GUIGame.deletePanel(thisPanel, previousPanel);
+                GUIGame.deletePanel(previousPanel, newPanel);
             }
         });
 
         if (Item.ANIMAL_TREATS.getAmount() > 0){
             giveTreatsButton.addActionListener(e -> {
-                if (thisPanel != GraphicalGame.getActivePanel())
+                if (thisPanel != GUIGame.getActivePanel())
                     return;
                 if (FarmerActions.getRemainingActions() > 0) {
                     FarmerActions.feedAnimalsTreats();
                     MainScreen.update();
                     MediumPanel newPanel = new MediumPanel(MainScreen.getPanel(), animal.getAnimal().getName() + " pen");
                     newPanel.designateAsAnimalPenPanel(animal);
-                    GraphicalGame.addPanel(newPanel);
-                    GraphicalGame.deletePanel(thisPanel, previousPanel);
-                    GraphicalGame.deletePanel(previousPanel, newPanel);
+                    GUIGame.addPanel(newPanel);
+                    GUIGame.deletePanel(thisPanel, previousPanel);
+                    GUIGame.deletePanel(previousPanel, newPanel);
                 }
             });
         }
 
         // Back button listener
         backButton.addActionListener(e -> {
-            if (thisPanel != GraphicalGame.getActivePanel())
+            if (thisPanel != GUIGame.getActivePanel())
                 return;
-            GraphicalGame.deletePanel(thisPanel, previousPanel);
+            GUIGame.deletePanel(thisPanel, previousPanel);
         });
     }
 
@@ -543,20 +543,20 @@ public class SmallPanel extends JPanel{
         JLabel warningLabel = new JLabel("You have no actions remaining");
         warningLabel.setHorizontalAlignment(SwingConstants.CENTER);
         warningLabel.setVerticalAlignment(SwingConstants.CENTER);
-        warningLabel.setForeground(GraphicalGame.resources.tertiaryColor);
-        warningLabel.setBounds(GraphicalGame.scaled(0, 44, 345, 139));
-        warningLabel.setFont(GraphicalGame.sizedFont(35f));
+        warningLabel.setForeground(GUIGame.resources.tertiaryColor);
+        warningLabel.setBounds(GUIGame.scaled(0, 44, 345, 139));
+        warningLabel.setFont(GUIGame.sizedFont(35f));
         JButton okButton = new JButton("OK");
-        okButton.setBounds(GraphicalGame.scaled(15, 147, 315, 30));
+        okButton.setBounds(GUIGame.scaled(15, 147, 315, 30));
         add(warningLabel);
         add(okButton);
 
         JPanel thisPanel = this;
 
         okButton.addActionListener(e -> {
-            if (thisPanel != GraphicalGame.getActivePanel())
+            if (thisPanel != GUIGame.getActivePanel())
                 return;
-            GraphicalGame.deletePanel(thisPanel, previousPanel);
+            GUIGame.deletePanel(thisPanel, previousPanel);
         });
     }
 

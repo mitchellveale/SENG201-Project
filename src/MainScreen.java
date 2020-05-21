@@ -14,7 +14,7 @@ public class MainScreen {
 
     public static void createMainScreen(){
         panel = new JPanel();
-        panel.setBounds(0, 0, GraphicalGame.getWidth(), GraphicalGame.getHeight());
+        panel.setBounds(0, 0, GUIGame.getWidth(), GUIGame.getHeight());
         panel.setLayout(null);
 
         //---------------BORDER-----------------
@@ -22,45 +22,45 @@ public class MainScreen {
 
         moneyLabel = new JLabel("" + Farm.money);
         moneyLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        moneyLabel.setFont(GraphicalGame.sizedFont(28f * 1.69f));
+        moneyLabel.setFont(GUIGame.sizedFont(28f * 1.69f));
         moneyLabel.setForeground(textColor);
-        moneyLabel.setBounds(GraphicalGame.scaled(106, 19, 88, 28));
+        moneyLabel.setBounds(GUIGame.scaled(106, 19, 88, 28));
         panel.add(moneyLabel);
 
         actionsLabel = new JLabel("" + FarmerActions.getRemainingActions());
         actionsLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        actionsLabel.setFont(GraphicalGame.sizedFont(28f * 1.69f));
+        actionsLabel.setFont(GUIGame.sizedFont(28f * 1.69f));
         actionsLabel.setForeground(textColor);
-        actionsLabel.setBounds(GraphicalGame.scaled(253, 19, 30, 28));
+        actionsLabel.setBounds(GUIGame.scaled(253, 19, 30, 28));
         panel.add(actionsLabel);
 
         dayLabel = new JLabel("Day " + Farm.getCurrentDay() + "/" + Farm.getGameLength());
         dayLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        dayLabel.setFont(GraphicalGame.sizedFont(28f * 1.69f));
+        dayLabel.setFont(GUIGame.sizedFont(28f * 1.69f));
         dayLabel.setForeground(textColor);
-        dayLabel.setBounds(GraphicalGame.scaled(531, 19, 158, 28));
+        dayLabel.setBounds(GUIGame.scaled(531, 19, 158, 28));
         panel.add(dayLabel);
 
-        JLabel border = new JLabel(GraphicalGame.resources.borderImage);
-        border.setBounds(0, 0, GraphicalGame.getWidth(), GraphicalGame.getHeight());
+        JLabel border = new JLabel(GUIGame.resources.borderImage);
+        border.setBounds(0, 0, GUIGame.getWidth(), GUIGame.getHeight());
         panel.add(border);
         //--------------------------------------
 
         JButton barnButton = newImageButton();
-        barnButton.setBounds(GraphicalGame.scaled(257, 192, 154, 152));
-        JLabel barnButtonBackground = buttonBackground(barnButton, GraphicalGame.resources.barn);
+        barnButton.setBounds(GUIGame.scaled(257, 192, 154, 152));
+        JLabel barnButtonBackground = buttonBackground(barnButton, GUIGame.resources.barn);
         panel.add(barnButton);
         panel.add(barnButtonBackground);
 
         JButton houseButton = newImageButton();
-        houseButton.setBounds(GraphicalGame.scaled(8, 217, 202, 115));
-        JLabel houseButtonBackground = buttonBackground(houseButton, GraphicalGame.resources.farmhouse);
+        houseButton.setBounds(GUIGame.scaled(8, 217, 202, 115));
+        JLabel houseButtonBackground = buttonBackground(houseButton, GUIGame.resources.farmhouse);
         panel.add(houseButton);
         panel.add(houseButtonBackground);
 
         // Path tracks
-        JLabel pathTracks = new JLabel(GraphicalGame.resources.pathTracks);
-        pathTracks.setBounds(0, 0, GraphicalGame.getWidth(), GraphicalGame.getHeight());
+        JLabel pathTracks = new JLabel(GUIGame.resources.pathTracks);
+        pathTracks.setBounds(0, 0, GUIGame.getWidth(), GUIGame.getHeight());
         panel.add(pathTracks);
 
 
@@ -71,10 +71,10 @@ public class MainScreen {
         for(int i = 0; i < 2; i++){
             for(int j = 0; j < 3; j++){
                 JButton cropFieldButton = newImageButton();
-                cropFieldButton.setBounds(GraphicalGame.scaled(45 + (j * 110), 369 + (i * 96), 132, 101));
-                JLabel cropIcon = buttonBackground(cropFieldButton, GraphicalGame.resources.wheat);
+                cropFieldButton.setBounds(GUIGame.scaled(45 + (j * 110), 369 + (i * 96), 132, 101));
+                JLabel cropIcon = buttonBackground(cropFieldButton, GUIGame.resources.wheat);
                 cropIcon.setVisible(false);
-                JLabel cropFieldButtonBackground = buttonBackground(cropFieldButton, GraphicalGame.resources.unfertilizedCropField);
+                JLabel cropFieldButtonBackground = buttonBackground(cropFieldButton, GUIGame.resources.unfertilizedCropField);
                 cropFieldButtons[j + (3 * i)] = cropFieldButton;
                 cropIcons[j + (3 * i)] = cropIcon;
                 cropFieldButtonBackgrounds[j + (3 * i)] = cropFieldButtonBackground;
@@ -91,98 +91,98 @@ public class MainScreen {
         }
 
         JButton storeButton = newImageButton();
-        storeButton.setBounds(GraphicalGame.scaled(630, 90, 120, 118));
-        JLabel storeButtonIcon = buttonBackground(storeButton, GraphicalGame.resources.store);
+        storeButton.setBounds(GUIGame.scaled(630, 90, 120, 118));
+        JLabel storeButtonIcon = buttonBackground(storeButton, GUIGame.resources.store);
         panel.add(storeButton);
         panel.add(storeButtonIcon);
 
         //Animal Pens
         JButton cowPenButton = newImageButton();
-        cowPenButton.setBounds(GraphicalGame.scaled(594, 475, 130, 99));
-        JLabel cowPenIcon = buttonBackground(cowPenButton, GraphicalGame.resources.cowPen);
+        cowPenButton.setBounds(GUIGame.scaled(594, 475, 130, 99));
+        JLabel cowPenIcon = buttonBackground(cowPenButton, GUIGame.resources.cowPen);
         panel.add(cowPenButton);
         panel.add(cowPenIcon);
 
         JButton pigPenButton = newImageButton();
-        pigPenButton.setBounds(GraphicalGame.scaled(599, 376, 130, 99));
-        JLabel pigPenIcon = buttonBackground(pigPenButton, GraphicalGame.resources.pigPen);
+        pigPenButton.setBounds(GUIGame.scaled(599, 376, 130, 99));
+        JLabel pigPenIcon = buttonBackground(pigPenButton, GUIGame.resources.pigPen);
         panel.add(pigPenButton);
         panel.add(pigPenIcon);
 
         JButton chickenPenButton = newImageButton();
-        chickenPenButton.setBounds(GraphicalGame.scaled(599, 270, 130, 99));
-        JLabel chickenPenIcon = buttonBackground(chickenPenButton, GraphicalGame.resources.chickenPen);
+        chickenPenButton.setBounds(GUIGame.scaled(599, 270, 130, 99));
+        JLabel chickenPenIcon = buttonBackground(chickenPenButton, GUIGame.resources.chickenPen);
         panel.add(chickenPenButton);
         panel.add(chickenPenIcon);
 
 
 
         // Background
-        JLabel farmLandscape = new JLabel(GraphicalGame.resources.farmLandscape);
-        farmLandscape.setBounds(0, 0, GraphicalGame.getWidth(), GraphicalGame.getHeight());
+        JLabel farmLandscape = new JLabel(GUIGame.resources.farmLandscape);
+        farmLandscape.setBounds(0, 0, GUIGame.getWidth(), GUIGame.getHeight());
         panel.add(farmLandscape);
 
         // Crop field button listeners
         for(int i = 0; i < 6; i++){
             int finalI = i;
             cropFieldButtons[i].addActionListener(e -> {
-                if (panel != GraphicalGame.getActivePanel())
+                if (panel != GUIGame.getActivePanel())
                     return;
                 MediumPanel newPanel = new MediumPanel(panel, "Crop Field " + (finalI + 1));
                 newPanel.designateAsCropFieldPanel(finalI);
-                GraphicalGame.addPanel(newPanel);
+                GUIGame.addPanel(newPanel);
             });
         }
 
         cowPenButton.addActionListener(e -> {
-            if (panel != GraphicalGame.getActivePanel())
+            if (panel != GUIGame.getActivePanel())
                 return;
             MediumPanel newPanel = new MediumPanel(panel, "Cow pen");
             newPanel.designateAsAnimalPenPanel(Farm.cowPen);
-            GraphicalGame.addPanel(newPanel);
+            GUIGame.addPanel(newPanel);
         });
 
         pigPenButton.addActionListener(e -> {
-            if (panel != GraphicalGame.getActivePanel())
+            if (panel != GUIGame.getActivePanel())
                 return;
             MediumPanel newPanel = new MediumPanel(panel, "Pig pen");
             newPanel.designateAsAnimalPenPanel(Farm.pigPen);
-            GraphicalGame.addPanel(newPanel);
+            GUIGame.addPanel(newPanel);
         });
 
         chickenPenButton.addActionListener(e -> {
-            if (panel != GraphicalGame.getActivePanel())
+            if (panel != GUIGame.getActivePanel())
                 return;
             MediumPanel newPanel = new MediumPanel(panel, "Chicken pen");
             newPanel.designateAsAnimalPenPanel(Farm.chickenPen);
-            GraphicalGame.addPanel(newPanel);
+            GUIGame.addPanel(newPanel);
         });
 
         // Store action listener
         storeButton.addActionListener(e -> {
-            if (panel != GraphicalGame.getActivePanel())
+            if (panel != GUIGame.getActivePanel())
                 return;
             MediumPanel newPanel = new MediumPanel(panel, "Store");
             newPanel.designateAsStorePanel();
-            GraphicalGame.addPanel(newPanel);
+            GUIGame.addPanel(newPanel);
         });
 
         // Barn action listener
         barnButton.addActionListener(e -> {
-            if (panel != GraphicalGame.getActivePanel())
+            if (panel != GUIGame.getActivePanel())
                 return;
             SmallPanel newPanel = new SmallPanel(panel, "Inventory");
             newPanel.designateAsInventoryPanel();
-            GraphicalGame.addPanel(newPanel);
+            GUIGame.addPanel(newPanel);
         });
 
         // house button action listener
         houseButton.addActionListener(e -> {
-            if (panel != GraphicalGame.getActivePanel())
+            if (panel != GUIGame.getActivePanel())
                 return;
             MediumPanel newPanel = new MediumPanel(panel, Farm.getFarmerName() + "'s farmhouse");
             newPanel.designateAsHousePanel();
-            GraphicalGame.addPanel(newPanel);
+            GUIGame.addPanel(newPanel);
         });
     }
 
@@ -216,27 +216,27 @@ public class MainScreen {
             } else{
                 switch (Farm.cropFields[i].getPlantedCrop()){
                     case WHEAT:
-                        cropIcons[i].setIcon(GraphicalGame.resources.wheat);
+                        cropIcons[i].setIcon(GUIGame.resources.wheat);
                         cropIcons[i].setVisible(true);
                         break;
                     case CORN:
-                        cropIcons[i].setIcon(GraphicalGame.resources.corn);
+                        cropIcons[i].setIcon(GUIGame.resources.corn);
                         cropIcons[i].setVisible(true);
                         break;
                     case BEET:
-                        cropIcons[i].setIcon(GraphicalGame.resources.beet);
+                        cropIcons[i].setIcon(GUIGame.resources.beet);
                         cropIcons[i].setVisible(true);
                         break;
                     case SOYBEAN:
-                        cropIcons[i].setIcon(GraphicalGame.resources.soybean);
+                        cropIcons[i].setIcon(GUIGame.resources.soybean);
                         cropIcons[i].setVisible(true);
                         break;
                     case KALE:
-                        cropIcons[i].setIcon(GraphicalGame.resources.kale);
+                        cropIcons[i].setIcon(GUIGame.resources.kale);
                         cropIcons[i].setVisible(true);
                         break;
                     case POTATO:
-                        cropIcons[i].setIcon(GraphicalGame.resources.potato);
+                        cropIcons[i].setIcon(GUIGame.resources.potato);
                         cropIcons[i].setVisible(true);
                         break;
                     default:
@@ -247,9 +247,9 @@ public class MainScreen {
 
 
             if (Farm.cropFields[i].isFertilized())
-                cropFieldButtonBackgrounds[i].setIcon(GraphicalGame.resources.fertilizedCropField);
+                cropFieldButtonBackgrounds[i].setIcon(GUIGame.resources.fertilizedCropField);
             else
-                cropFieldButtonBackgrounds[i].setIcon(GraphicalGame.resources.unfertilizedCropField);
+                cropFieldButtonBackgrounds[i].setIcon(GUIGame.resources.unfertilizedCropField);
         }
     }
 

@@ -76,9 +76,6 @@ public class Farm {
             farmCondition = 0;
 
         FarmerActions.resetActions();
-        if(Item.BREEDING_COMPOUND.getAmount()>0) {
-        	FarmerActions.useBreedingCompound();
-        	}
     }
 
     public static int useLottoTicket(){

@@ -6,6 +6,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * Instantiates and stores the Font, Images and Color resources that are used by the GUI
+ */
 public class Resources {
 
     public final Font font;
@@ -49,7 +52,7 @@ public class Resources {
             newFont = unsizedFont.deriveFont(20f);
         }catch (Exception e){
             System.out.println("WARNING: Unable to locate game font, using backup font instead. Some elements may look a bit weird");
-            newFont = new Font("Algerian", Font.BOLD, GraphicalGame.scaled(40));
+            newFont = new Font("Algerian", Font.BOLD, GUIGame.scaled(40));
         }
         font = newFont;
         setupBackground = new ImageIcon(scaledImage("res/Setup Background.png"));
@@ -88,6 +91,6 @@ public class Resources {
             System.out.println("Something went wrong when loading image '" + path + "'. Stack trace printed below\n\n");
             e.printStackTrace();
         }
-        return Objects.requireNonNull(bufferedImage).getScaledInstance(GraphicalGame.scaled(bufferedImage.getWidth()),GraphicalGame.scaled(bufferedImage.getHeight()), Image.SCALE_SMOOTH);
+        return Objects.requireNonNull(bufferedImage).getScaledInstance(GUIGame.scaled(bufferedImage.getWidth()), GUIGame.scaled(bufferedImage.getHeight()), Image.SCALE_SMOOTH);
     }
 }

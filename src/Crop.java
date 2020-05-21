@@ -1,17 +1,16 @@
 public enum Crop{
-    WHEAT ("Wheat", 5, 1, 100, 1, 20, false, false),
-    CORN ("Corn", 10, 1, 200, 3, 20, false, false),
-    SOYBEAN ("Soybean", 20, 2, 100, 3, 30, false, false),
-    KALE ("Kale", 20, 2, 100, 2, 0, true, false),
-    BEET ("Beet", 40, 5, 50, 3, 10, false, true),
-    POTATO ("Potato", 50, 2, 200, 4, 0, true, false);
+    WHEAT ("Wheat", 5, 1, 100, 1, 20, false),
+    CORN ("Corn", 10, 1, 200, 3, 20, false),
+    SOYBEAN ("Soybean", 20, 2, 100, 3, 30, false),
+    KALE ("Kale", 20, 2, 100, 2, 0, false),
+    BEET ("Beet", 40, 5, 50, 3, 10, true),
+    POTATO ("Potato", 50, 2, 200, 4, 0, false);
     private final String name;
     private final int buyPrice;
     private final int sellPrice;
     private final int baseYield;
     private final int baseGrowTime;
     private final int healthBoost;
-    private final boolean environmentResistance;
     private final boolean fertilizes;
     private int seedAmount;
 
@@ -23,17 +22,15 @@ public enum Crop{
      * @param baseYield
      * @param baseGrowTime
      * @param healthBoost
-     * @param environmentResistance
      * @param fertilizes
      */
-    Crop(String name, int buyPrice, int sellPrice, int baseYield, int baseGrowTime, int healthBoost, boolean environmentResistance, boolean fertilizes) {
+    Crop(String name, int buyPrice, int sellPrice, int baseYield, int baseGrowTime, int healthBoost, boolean fertilizes) {
         this.name = name;
         this.buyPrice = buyPrice;
         this.sellPrice = sellPrice;
         this.baseYield = baseYield;
         this.baseGrowTime = baseGrowTime;
         this.healthBoost = healthBoost;
-        this.environmentResistance = environmentResistance;
         this.fertilizes = fertilizes;
         seedAmount = 0;
     }
@@ -85,15 +82,7 @@ public enum Crop{
     public int getHealthBoost() {
         return healthBoost;
     }
-    
-    /**
-     * 
-     * @return True if crop is resistant to environmental event, otherwise false
-     */
-    public boolean hasEnvironmentalResistance() {
-        return environmentResistance;
-    }
-    
+
     /**
      * 
      * @return True if Crop fertilizes crop field on harvesting, otherwise false

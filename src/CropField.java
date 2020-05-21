@@ -149,7 +149,7 @@ public class CropField {
     
     public String toString() {
     	if(plantedCrop == null) {
-    		return "Currently planted: " + plantedCrop + "\nFertilized: " + fertilized+"\n";
+    		return "Currently planted: None\nFertilized: " + fertilized+"\n";
     	}
     	else {
     		return "Currently planted: " + plantedCrop + "\n Fertilized: " + fertilized

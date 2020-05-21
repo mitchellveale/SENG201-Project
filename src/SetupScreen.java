@@ -11,31 +11,31 @@ public class SetupScreen{
     public static void createSetupScreen(){
 
         panel = new JPanel();
-        panel.setBounds(0, 0, GraphicalGame.getWidth(), GraphicalGame.getHeight());
+        panel.setBounds(0, 0, GUIGame.getWidth(), GUIGame.getHeight());
         panel.setLayout(null);
 
-        Color primaryColor = new Color(50, 50, 51);
+        Color primaryColor = new Color(255, 183, 61);
 
         // "Create your farm!" title
         JLabel title = new JLabel("Create your new farm!");
         title.setHorizontalAlignment(SwingConstants.CENTER);
-        title.setFont(GraphicalGame.sizedFont(40f * 1.69f));
+        title.setFont(GUIGame.sizedFont(40f * 1.69f));
         title.setForeground(primaryColor);
-        title.setBounds(GraphicalGame.scaled(100), GraphicalGame.scaled(100), GraphicalGame.scaled(600), GraphicalGame.scaled(40));
+        title.setBounds(GUIGame.scaled(100), GUIGame.scaled(100), GUIGame.scaled(600), GUIGame.scaled(40));
         panel.add(title);
 
         // Day slider
         JSlider daySlider = new JSlider(JSlider.HORIZONTAL, 5, 10, 7);
-        daySlider.setBounds(GraphicalGame.scaled(200), GraphicalGame.scaled(200), GraphicalGame.scaled(400), GraphicalGame.scaled(20));
+        daySlider.setBounds(GUIGame.scaled(200), GUIGame.scaled(200), GUIGame.scaled(400), GUIGame.scaled(20));
         daySlider.setOpaque(false);
         JLabel maxValue = new JLabel("10");
         JLabel minValue = new JLabel("5");
         maxValue.setForeground(primaryColor);
         minValue.setForeground(primaryColor);
-        maxValue.setFont(GraphicalGame.sizedFont(25f * 1.69f));
-        minValue.setFont(GraphicalGame.sizedFont(25f * 1.69f));
-        maxValue.setBounds(GraphicalGame.scaled(605), GraphicalGame.scaled(195), GraphicalGame.scaled(44), GraphicalGame.scaled(30));
-        minValue.setBounds(GraphicalGame.scaled(181), GraphicalGame.scaled(195), GraphicalGame.scaled(44), GraphicalGame.scaled(30));
+        maxValue.setFont(GUIGame.sizedFont(25f * 1.69f));
+        minValue.setFont(GUIGame.sizedFont(25f * 1.69f));
+        maxValue.setBounds(GUIGame.scaled(605), GUIGame.scaled(195), GUIGame.scaled(44), GUIGame.scaled(30));
+        minValue.setBounds(GUIGame.scaled(181), GUIGame.scaled(195), GUIGame.scaled(44), GUIGame.scaled(30));
         panel.add(daySlider);
         panel.add(maxValue);
         panel.add(minValue);
@@ -43,16 +43,16 @@ public class SetupScreen{
         //Day slider label
         JLabel dayLabel = new JLabel("Game Length: 7 days");
         dayLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        dayLabel.setFont(GraphicalGame.sizedFont(27f * 1.69f));
+        dayLabel.setFont(GUIGame.sizedFont(27f * 1.69f));
         dayLabel.setForeground(primaryColor);
-        dayLabel.setBounds(GraphicalGame.scaled(215), GraphicalGame.scaled(168), GraphicalGame.scaled(370), GraphicalGame.scaled(30));
+        dayLabel.setBounds(GUIGame.scaled(215), GUIGame.scaled(168), GUIGame.scaled(370), GUIGame.scaled(30));
         panel.add(dayLabel);
 
         // Farmer name label
         JLabel farmerNameLabel = new JLabel("Farmer Name");
-        farmerNameLabel.setFont(GraphicalGame.sizedFont(27f * 1.69f));
+        farmerNameLabel.setFont(GUIGame.sizedFont(27f * 1.69f));
         farmerNameLabel.setForeground(primaryColor);
-        farmerNameLabel.setBounds(GraphicalGame.scaled(151), GraphicalGame.scaled(253), GraphicalGame.scaled(180), GraphicalGame.scaled(30));
+        farmerNameLabel.setBounds(GUIGame.scaled(151), GUIGame.scaled(253), GUIGame.scaled(180), GUIGame.scaled(30));
         panel.add(farmerNameLabel);
 
         // Farmer name text field
@@ -60,43 +60,43 @@ public class SetupScreen{
         JTextField farmerNameTextField = new JTextField();
         farmerNameTextField.setOpaque(false);
         farmerNameTextField.setBorder(new LineBorder(primaryColor, 0));
-        farmerNameTextField.setBounds(GraphicalGame.scaled(340), GraphicalGame.scaled(255), GraphicalGame.scaled(324), GraphicalGame.scaled(25));
+        farmerNameTextField.setBounds(GUIGame.scaled(340), GUIGame.scaled(255), GUIGame.scaled(324), GUIGame.scaled(25));
         farmerNameTextField.setForeground(primaryColor);
-        farmerNameTextField.setFont(GraphicalGame.sizedFont(20f * 1.69f));
-        JLabel farmerNameTextBackground = new JLabel(GraphicalGame.resources.textFieldBackground);
-        farmerNameTextBackground.setBounds(GraphicalGame.scaled(332), GraphicalGame.scaled(255), GraphicalGame.scaled(332), GraphicalGame.scaled(25));
+        farmerNameTextField.setFont(GUIGame.sizedFont(20f * 1.69f));
+        JLabel farmerNameTextBackground = new JLabel(GUIGame.resources.textFieldBackground);
+        farmerNameTextBackground.setBounds(GUIGame.scaled(332), GUIGame.scaled(255), GUIGame.scaled(332), GUIGame.scaled(25));
         JLabel warningLabel = new JLabel("must be 3-15 character only containing letters and spaces");
-        warningLabel.setFont(GraphicalGame.sizedFont(10f * 1.69f));
+        warningLabel.setFont(GUIGame.sizedFont(10f * 1.69f));
         warningLabel.setForeground(new Color(255, 0, 0));
-        warningLabel.setBounds(GraphicalGame.scaled(332), GraphicalGame.scaled(280), GraphicalGame.scaled(332), GraphicalGame.scaled(15));
+        warningLabel.setBounds(GUIGame.scaled(332), GUIGame.scaled(280), GUIGame.scaled(332), GUIGame.scaled(15));
         panel.add(warningLabel);
         panel.add(farmerNameTextField);
         panel.add(farmerNameTextBackground);
 
         // Farm name label
         JLabel farmNameLabel = new JLabel("Farm Name");
-        farmNameLabel.setFont(GraphicalGame.sizedFont(27f * 1.69f));
+        farmNameLabel.setFont(GUIGame.sizedFont(27f * 1.69f));
         farmNameLabel.setForeground(primaryColor);
-        farmNameLabel.setBounds(GraphicalGame.scaled(165), GraphicalGame.scaled(310), GraphicalGame.scaled(140), GraphicalGame.scaled(30));
+        farmNameLabel.setBounds(GUIGame.scaled(165), GUIGame.scaled(310), GUIGame.scaled(140), GUIGame.scaled(30));
         panel.add(farmNameLabel);
 
         // Farm name text field
         JTextField farmNameTextField = new JTextField();
         farmNameTextField.setOpaque(false);
         farmNameTextField.setBorder(new LineBorder(primaryColor, 0));
-        farmNameTextField.setBounds(GraphicalGame.scaled(340), GraphicalGame.scaled(312), GraphicalGame.scaled(324), GraphicalGame.scaled(25));
+        farmNameTextField.setBounds(GUIGame.scaled(340), GUIGame.scaled(312), GUIGame.scaled(324), GUIGame.scaled(25));
         farmNameTextField.setForeground(primaryColor);
-        farmNameTextField.setFont(GraphicalGame.sizedFont(20f * 1.69f));
-        JLabel farmNameTextBackground = new JLabel(GraphicalGame.resources.textFieldBackground);
-        farmNameTextBackground.setBounds(GraphicalGame.scaled(332), GraphicalGame.scaled(312), GraphicalGame.scaled(332), GraphicalGame.scaled(25));
+        farmNameTextField.setFont(GUIGame.sizedFont(20f * 1.69f));
+        JLabel farmNameTextBackground = new JLabel(GUIGame.resources.textFieldBackground);
+        farmNameTextBackground.setBounds(GUIGame.scaled(332), GUIGame.scaled(312), GUIGame.scaled(332), GUIGame.scaled(25));
         panel.add(farmNameTextField);
         panel.add(farmNameTextBackground);
 
         // Farm Type label
         JLabel farmTypeLabel = new JLabel("Farm type");
-        farmTypeLabel.setFont(GraphicalGame.sizedFont(27f * 1.69f));
+        farmTypeLabel.setFont(GUIGame.sizedFont(27f * 1.69f));
         farmTypeLabel.setForeground(primaryColor);
-        farmTypeLabel.setBounds(GraphicalGame.scaled(200), GraphicalGame.scaled(366), GraphicalGame.scaled(140), GraphicalGame.scaled(30));
+        farmTypeLabel.setBounds(GUIGame.scaled(200), GUIGame.scaled(366), GUIGame.scaled(140), GUIGame.scaled(30));
         panel.add(farmTypeLabel);
 
         // Farm type combo box
@@ -105,19 +105,19 @@ public class SetupScreen{
         for (FarmType farmType : FarmType.values()){
             farmTypeComboBox.addItem(farmType.getName());
         }
-        farmTypeComboBox.setFont(GraphicalGame.sizedFont(20f * 1.69f));
+        farmTypeComboBox.setFont(GUIGame.sizedFont(20f * 1.69f));
         farmTypeComboBox.setForeground(primaryColor);
         ((JLabel)farmTypeComboBox.getRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
         farmTypeComboBox.setBackground(new Color(110, 89, 53));
-        farmTypeComboBox.setBounds(GraphicalGame.scaled(385), GraphicalGame.scaled(366), GraphicalGame.scaled(225), GraphicalGame.scaled(25));
+        farmTypeComboBox.setBounds(GUIGame.scaled(385), GUIGame.scaled(366), GUIGame.scaled(225), GUIGame.scaled(25));
         panel.add(farmTypeComboBox);
 
         // Farm Type name label
         JLabel farmTypeNameLabel = new JLabel(FarmType.SUBSIDISED_FARM.getName() + ":");
-        farmTypeNameLabel.setFont(GraphicalGame.sizedFont(27f * 1.69f));
+        farmTypeNameLabel.setFont(GUIGame.sizedFont(27f * 1.69f));
         farmTypeNameLabel.setForeground(primaryColor);
         farmTypeNameLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-        farmTypeNameLabel.setBounds(GraphicalGame.scaled(100), GraphicalGame.scaled(417), GraphicalGame.scaled(250), GraphicalGame.scaled(30));
+        farmTypeNameLabel.setBounds(GUIGame.scaled(100), GUIGame.scaled(417), GUIGame.scaled(250), GUIGame.scaled(30));
         panel.add(farmTypeNameLabel);
 
         // Farm Type Description label
@@ -125,9 +125,9 @@ public class SetupScreen{
         farmTypeDescriptionLabel.setOpaque(false);
         farmTypeDescriptionLabel.setLineWrap(true);
         farmTypeDescriptionLabel.setWrapStyleWord(true);
-        farmTypeDescriptionLabel.setFont(GraphicalGame.sizedFont(25f * 1.69f));
+        farmTypeDescriptionLabel.setFont(GUIGame.sizedFont(25f * 1.69f));
         farmTypeDescriptionLabel.setForeground(primaryColor);
-        farmTypeDescriptionLabel.setBounds(GraphicalGame.scaled(353), GraphicalGame.scaled(421), GraphicalGame.scaled(311), GraphicalGame.scaled(60));
+        farmTypeDescriptionLabel.setBounds(GUIGame.scaled(353), GUIGame.scaled(421), GUIGame.scaled(311), GUIGame.scaled(60));
         panel.add(farmTypeDescriptionLabel);
 
         // Begin Button
@@ -136,11 +136,11 @@ public class SetupScreen{
         beginButton.setContentAreaFilled(false);
         beginButton.setBorderPainted(false);
         beginButton.setFocusPainted(false);
-        beginButton.setFont(GraphicalGame.sizedFont(50f * 1.69f));
+        beginButton.setFont(GUIGame.sizedFont(50f * 1.69f));
         beginButton.setForeground(primaryColor);
-        beginButton.setBounds(GraphicalGame.scaled(250), GraphicalGame.scaled(490), GraphicalGame.scaled(300), GraphicalGame.scaled(60));
-        JLabel beginButtonBackground = new JLabel(GraphicalGame.resources.beginButtonBackground);
-        beginButtonBackground.setBounds(GraphicalGame.scaled(250), GraphicalGame.scaled(490), GraphicalGame.scaled(300), GraphicalGame.scaled(60));
+        beginButton.setBounds(GUIGame.scaled(250), GUIGame.scaled(490), GUIGame.scaled(300), GUIGame.scaled(60));
+        JLabel beginButtonBackground = new JLabel(GUIGame.resources.beginButtonBackground);
+        beginButtonBackground.setBounds(GUIGame.scaled(250), GUIGame.scaled(490), GUIGame.scaled(300), GUIGame.scaled(60));
         panel.add(beginButton);
         panel.add(beginButtonBackground);
 
@@ -174,16 +174,16 @@ public class SetupScreen{
             if (warningLabel.isVisible())
                 return;
             Farm.createFarm(daySlider.getValue(), farmNameTextField.getText(), farmerNameTextField.getText(), FarmType.values()[farmTypeComboBox.getSelectedIndex()]);
-            GraphicalGame.begin();
+            GUIGame.begin();
         });
 
 
         // Background
-        JLabel background = new JLabel(GraphicalGame.resources.setupBackground);
-        background.setBounds(0, 0, GraphicalGame.getWidth(), GraphicalGame.getHeight());
+        JLabel background = new JLabel(GUIGame.resources.setupBackground);
+        background.setBounds(0, 0, GUIGame.getWidth(), GUIGame.getHeight());
         panel.add(background);
-        JLabel test = new JLabel(GraphicalGame.resources.farmBackground);
-        test.setBounds(0, 0, GraphicalGame.getWidth(), GraphicalGame.getHeight());
+        JLabel test = new JLabel(GUIGame.resources.farmBackground);
+        test.setBounds(0, 0, GUIGame.getWidth(), GUIGame.getHeight());
         panel.add(test);
     }
 

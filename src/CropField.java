@@ -1,3 +1,8 @@
+/**
+ * A class which represents a crop field, which holds a crop
+ * @author Ryan Bellamy and Mitchell Veale
+ *
+ */
 public class CropField {
     private Crop plantedCrop = null;
 
@@ -9,6 +14,10 @@ public class CropField {
 
     private boolean fertilized = false;
 
+    /**
+     *  Plants a crop in the CropField
+     * @param crop The crop object to be planted in the CropField
+     */
     public void PlantCrop(Crop crop){
         // Assumes seed amount has been checked in calling method
         amount = 0;
@@ -30,7 +39,7 @@ public class CropField {
     
     /**
      * Adds x amount to the cropFields yield multiplier
-     * @param amount
+     * @param amount A double of the amount the yield is multiplied by 
      */
     public void addYieldMultiplier(double amount){
         yieldMultiplier += (amount - 1);
@@ -38,7 +47,7 @@ public class CropField {
     
     /**
      * Adds x amount to the cropFields growth multiplier
-     * @param amount
+     * @param amount A double of the amount the growth is multiplied by 
      */
     public void addGrowthMultiplier(double amount){
         growthMultiplier += (amount - 1);

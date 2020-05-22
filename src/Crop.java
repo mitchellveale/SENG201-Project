@@ -1,3 +1,8 @@
+/**
+ * A class which represents a crop
+ * @author Ryan Bellamy and Mitchell Veale
+ *
+ */
 public enum Crop{
     WHEAT ("Wheat", 5, 1, 100, 1, 20, false),
     CORN ("Corn", 10, 1, 200, 3, 20, false),
@@ -16,13 +21,13 @@ public enum Crop{
 
     /**
      * Initializes a Crop
-     * @param name
-     * @param buyPrice
-     * @param sellPrice
-     * @param baseYield
-     * @param baseGrowTime
-     * @param healthBoost
-     * @param fertilizes
+     * @param name A string of the name of a crop
+     * @param buyPrice An Int of the purchase price of a crop
+     * @param sellPrice An Int of the sale price of a crop
+     * @param baseYield An int of the default yield of a crop
+     * @param baseGrowTime An Int of the default growing time of a crop
+     * @param healthBoost An Int of the health boost Animals receive when crop is harvested
+     * @param fertilizes A boolean that is true if it fertilizes the cropField upon harvest
      */
     Crop(String name, int buyPrice, int sellPrice, int baseYield, int baseGrowTime, int healthBoost, boolean fertilizes) {
         this.name = name;
@@ -99,8 +104,6 @@ public enum Crop{
         String ans = "";
         if (healthBoost > 0)
             ans += "Grants " + healthBoost + " health to all animals when harvested. ";
-        //if (environmentResistance)
-        //    ans += "Immune to environmental effects.\n  ";
         if (fertilizes)
             ans += "Fertilizes the field it was grown in when harvested. ";
         return ans;
@@ -132,7 +135,7 @@ public enum Crop{
     
     /**
      * Buys x amount of crop seeds, takes care of payment, increments seed count
-     * @param amount
+     * @param amount An int of the quantity of seeds to buy
      */
     public void buy(int amount){
         if (amount > 0) {

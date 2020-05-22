@@ -1,7 +1,12 @@
+/**
+ * A class which contains the different actions a Farmer can perform
+ * @author Mitchell Veale and Ryan Bellamy
+ *
+ */
 public class FarmerActions {
-    public static final int MAX_DAILY_ACTIONS = 2;
+    private static final int MAX_DAILY_ACTIONS = 2;
 
-    public static int remainingActions = MAX_DAILY_ACTIONS;
+    private static int remainingActions = MAX_DAILY_ACTIONS;
 
     /**
      * Resets actions to the max daily actions

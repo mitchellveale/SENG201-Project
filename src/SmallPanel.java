@@ -1,6 +1,11 @@
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
+/**
+ * Class for making small panels 
+ * @author Mitchell Veale and Ryan Bellamy 
+ *
+ */
 public class SmallPanel extends JPanel{
     private final JPanel previousPanel;
 

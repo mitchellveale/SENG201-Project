@@ -1,3 +1,9 @@
+/**
+ * Highest level of control for the game.
+ * Decides whether to run GUI or CLI
+ * @author Mitchell Veale and Ryan Bellamy 
+ *
+ */
 public class GameManager {
     public static void main(String[] args) {
         //We will probably want to default to using the gui when it is implemented

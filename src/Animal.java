@@ -1,4 +1,8 @@
-
+/**
+ * An Enum which represents an Animal object
+ * @author Ryan Bellamy and Mitchell Veale
+ *
+ */
 public enum Animal {
 
 	COW ("Cow", 5, 5, 10, 20, 5),
@@ -14,12 +18,12 @@ public enum Animal {
 	
 	/**
 	 * Constructs an Animal
-	 * @param newName Name of Animal
-	 * @param newHappiness Initial happiness
-	 * @param newHealthiness Initial healthiness
-	 * @param newCurrentCount Initial count
-	 * @param newbuyPrice Price of Animal
-	 * @param newDailyIncome Base daily income
+	 * @param name A string of the Animals name
+	 * @param happiness An int of the Animals initial happiness
+	 * @param healthiness An int of the Animals initial healthiness
+	 * @param currentCount An int of the initial amount of Animals
+	 * @param buyPrice An int of the purchase price of an Animal
+	 * @param dailyIncome An int of the daily income of an Animal before FarmType multipliers
 	 */
 	Animal(String name, int happiness, int healthiness, int currentCount, int buyPrice, int dailyIncome) {
 		this.name = name;
@@ -31,21 +35,21 @@ public enum Animal {
 	}
 	/**
 	 * Adds i to the currentCount of Animal
-	 * @param i
+	 * @param i Int of the amount of Animals to add to currentCount
 	 */
 	public void addAnimals(int i) {
 		this.currentCount += i;
 	}
 	/**
 	 * Sets currentCount of Animal to i
-	 * @param i
+	 * @param i Int that the currentCount of the Animal is set to
 	 */
 	public void setAnimals(int i) {
 		this.currentCount = i;
 	}
 	/**
 	 * Increases Happiness of Animal by i
-	 * @param i
+	 * @param i Int that the happiness of an Animal is changed by
 	 */
 	public void increaseHappiness(int i) {
 		this.happiness += i;
@@ -58,7 +62,7 @@ public enum Animal {
 	}
 	/**
 	 * Increases Healthiness of Animal by i
-	 * @param i
+	 * @param i Int hat the healthiness of an Animal is changed by
 	 */
 	public void increaseHealthiness(int i) {
 		this.healthiness += i;

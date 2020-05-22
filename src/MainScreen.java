@@ -1,6 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
-
+/**
+ * A class which has the attributes and methods of the main gameplay screen 
+ * @author Mitchell Veale and Ryan Bellamy 
+ *
+ */
 public class MainScreen {
 
     private static JPanel panel;
@@ -12,6 +16,9 @@ public class MainScreen {
     private static JLabel[] cropFieldButtonBackgrounds;
     private static JLabel[] cropIcons;
 
+    /**
+     * Creates the main screen for gameplay 
+     */
     public static void createMainScreen(){
         panel = new JPanel();
         panel.setBounds(0, 0, GUIGame.getWidth(), GUIGame.getHeight());
@@ -201,6 +208,9 @@ public class MainScreen {
         return label;
     }
 
+    /**
+     * Updates money, actions and day
+     */
     public static void update(){
         moneyLabel.setText("" + Farm.money);
         actionsLabel.setText("" + FarmerActions.getRemainingActions());
@@ -209,6 +219,9 @@ public class MainScreen {
 
     }
 
+    /**
+     * Shows images of crops when they're planted
+     */
     public static void updateImages(){
         for (int i = 0; i < 6; i++){
             if (Farm.cropFields[i].getPlantedCrop() == null){
@@ -253,6 +266,10 @@ public class MainScreen {
         }
     }
 
+    /**
+     * 
+     * @return the panel
+     */
     public static JPanel getPanel() {
         return panel;
     }

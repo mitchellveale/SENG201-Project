@@ -1,5 +1,9 @@
 import java.util.Random;
-
+/**
+ * A class which represents a Farm
+ * @author Mitchell Veale and Ryan Bellamy 
+ *
+ */
 public class Farm {
     private static int currentDay;
 
@@ -10,13 +14,13 @@ public class Farm {
 
     public static final CropField[] cropFields = new CropField[6];
     public static AnimalPen[] AnimalPens = new AnimalPen[3];
+    
     public  static AnimalPen cowPen;
     public  static AnimalPen chickenPen;
     public  static AnimalPen pigPen;
 
     private static int gameLength;
     private static String farmName;
-    //If we add farmer attributes later we should change this to a 'Farmer' class
     private static String farmerName;
     private static FarmType farmType;
 
@@ -25,10 +29,10 @@ public class Farm {
 
     /**
      * Instantiates the Farm class
-     * @param gameLength the length of the game in days
-     * @param farmName the name of the farm
-     * @param farmerName the name of the farmer
-     * @param farmType  the farm type.
+     * @param gameLength An int of the length of the game in days
+     * @param farmName A string of the name of the farm
+     * @param farmerName A string of the name of the farmer
+     * @param farmType  A FarmType object which is the farm type of the farm
      */
     public static void createFarm(int gameLength, String farmName, String farmerName, FarmType farmType){
         Farm.gameLength = gameLength;
@@ -74,9 +78,13 @@ public class Farm {
         FarmerActions.resetActions();
     }
 
+    /**
+     * Uses the lotto ticket item
+     * @return An int of the amount won
+     */
     public static int useLottoTicket(){
         Random random = new Random();
-        int amount =  random.nextInt(Item.LOTTO_TICKET.getPrice() * 2);
+        int amount =  random.nextInt(Item.LOTTO_TICKET.getPrice() * 4);
         money += amount;
         Item.LOTTO_TICKET.use();
         return amount;

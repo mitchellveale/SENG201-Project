@@ -20,6 +20,10 @@ public class GUIGame {
 
     private static JPanel activePanel;
 
+    /**
+     * Starts the game
+     * @param scale
+     */
     public static void startGame(double scale){
         GUIGame.scale = scale;
         width = (int)(WIDTH * scale);
@@ -56,6 +60,9 @@ public class GUIGame {
         MainScreen.createMainScreen();
     }
 
+    /**
+     * Removes setup screen and activates main screen
+     */
     public static void begin(){
         pane.remove(SetupScreen.getPanel());
 
@@ -65,6 +72,7 @@ public class GUIGame {
         setActivePanel(MainScreen.getPanel());
     }
 
+    
     public static Font sizedFont(float size){
         // I screwed up when making the panels, this was the easiest way to fix it
         return resources.font.deriveFont(scaled(size) / 1.69f);

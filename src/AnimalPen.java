@@ -1,14 +1,17 @@
-
+/**
+ * A class which represents a Pen which holds Animals
+ * @author Ryan Bellamy and Mitchell Veale
+ *
+ */
 public class AnimalPen {
 
 	private Animal holdingAnimal;    
 	private int capacity;      
 	private int baseCapacity = 100;
 	
-	
 	/**
 	 * Constructs AnimalPen
-	 * @param newholdingAnimal
+	 * @param holdingAnimal An object of type Animal
 	 */
 	public AnimalPen(Animal holdingAnimal) {
 		this.holdingAnimal = holdingAnimal;
@@ -39,7 +42,7 @@ public class AnimalPen {
 	/**
 	 * Multiplies currentCount of the holdingAnimal by i.
 	 * If currentCount > capacity, currentCount becomes the capacity.
-	 * @param i
+	 * @param i A double which multiplies the count of the Animal
 	 */
 	public void animalMultiplication(double i) {
 		this.holdingAnimal.setAnimals((int)Math.round(this.holdingAnimal.getCurrentCount()*i)); 

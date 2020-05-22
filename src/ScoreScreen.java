@@ -1,9 +1,17 @@
 import javax.swing.*;
 
+/**
+ * A class with the attributes and methods of the final score screen
+ * @author Mitchell Veale and Ryan Bellamy 
+ *
+ */
 public class ScoreScreen {
 
     private static JPanel panel;
 
+    /**
+     * Creates the final score screen
+     */
     public static void createScoreScreen(){
         panel = new JPanel();
         panel.setBounds(0, 0, GUIGame.getWidth(), GUIGame.getHeight());
@@ -42,6 +50,10 @@ public class ScoreScreen {
         panel.add(test);
     }
 
+    /**
+     * 
+     * @return the panel
+     */
     public static JPanel getPanel() {
         return panel;
     }

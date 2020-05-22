@@ -1,3 +1,8 @@
+/**
+ * An Enum which represents the Farms type and therefore its unique abilities
+ * @author Mitchell Veale and Ryan Bellamy
+ *
+ */
 public enum FarmType {
     SUBSIDISED_FARM ("Subsidised Farm", "Receive an extra $200 at the beginning of each day", 200, 1, 1, 1),
     FERTILE_LAND ("Fertile Land", "Crops have 50% larger yields", 0, 1.5d, 1, 1),
@@ -13,12 +18,12 @@ public enum FarmType {
 
     /**
      * Initializes a FarmType
-     * @param name
-     * @param description
-     * @param extraCash
-     * @param cropYieldMultiplier
-     * @param animalPenSizeMultiplier
-     * @param valueMultiplier
+     * @param name A string of the name of the FarmType
+     * @param description A string of the description of the FarmType
+     * @param extraCash An int of the bonus amount of money the farm receives daily 
+     * @param cropYieldMultiplier A double of the amount the crop yield is multiplied by
+     * @param animalPenSizeMultiplier A double of the amount the AnimalPen size is multiplied by
+     * @param valueMultiplier A double of the amount that the crop sell price/animal daily income is multiplied by
      */
     FarmType(String name, String description, int extraCash, double cropYieldMultiplier, double animalPenSizeMultiplier, double valueMultiplier){
         this.name = name;

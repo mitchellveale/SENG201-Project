@@ -5,9 +5,17 @@ import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.util.regex.Pattern;
 
+/**
+ * A class for the attributes and methods of the setup screen 
+ * @author Mitchell Veale and Ryan Bellamy 
+ *
+ */
 public class SetupScreen{
     private static JPanel panel;
 
+    /**
+     * Creates the setup screen 
+     */
     public static void createSetupScreen(){
 
         panel = new JPanel();
@@ -195,6 +203,10 @@ public class SetupScreen{
         return Pattern.matches("[a-zA-Z ]{3,15}", name);
     }
 
+    /**
+     * 
+     * @return the panel 
+     */
     public static JPanel getPanel() {
         return panel;
     }

@@ -1,9 +1,18 @@
 import javax.swing.*;
 import javax.swing.border.LineBorder;
-
+/**
+ * Class for making large panels
+ * @author Mitchell Veale and Ryan Bellamy 
+ *
+ */
 public class LargePanel extends JPanel{
     private final JPanel previousPanel;
 
+    /**
+     * Creates a large panel
+     * @param previousPanel A JPanel which is the panel that came before this
+     * @param title a string which is the title of the panel 
+     */
     public LargePanel(JPanel previousPanel, String title){
         super();
         this.previousPanel = previousPanel;

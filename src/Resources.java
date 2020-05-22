@@ -43,7 +43,9 @@ public class Resources {
     public final Color tertiaryColor;
     public final Color quaternaryColor;
 
-
+    /**
+     * sets all resources for the game to their correct values
+     */
     public Resources(){
         Font newFont;
         try {

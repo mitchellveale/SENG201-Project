@@ -180,7 +180,7 @@ public class TextGame {
 			String doNext = scan.next();
 			switch(doNext) {
 			case "1":
-				if(FarmerActions.remainingActions>0) {
+				if(FarmerActions.getRemainingActions()>0) {
 				    if(Item.ANIMAL_TREATS.getAmount()>0) {
 					    FarmerActions.feedAnimalsTreats();
 					    System.out.println("All Animals recieved a health and happiness boost!");
@@ -194,7 +194,7 @@ public class TextGame {
 				break;
 				
 			case "2":
-				if(FarmerActions.remainingActions>0) {
+				if(FarmerActions.getRemainingActions()>0) {
 				    if(Item.HAY.getAmount()>0) {
 					    FarmerActions.feedAnimalsHay();
 					    System.out.println("All Animals recieved a health boost!\n");
@@ -237,7 +237,7 @@ public class TextGame {
 			case "1":
 				//Harvest all
 				if(ready > 0) {
-				    if(FarmerActions.remainingActions>0) {
+				    if(FarmerActions.getRemainingActions()>0) {
 				        int before = Farm.money;
 				        FarmerActions.harvestCrops();
 				        int after = Farm.money;
@@ -361,7 +361,7 @@ public class TextGame {
 			switch(doNext) {
 			case "1":
 				//water crop
-				if(FarmerActions.remainingActions>0) {
+				if(FarmerActions.getRemainingActions()>0) {
 				FarmerActions.tendToCrop(o,false);
 				System.out.println("Crop was watered!\n");}
 				else {
@@ -370,7 +370,7 @@ public class TextGame {
 				break;
 			case "2":
 				//Growth compound
-				if(FarmerActions.remainingActions>0) {
+				if(FarmerActions.getRemainingActions()>0) {
 				    if(Item.GROWTH_COMPOUND.getAmount()>0) {
 					    FarmerActions.tendToCrop(o,true);
 					    System.out.println("Growth compound was applied");
@@ -389,7 +389,7 @@ public class TextGame {
 	}
 	
 	private static void spreadFert(CropField o) {
-		if(FarmerActions.remainingActions>0) {
+		if(FarmerActions.getRemainingActions()>0) {
 		if(Item.FERTILIZER.getAmount()>0) {
 			o.fertilize();
 			Item.FERTILIZER.use();
@@ -416,7 +416,7 @@ public class TextGame {
 			back = true;
 		}
 		else if (seedType < 7 && seedType>0) {
-			if(FarmerActions.remainingActions > 0) {
+			if(FarmerActions.getRemainingActions() > 0) {
 			    if(crops[seedType-1].getSeedAmount()>0) {
 			    o.PlantCrop(crops[seedType-1]);
 			    back = true;

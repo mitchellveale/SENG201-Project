@@ -1,6 +1,11 @@
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
+/**
+ * Class for making medium panels
+ * @author Mitchell Veale and Ryan Bellamy 
+ *
+ */
 public class MediumPanel extends JPanel{
     private final JPanel previousPanel;
 

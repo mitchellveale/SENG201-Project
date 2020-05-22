@@ -579,7 +579,7 @@ public class TextGame {
 				if (amount > 0) {
 					animals[choice - 1].addAnimals(amount);
 					System.out.println("You purchased " + amount + " " + animals[choice-1].getName());
-					Farm.alterMoney(-1*(animals[choice-1].getbuyPrice() * amount)); 
+					Farm.lessMoney(animals[choice-1].getbuyPrice() * amount);
 				}
 			}else{
 				System.out.println("You don't have enough money for that");

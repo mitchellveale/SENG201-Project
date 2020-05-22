@@ -157,22 +157,50 @@ public class Farm {
 	   return cropFields;
    }
    
+   /**
+    * 
+    * @return Farms money
+    */
    public static int getMoney() {
 	   return money;
    }
    
-   public static void alterMoney(int i) {
+   /**
+    * Adds to Farms money
+    * @param i int to add to money
+    */
+   public static void addMoney(int i) {
 	   money += i;
    }
    
+   /**
+    * Removes from farms money
+    * @param i int to remove from money
+    */
+   public static void lessMoney(int i) {
+	   money -= i;
+   }
+   
+   /**
+    * 
+    * @return Farm condition
+    */
    public static double getFarmCondition() {
 	   return farmCondition;
    }
    
+   /**
+    * Adjusts farm condition variable by i
+    * @param i An int to add/subtract from farm condition 
+    */
    public static void alterFarmCondition(double i) {
 	   farmCondition += i;
    }
    
+   /**
+    * Sets farm condition to i
+    * @param i An Int to set farmCondition to 
+    */
    public static void setFarmCondition(double i) {
 	   farmCondition = i;
    }

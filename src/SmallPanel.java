@@ -240,7 +240,7 @@ public class SmallPanel extends JPanel{
             if (thisPanel != GUIGame.getActivePanel())
                 return;
             animal.getAnimal().addAnimals(animalSlider.getValue());
-            Farm.alterMoney(-1 * (animal.getAnimal().getbuyPrice() * animalSlider.getValue()));
+            Farm.lessMoney(animal.getAnimal().getbuyPrice() * animalSlider.getValue());
             MainScreen.update();
             GUIGame.deletePanel(thisPanel, previousPanel);
         });

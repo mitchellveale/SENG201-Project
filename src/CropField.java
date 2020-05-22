@@ -69,7 +69,7 @@ public class CropField {
     public void harvest(){
         if(!isMature())
             return;
-        Farm.alterMoney((int)(plantedCrop.getSellPrice() * amount));
+        Farm.addMoney((int)(plantedCrop.getSellPrice() * amount));
 
         if (plantedCrop.getHealthBoost() > 0){
         	for(AnimalPen pen : Farm.getAnimalPens()) {

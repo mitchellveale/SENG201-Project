@@ -66,7 +66,7 @@ public enum Item {
      */
     public void buy(){
         amount++;
-        Farm.alterMoney(-1*price);
+        Farm.lessMoney(price);
     }
 
     /**
@@ -75,7 +75,7 @@ public enum Item {
      */
     public void buy(int amount){
         if (amount > 0) {
-            Farm.alterMoney(-1*(price * amount));
+            Farm.lessMoney(price * amount);
             this.amount += amount;
         }
     }

@@ -6,25 +6,21 @@ import java.util.Random;
  */
 public class Farm {
     private static int currentDay;
+    private static int money;
 
-    /**
-     * the farmer's total money
-     */
-    public static int money;
-
-    public static final CropField[] cropFields = new CropField[6];
-    public static AnimalPen[] AnimalPens = new AnimalPen[3];
+    private static final CropField[] cropFields = new CropField[6];
+    private static AnimalPen[] AnimalPens = new AnimalPen[3];
     
-    public  static AnimalPen cowPen;
-    public  static AnimalPen chickenPen;
-    public  static AnimalPen pigPen;
+    private  static AnimalPen cowPen;
+    private  static AnimalPen chickenPen;
+    private  static AnimalPen pigPen;
 
     private static int gameLength;
     private static String farmName;
     private static String farmerName;
     private static FarmType farmType;
 
-    public static double farmCondition;
+    private static double farmCondition;
 
 
     /**
@@ -144,4 +140,42 @@ public class Farm {
     public static String getFarmerName() {
         return farmerName;
     }
+    
+    /**
+     * 
+     * @return AnimalPens list
+     */
+   public static AnimalPen[] getAnimalPens() {
+	   return AnimalPens;
+   }
+   
+   /**
+    * 
+    * @return cropFields list
+    */
+   public static CropField[] getCropFields() {
+	   return cropFields;
+   }
+   
+   public static int getMoney() {
+	   return money;
+   }
+   
+   public static void alterMoney(int i) {
+	   money += i;
+   }
+   
+   public static double getFarmCondition() {
+	   return farmCondition;
+   }
+   
+   public static void alterFarmCondition(double i) {
+	   farmCondition += i;
+   }
+   
+   public static void setFarmCondition(double i) {
+	   farmCondition = i;
+   }
 }
+
+

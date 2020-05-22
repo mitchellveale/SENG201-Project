@@ -142,7 +142,7 @@ public class LargePanel extends JPanel{
             GUIGame.deletePanel(thisPanel, newPanel);
         });
 
-        if(Farm.money >= item.getPrice() && buyable)
+        if(Farm.getMoney() >= item.getPrice() && buyable)
             panel.add(buyButton);
 
         return panel;
@@ -205,7 +205,7 @@ public class LargePanel extends JPanel{
             GUIGame.deletePanel(thisPanel, newPanel);
         });
 
-        if(Farm.money >= crop.getBuyPrice() && buyable)
+        if(Farm.getMoney() >= crop.getBuyPrice() && buyable)
             panel.add(buyButton);
 
         return panel;
@@ -265,7 +265,7 @@ public class LargePanel extends JPanel{
         plantButton.addActionListener(e -> {
             if (thisPanel != GUIGame.getActivePanel())
                 return;
-            Farm.cropFields[cropField].PlantCrop(crop);
+            Farm.getCropFields()[cropField].PlantCrop(crop);
             MainScreen.updateImages();
             // Regenerate the previous panel
             MediumPanel newPanel = new MediumPanel(MainScreen.getPanel(), "Crop field " + (cropField + 1));

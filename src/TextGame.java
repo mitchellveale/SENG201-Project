@@ -77,8 +77,8 @@ public class TextGame {
 	
 	private static void play() {
 		System.out.println("Day " + Farm.getCurrentDay() + " / " + Farm.getGameLength() + "!");
-		System.out.println("Bank: $" + Farm.money);
-		System.out.println("Farm Condition: "+Farm.farmCondition);
+		System.out.println("Bank: $" + Farm.getMoney());
+		System.out.println("Farm Condition: "+ Farm.getFarmCondition());
 		System.out.println("Actions remaining: "+ FarmerActions.getRemainingActions());
 		System.out.println("1 : Go to store");					
 		System.out.println("2 : Manage Crops");
@@ -224,9 +224,9 @@ public class TextGame {
 		int ready = 0;
 		while(!back) {
 			System.out.println("Crops ready for harvest:\n");
-			for(int i=0;i <= Farm.cropFields.length-1;i++) {
-				if(Farm.cropFields[i].isMature()) {
-					System.out.println(Farm.cropFields[i]);
+			for(CropField field : Farm.getCropFields()) {
+				if(field.isMature()) {
+					System.out.println(field);
 					ready += 1;
 				}
 			}
@@ -238,9 +238,9 @@ public class TextGame {
 				//Harvest all
 				if(ready > 0) {
 				    if(FarmerActions.getRemainingActions()>0) {
-				        int before = Farm.money;
+				        int before = Farm.getMoney();
 				        FarmerActions.harvestCrops();
-				        int after = Farm.money;
+				        int after = Farm.getMoney();
 				        System.out.println("You made $" + (after-before));
 				    }
 				    else {
@@ -262,7 +262,7 @@ public class TextGame {
 		if(FarmerActions.getRemainingActions() < 0) {
 			System.out.println("NO Actions Remaining!");
 		}
-		else if(Farm.cowPen.getAnimal().getHappiness() == 10) { // As all animals have the same happiness
+		else if(Farm.getAnimalPens()[0].getAnimal().getHappiness() == 10) { // As all animals have the same happiness
 			System.out.println("Animals Have full happiness already");
 		}
 		else {
@@ -273,8 +273,8 @@ public class TextGame {
 	
 	private static void viewAnimalStatus() {
 		System.out.println("Name, Count, Happiness, Healthiness, Daily Income\n");
-		for(int i=0; i<Farm.AnimalPens.length;i++) {
-			System.out.println(Farm.AnimalPens[i]);
+		for(AnimalPen pen : Farm.getAnimalPens()) {
+			System.out.println(pen);
     	}
 		System.out.println("Press any character and enter to go back to main menu");
 		String doNext = scan.next();
@@ -282,19 +282,21 @@ public class TextGame {
 	
 	private static void viewCropStatus() {
 		boolean exit = false;
+		int i = 1;
 		while(!exit) {
-		for(int i = 1; i <= Farm.cropFields.length;i++) {
+		for(CropField field : Farm.getCropFields()) {
 			System.out.println(i +" - Crop Field #" + i);
-			System.out.println(Farm.cropFields[i-1]);
+			System.out.println(field);
+			i++;
 		}
-		System.out.println(Farm.cropFields.length +1 + " - back");
+		System.out.println(i + " - back");
 		String doNext = scan.next();
 		int cropNumber = (Pattern.matches("[0-9]+", doNext)) ? Integer.parseInt(doNext) : 0;
 		if(cropNumber == 7) {
 			exit = true;
 		}
 		else if (cropNumber < 7 && cropNumber>0) {
-			cropOptions(Farm.cropFields[cropNumber-1]);
+			cropOptions(Farm.getCropFields()[cropNumber-1]);
 		}
 		else {
 			System.out.println("Invalid input - Try again");
@@ -466,7 +468,7 @@ public class TextGame {
 		Crop[] crops = Crop.values();
 		boolean back = false;
 		while (!back){
-			System.out.println("Your Money: $" + Farm.money);
+			System.out.println("Your Money: $" + Farm.getMoney());
 			int i;
 			for (i=1; i < crops.length + 1; i++){
 				System.out.println(i + " - Purchase " + crops[i-1].getName() + " seeds for $" + crops[i-1].getBuyPrice() + " (You have " + crops[i-1].getSeedAmount() + ")");
@@ -487,14 +489,14 @@ public class TextGame {
 				// if input is a number parse it otherwise make amount 0
 				int amount = (Pattern.matches("[0-9]+", input)) ? Integer.parseInt(input) : 0;
 
-				if (Farm.money >= (crops[choice - 1].getBuyPrice() * amount)) {
+				if (Farm.getMoney() >= (crops[choice - 1].getBuyPrice() * amount)) {
 					if (amount > 0) {
 						crops[choice - 1].buy(amount);
 						System.out.println("You purchased " + amount + " " + crops[choice - 1].getName() + " seeds");
 					}
 				} else {
 					System.out.println("You don't have enough money for that");
-					System.out.println("To buy " + amount + " " + crops[choice - 1].getName() + " seeds you need $" + crops[choice - 1].getBuyPrice() * amount + " but you only have $" + Farm.money);
+					System.out.println("To buy " + amount + " " + crops[choice - 1].getName() + " seeds you need $" + crops[choice - 1].getBuyPrice() * amount + " but you only have $" + Farm.getMoney());
 				}
 				if (amount <= 0)
 					System.out.println("That input is invalid");
@@ -508,7 +510,7 @@ public class TextGame {
 		Item[] items = Item.values();
 		boolean back = false;
 		while (!back){
-			System.out.println("Your Money: $" + Farm.money);
+			System.out.println("Your Money: $" + Farm.getMoney());
 			int i;
 			for (i=1; i < items.length + 1; i++){
 				System.out.println(i + " - Purchase " + items[i-1].getName() + " for $" + items[i-1].getPrice() + " (You have " + items[i-1].getAmount() + ")");
@@ -528,14 +530,14 @@ public class TextGame {
 				// if input is valid parse it otherwise make amount 0
 				int amount = (Pattern.matches("0*[1-9][0-9]*", input)) ? Integer.parseInt(input) : 0;
 
-				if (Farm.money >= (items[choice-1].getPrice() * amount)){
+				if (Farm.getMoney() >= (items[choice-1].getPrice() * amount)){
 					if (amount > 0) {
 						items[choice - 1].buy(amount);
 						System.out.println("You purchased " + amount + " " + items[choice-1].getName());
 					}
 				}else{
 					System.out.println("You don't have enough money for that");
-					System.out.println("To buy " + amount + " " + items[choice-1].getName() + " you need $" + items[choice-1].getPrice() * amount + " but you only have $" + Farm.money);
+					System.out.println("To buy " + amount + " " + items[choice-1].getName() + " you need $" + items[choice-1].getPrice() * amount + " but you only have $" + Farm.getMoney());
 				}
 				if (amount <= 0)
 					System.out.println("That input is invalid");
@@ -549,12 +551,12 @@ public class TextGame {
 		Animal[] animals = Animal.values();
 		boolean back = false;
 		while(!back) {
-			System.out.println("Your Money: $" + Farm.money);
+			System.out.println("Your Money: $" + Farm.getMoney());
 			int i;
 			for (i=1; i < animals.length + 1; i++){
 				System.out.println(i + " - Purchase " + animals[i-1].getName() + " for $" + 
 			    animals[i-1].getbuyPrice() + " (You have " + animals[i-1].getCurrentCount() + ")");
-				System.out.println("You can hold a maximum of " + Farm.cowPen.getCapacity()); // As all animals pens have the same capacity
+				System.out.println("You can hold a maximum of " + Farm.getAnimalPens()[0].getCapacity()); // As all animals pens have the same capacity
 		}
 			
 		System.out.println(i + " - Back");
@@ -569,19 +571,19 @@ public class TextGame {
 
 			// if input is valid parse it otherwise make amount 0
 			int amount = (Pattern.matches("0*[1-9][0-9]*", input)) ? Integer.parseInt(input) : 0;
-			if(amount + animals[choice-1].getCurrentCount() > Farm.cowPen.getCapacity()) {
+			if(amount + animals[choice-1].getCurrentCount() > Farm.getAnimalPens()[0].getCapacity()) {
 				System.out.println("This would exceed the max capacity!");
 			}
 
-			else if (Farm.money >= (animals[choice-1].getbuyPrice() * amount)){
+			else if (Farm.getMoney() >= (animals[choice-1].getbuyPrice() * amount)){
 				if (amount > 0) {
 					animals[choice - 1].addAnimals(amount);
 					System.out.println("You purchased " + amount + " " + animals[choice-1].getName());
-					Farm.money -= animals[choice-1].getbuyPrice() * amount;
+					Farm.alterMoney(-1*(animals[choice-1].getbuyPrice() * amount)); 
 				}
 			}else{
 				System.out.println("You don't have enough money for that");
-				System.out.println("To buy " + amount + " " + animals[choice-1].getName() + " you need $" + animals[choice-1].getbuyPrice() * amount + " but you only have $" + Farm.money);
+				System.out.println("To buy " + amount + " " + animals[choice-1].getName() + " you need $" + animals[choice-1].getbuyPrice() * amount + " but you only have $" + Farm.getMoney());
 			}
 			if (amount <= 0)
 				System.out.println("That input is invalid");

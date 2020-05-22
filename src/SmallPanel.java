@@ -28,7 +28,7 @@ public class SmallPanel extends JPanel{
     }
 
     public void designateAsTendToCropPanel(int cropField){
-        CropField thisCropField = Farm.cropFields[cropField];
+        CropField thisCropField = Farm.getCropFields()[cropField];
         // JTextArea doesn't seem to have the ability to center text :(
         // also i hate this
         JLabel line1 = new JLabel("Would you like to use water or");
@@ -80,7 +80,7 @@ public class SmallPanel extends JPanel{
             if (thisPanel != GUIGame.getActivePanel())
                 return;
             if (FarmerActions.getRemainingActions() > 0){
-                FarmerActions.tendToCrop(Farm.cropFields[cropField], false);
+                FarmerActions.tendToCrop(Farm.getCropFields()[cropField], false);
                 MainScreen.update();
                 MediumPanel newPanel = new MediumPanel(MainScreen.getPanel(), "Crop field " + cropField);
                 newPanel.designateAsCropFieldPanel(cropField);
@@ -99,7 +99,7 @@ public class SmallPanel extends JPanel{
             if (thisPanel != GUIGame.getActivePanel())
                 return;
             if (FarmerActions.getRemainingActions() > 0){
-                FarmerActions.tendToCrop(Farm.cropFields[cropField], true);
+                FarmerActions.tendToCrop(Farm.getCropFields()[cropField], true);
                 MainScreen.update();
                 MediumPanel newPanel = new MediumPanel(MainScreen.getPanel(), "Crop field " + cropField);
                 newPanel.designateAsCropFieldPanel(cropField);
@@ -127,7 +127,7 @@ public class SmallPanel extends JPanel{
         JLabel line2 = new JLabel("mature crops? (uses an action)");
         JLabel line3 = new JLabel();
         int money = 0;
-        for (CropField c : Farm.cropFields){
+        for (CropField c : Farm.getCropFields()){
             money += c.harvestValue();
         }
         line3.setText("You will receive $" + money);
@@ -199,7 +199,7 @@ public class SmallPanel extends JPanel{
         add(infoLabel);
 
         //Slider
-        int maxAnimals = Math.min((int)(Farm.money / animal.getAnimal().getbuyPrice()), (int) (animal.getCapacity() - animal.getAnimal().getCurrentCount()));
+        int maxAnimals = Math.min((int)(Farm.getMoney() / animal.getAnimal().getbuyPrice()), (int) (animal.getCapacity() - animal.getAnimal().getCurrentCount()));
         JSlider animalSlider = new JSlider(JSlider.HORIZONTAL, 0, maxAnimals, 0);
         animalSlider.setBounds(GUIGame.scaled(51, 108, 241, 20));
         animalSlider.setOpaque(false);
@@ -240,7 +240,7 @@ public class SmallPanel extends JPanel{
             if (thisPanel != GUIGame.getActivePanel())
                 return;
             animal.getAnimal().addAnimals(animalSlider.getValue());
-            Farm.money -= animal.getAnimal().getbuyPrice() * animalSlider.getValue();
+            Farm.alterMoney(-1 * (animal.getAnimal().getbuyPrice() * animalSlider.getValue()));
             MainScreen.update();
             GUIGame.deletePanel(thisPanel, previousPanel);
         });

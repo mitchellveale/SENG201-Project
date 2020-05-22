@@ -60,7 +60,7 @@ public class CropField {
         if (isMature() || plantedCrop == null)
             return;
         growth++;
-        amount += ((plantedCrop.getBaseYield() * yieldMultiplier) / actualGrowTime()) * (0.5 + (Farm.farmCondition / 2));
+        amount += ((plantedCrop.getBaseYield() * yieldMultiplier) / actualGrowTime()) * (0.5 + (Farm.getFarmCondition() / 2));
     }
 
     /**
@@ -69,11 +69,11 @@ public class CropField {
     public void harvest(){
         if(!isMature())
             return;
-        Farm.money += (int)(plantedCrop.getSellPrice() * amount);
+        Farm.alterMoney((int)(plantedCrop.getSellPrice() * amount));
 
         if (plantedCrop.getHealthBoost() > 0){
-        	for(int i=0; i<Farm.AnimalPens.length;i++) {
-            	Farm.AnimalPens[i].getAnimal().increaseHealthiness(plantedCrop.getHealthBoost());
+        	for(AnimalPen pen : Farm.getAnimalPens()) {
+            	pen.getAnimal().increaseHealthiness(plantedCrop.getHealthBoost());
             }
         }
         fertilized = plantedCrop.doesFertilize();

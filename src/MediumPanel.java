@@ -30,13 +30,13 @@ public class MediumPanel extends JPanel{
     }
 
     public void designateAsCropFieldPanel(int cropField){
-        CropField thisCropField = Farm.cropFields[cropField];
+        CropField thisCropField = Farm.getCropFields()[cropField];
         JLabel plantedCropLabel = new JLabel();
         plantedCropLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        if (Farm.cropFields[cropField].getPlantedCrop() == null){
+        if (Farm.getCropFields()[cropField].getPlantedCrop() == null){
             plantedCropLabel.setText("Planted Crop: None");
         }else{
-            plantedCropLabel.setText("Planted Crop: " + Farm.cropFields[cropField].getPlantedCrop().getName());
+            plantedCropLabel.setText("Planted Crop: " + Farm.getCropFields()[cropField].getPlantedCrop().getName());
         }
         plantedCropLabel.setBounds(GUIGame.scaled(0, 59, 411, 27));
         plantedCropLabel.setFont(GUIGame.sizedFont(30f));
@@ -50,9 +50,9 @@ public class MediumPanel extends JPanel{
         JLabel cropDaysLeftLabel = new JLabel();
         cropDaysLeftLabel.setHorizontalAlignment(SwingConstants.CENTER);
         cropDaysLeftLabel.setBounds(GUIGame.scaled(0, 120, 411, 25));
-        if (Farm.cropFields[cropField].getPlantedCrop() != null){
-            int percentGrown = (int)(Farm.cropFields[cropField].getGrowthPercent() * 100);
-            int dayLeft = Farm.cropFields[cropField].getRemainingGrowTime();
+        if (Farm.getCropFields()[cropField].getPlantedCrop() != null){
+            int percentGrown = (int)(Farm.getCropFields()[cropField].getGrowthPercent() * 100);
+            int dayLeft = Farm.getCropFields()[cropField].getRemainingGrowTime();
             cropDaysLeftLabel.setText((thisCropField.isMature()) ? "Mature!" : (dayLeft == 1) ? "1 Day until mature" : dayLeft + " Days until mature");
             cropStatusLabel.setText( percentGrown + "% Grown");
         }
@@ -239,7 +239,7 @@ public class MediumPanel extends JPanel{
             if (thisPanel != GUIGame.getActivePanel())
                 return;
             SmallPanel newPanel = new SmallPanel(thisPanel, "Buy cows");
-            newPanel.designateAsBuyAnimalsPanel(Farm.cowPen);
+            newPanel.designateAsBuyAnimalsPanel(Farm.getAnimalPens()[0]);
             GUIGame.addPanel(newPanel);
         });
 
@@ -248,7 +248,7 @@ public class MediumPanel extends JPanel{
             if (thisPanel != GUIGame.getActivePanel())
                 return;
             SmallPanel newPanel = new SmallPanel(thisPanel, "Buy pigs");
-            newPanel.designateAsBuyAnimalsPanel(Farm.pigPen);
+            newPanel.designateAsBuyAnimalsPanel(Farm.getAnimalPens()[2]);
             GUIGame.addPanel(newPanel);
         });
 
@@ -257,7 +257,7 @@ public class MediumPanel extends JPanel{
             if (thisPanel != GUIGame.getActivePanel())
                 return;
             SmallPanel newPanel = new SmallPanel(thisPanel, "Buy chickens");
-            newPanel.designateAsBuyAnimalsPanel(Farm.chickenPen);
+            newPanel.designateAsBuyAnimalsPanel(Farm.getAnimalPens()[1]);
             GUIGame.addPanel(newPanel);
         });
 
@@ -270,7 +270,7 @@ public class MediumPanel extends JPanel{
     }
 
     public void designateAsHousePanel(){
-        JButton tendToFarmButton = new JButton("Tend to farm land (" + (int)(Farm.farmCondition * 100) + "%)");
+        JButton tendToFarmButton = new JButton("Tend to farm land (" + (int)(Farm.getFarmCondition() * 100) + "%)");
         JButton nextDayButton = new JButton((Farm.isFinalDay() ? "Finish Game" : "Next day"));
         JButton lottoTicketButton = new JButton("Use lotto ticket (You have " + Item.LOTTO_TICKET.getAmount() + ")");
         JButton exitButton = new JButton("Exit");

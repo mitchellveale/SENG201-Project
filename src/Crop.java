@@ -121,7 +121,7 @@ public enum Crop{
      * Buys a crop seed, takes care of payment, increments seed count
      */
     public void buy(){
-        Farm.money -= buyPrice;
+        Farm.alterMoney(-1 * buyPrice);;
         seedAmount++;
     }
     
@@ -139,7 +139,7 @@ public enum Crop{
      */
     public void buy(int amount){
         if (amount > 0) {
-            Farm.money -= buyPrice * amount;
+            Farm.alterMoney(-1 * (buyPrice * amount));
             seedAmount += amount;
         }
     }

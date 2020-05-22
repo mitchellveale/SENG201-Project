@@ -27,7 +27,7 @@ public class MainScreen {
         //---------------BORDER-----------------
         Color textColor = new Color(96, 66, 15);
 
-        moneyLabel = new JLabel("" + Farm.money);
+        moneyLabel = new JLabel("" + Farm.getMoney());
         moneyLabel.setHorizontalAlignment(SwingConstants.CENTER);
         moneyLabel.setFont(GUIGame.sizedFont(28f * 1.69f));
         moneyLabel.setForeground(textColor);
@@ -145,7 +145,7 @@ public class MainScreen {
             if (panel != GUIGame.getActivePanel())
                 return;
             MediumPanel newPanel = new MediumPanel(panel, "Cow pen");
-            newPanel.designateAsAnimalPenPanel(Farm.cowPen);
+            newPanel.designateAsAnimalPenPanel(Farm.getAnimalPens()[0]);
             GUIGame.addPanel(newPanel);
         });
 
@@ -153,7 +153,7 @@ public class MainScreen {
             if (panel != GUIGame.getActivePanel())
                 return;
             MediumPanel newPanel = new MediumPanel(panel, "Pig pen");
-            newPanel.designateAsAnimalPenPanel(Farm.pigPen);
+            newPanel.designateAsAnimalPenPanel(Farm.getAnimalPens()[2]);
             GUIGame.addPanel(newPanel);
         });
 
@@ -161,7 +161,7 @@ public class MainScreen {
             if (panel != GUIGame.getActivePanel())
                 return;
             MediumPanel newPanel = new MediumPanel(panel, "Chicken pen");
-            newPanel.designateAsAnimalPenPanel(Farm.chickenPen);
+            newPanel.designateAsAnimalPenPanel(Farm.getAnimalPens()[1]);
             GUIGame.addPanel(newPanel);
         });
 
@@ -212,7 +212,7 @@ public class MainScreen {
      * Updates money, actions and day
      */
     public static void update(){
-        moneyLabel.setText("" + Farm.money);
+        moneyLabel.setText("" + Farm.getMoney());
         actionsLabel.setText("" + FarmerActions.getRemainingActions());
         dayLabel.setText("Day " + Farm.getCurrentDay() + "/" + Farm.getGameLength());
 
@@ -224,10 +224,10 @@ public class MainScreen {
      */
     public static void updateImages(){
         for (int i = 0; i < 6; i++){
-            if (Farm.cropFields[i].getPlantedCrop() == null){
+            if (Farm.getCropFields()[i].getPlantedCrop() == null){
                 cropIcons[i].setVisible(false);
             } else{
-                switch (Farm.cropFields[i].getPlantedCrop()){
+                switch (Farm.getCropFields()[i].getPlantedCrop()){
                     case WHEAT:
                         cropIcons[i].setIcon(GUIGame.resources.wheat);
                         cropIcons[i].setVisible(true);
@@ -259,7 +259,7 @@ public class MainScreen {
             }
 
 
-            if (Farm.cropFields[i].isFertilized())
+            if (Farm.getCropFields()[i].isFertilized())
                 cropFieldButtonBackgrounds[i].setIcon(GUIGame.resources.fertilizedCropField);
             else
                 cropFieldButtonBackgrounds[i].setIcon(GUIGame.resources.unfertilizedCropField);

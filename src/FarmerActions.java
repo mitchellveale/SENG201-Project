@@ -19,7 +19,7 @@ public class FarmerActions {
      * Multiplies the amount of all animals, decrements growthCompound
      */
     public static void useBreedingCompound() {
-    	for(AnimalPen pen : Farm.AnimalPens) {
+    	for(AnimalPen pen : Farm.getAnimalPens()) {
     		pen.animalMultiplication(1.5);
     	}
     	Item.BREEDING_COMPOUND.use();
@@ -31,7 +31,7 @@ public class FarmerActions {
      * Harvests all mature crops
      */
     public static void harvestCrops(){
-        for(CropField field : Farm.cropFields){
+        for(CropField field : Farm.getCropFields()){
             if (field.getPlantedCrop() != null)
                 field.harvest();
         }
@@ -57,7 +57,7 @@ public class FarmerActions {
      * Increases healthiness of all animals, uses an action
      */
     public static void feedAnimalsHay() {
-    	for(AnimalPen pen :  Farm.AnimalPens) {
+    	for(AnimalPen pen :  Farm.getAnimalPens()) {
     		pen.getAnimal().increaseHealthiness(3);
     	}
     	remainingActions -= 1;
@@ -68,7 +68,7 @@ public class FarmerActions {
      * Increases happiness and healthiness of all animals, uses an action
      */
     public static void feedAnimalsTreats(){
-    	for(AnimalPen pen : Farm.AnimalPens) {
+    	for(AnimalPen pen : Farm.getAnimalPens()) {
     		pen.getAnimal().increaseHappiness(3);
     		pen.getAnimal().increaseHealthiness(3);
     	}
@@ -81,7 +81,7 @@ public class FarmerActions {
      */
     public static void playWithAnimals(){
     	
-    	for(AnimalPen pen : Farm.AnimalPens) {
+    	for(AnimalPen pen : Farm.getAnimalPens()) {
     		pen.getAnimal().increaseHappiness(2);
     	}
     	remainingActions -= 1;
@@ -91,9 +91,9 @@ public class FarmerActions {
      * Increases farmCondition, uses an action
      */
     public static void tendToFarm(){
-        Farm.farmCondition += 0.5;
-        if (Farm.farmCondition > 1)
-            Farm.farmCondition = 1;
+        Farm.alterFarmCondition(0.5);
+        if (Farm.getFarmCondition() > 1)
+            Farm.setFarmCondition(1.0);
         remainingActions--;
     }
 

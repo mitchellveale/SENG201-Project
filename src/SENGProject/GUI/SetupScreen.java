@@ -1,3 +1,8 @@
+package SENGProject.GUI;
+
+import SENGProject.Farm.Farm;
+import SENGProject.Farm.FarmType;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;

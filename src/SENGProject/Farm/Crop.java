@@ -1,3 +1,5 @@
+package SENGProject.Farm;
+
 /**
  * A class which represents a crop
  * @author Ryan Bellamy and Mitchell Veale

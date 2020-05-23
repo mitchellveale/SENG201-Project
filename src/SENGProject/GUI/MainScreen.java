@@ -1,3 +1,8 @@
+package SENGProject.GUI;
+
+import SENGProject.Farm.Farm;
+import SENGProject.Farm.FarmerActions;
+
 import javax.swing.*;
 import java.awt.*;
 /**

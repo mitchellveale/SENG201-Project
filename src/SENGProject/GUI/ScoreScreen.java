@@ -1,3 +1,7 @@
+package SENGProject.GUI;
+
+import SENGProject.Farm.Farm;
+
 import javax.swing.*;
 
 /**

@@ -1,3 +1,5 @@
+package SENGProject.GUI;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -49,7 +51,7 @@ public class Resources {
     public Resources(){
         Font newFont;
         try {
-            File font_file = new File("res/HVD_Poster.ttf");
+            File font_file = new File("resources/HVD_Poster.ttf");
             Font unsizedFont = Font.createFont(Font.TRUETYPE_FONT, font_file);
             newFont = unsizedFont.deriveFont(20f);
         }catch (Exception e){
@@ -57,27 +59,27 @@ public class Resources {
             newFont = new Font("Algerian", Font.BOLD, GUIGame.scaled(40));
         }
         font = newFont;
-        setupBackground = new ImageIcon(scaledImage("res/Setup Background.png"));
-        borderImage = new ImageIcon(scaledImage("res/Border.png"));
-        farmBackground = new ImageIcon(scaledImage("res/Farm Background.png"));
-        textFieldBackground = new ImageIcon(scaledImage("res/TextFieldBackground.png"));
-        beginButtonBackground = new ImageIcon((scaledImage("res/Begin Button Background.png")));
-        farmLandscape = new ImageIcon((scaledImage("res/Farm Landscape.png")));
-        farmhouse = new ImageIcon((scaledImage("res/Farm House.png")));
-        barn = new ImageIcon((scaledImage("res/Barn.png")));
-        pathTracks = new ImageIcon((scaledImage("res/Path Tracks.png")));
-        store = new ImageIcon((scaledImage("res/Store.png")));
-        fertilizedCropField = new ImageIcon((scaledImage("res/Fertilized Crop Field.png")));
-        unfertilizedCropField = new ImageIcon((scaledImage("res/Unfertilized Crop Field.png")));
-        cowPen = new ImageIcon((scaledImage("res/Cow Pen.png")));
-        chickenPen = new ImageIcon((scaledImage("res/Chicken Pen.png")));
-        pigPen = new ImageIcon((scaledImage("res/Pig Pen.png")));
-        wheat = new ImageIcon((scaledImage("res/Wheat.png")));
-        corn = new ImageIcon((scaledImage("res/Corn.png")));
-        soybean = new ImageIcon((scaledImage("res/Soybeans.png")));
-        beet = new ImageIcon((scaledImage("res/Beets.png")));
-        kale = new ImageIcon((scaledImage("res/Kale.png")));
-        potato = new ImageIcon((scaledImage("res/Potatos.png")));
+        setupBackground = new ImageIcon(scaledImage("resources/Setup Background.png"));
+        borderImage = new ImageIcon(scaledImage("resources/Border.png"));
+        farmBackground = new ImageIcon(scaledImage("resources/Farm Background.png"));
+        textFieldBackground = new ImageIcon(scaledImage("resources/TextFieldBackground.png"));
+        beginButtonBackground = new ImageIcon((scaledImage("resources/Begin Button Background.png")));
+        farmLandscape = new ImageIcon((scaledImage("resources/Farm Landscape.png")));
+        farmhouse = new ImageIcon((scaledImage("resources/Farm House.png")));
+        barn = new ImageIcon((scaledImage("resources/Barn.png")));
+        pathTracks = new ImageIcon((scaledImage("resources/Path Tracks.png")));
+        store = new ImageIcon((scaledImage("resources/Store.png")));
+        fertilizedCropField = new ImageIcon((scaledImage("resources/Fertilized Crop Field.png")));
+        unfertilizedCropField = new ImageIcon((scaledImage("resources/Unfertilized Crop Field.png")));
+        cowPen = new ImageIcon((scaledImage("resources/Cow Pen.png")));
+        chickenPen = new ImageIcon((scaledImage("resources/Chicken Pen.png")));
+        pigPen = new ImageIcon((scaledImage("resources/Pig Pen.png")));
+        wheat = new ImageIcon((scaledImage("resources/Wheat.png")));
+        corn = new ImageIcon((scaledImage("resources/Corn.png")));
+        soybean = new ImageIcon((scaledImage("resources/Soybeans.png")));
+        beet = new ImageIcon((scaledImage("resources/Beets.png")));
+        kale = new ImageIcon((scaledImage("resources/Kale.png")));
+        potato = new ImageIcon((scaledImage("resources/Potatos.png")));
 
         primaryColor = new Color(151, 111, 41);
         secondaryColor = new Color(114, 72, 8);

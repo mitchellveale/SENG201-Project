@@ -1,3 +1,5 @@
+package SENGProject.Farm;
+
 /**
  * An Enum which represents an item used in gameplay
  * @author Mitchell Veale and Ryan Bellamy 

@@ -1,3 +1,5 @@
+package SENGProject.Farm;
+
 /**
  * An Enum which represents the Farms type and therefore its unique abilities
  * @author Mitchell Veale and Ryan Bellamy

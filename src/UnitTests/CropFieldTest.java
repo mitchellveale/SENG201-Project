@@ -1,3 +1,8 @@
+package UnitTests;
+
+import SENGProject.Farm.Crop;
+import SENGProject.Farm.Farm;
+import SENGProject.Farm.FarmType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -1,3 +1,5 @@
+package SENGProject.Farm;
+
 import java.util.Random;
 /**
  * A class which represents a Farm

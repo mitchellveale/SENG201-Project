@@ -1,3 +1,7 @@
+package SENGProject.TextGame;
+
+import SENGProject.Farm.*;
+
 import java.util.Scanner;
 import java.util.regex.Pattern;
 

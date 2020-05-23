@@ -1,3 +1,8 @@
+package SENGProject;
+
+import SENGProject.GUI.GUIGame;
+import SENGProject.TextGame.TextGame;
+
 /**
  * Highest level of control for the game.
  * Decides whether to run GUI or CLI

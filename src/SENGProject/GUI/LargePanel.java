@@ -1,3 +1,9 @@
+package SENGProject.GUI;
+
+import SENGProject.Farm.Crop;
+import SENGProject.Farm.Farm;
+import SENGProject.Farm.Item;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 /**

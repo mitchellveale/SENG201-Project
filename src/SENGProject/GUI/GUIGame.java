@@ -1,3 +1,5 @@
+package SENGProject.GUI;
+
 import javax.swing.*;
 import java.awt.*;
 

@@ -1,3 +1,5 @@
+package SENGProject.Farm;
+
 /**
  * A class which contains the different actions a Farmer can perform
  * @author Mitchell Veale and Ryan Bellamy

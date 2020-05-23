@@ -1,3 +1,7 @@
+package SENGProject.GUI;
+
+import SENGProject.Farm.*;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 

@@ -391,9 +391,9 @@ public class SmallPanel extends JPanel{
     public void designateAsFeedPanel(AnimalPen animal){
         // JTextArea doesn't seem to have the ability to center text :(
         // also i hate this
-        JLabel line1 = new JLabel("Would you like to feed all of your animals");
-        JLabel line2 = new JLabel("hay (" + Item.HAY.getAmount() + ") or breeding compound (" + Item.BREEDING_COMPOUND.getAmount() + ")");
-        JLabel line3 = new JLabel("This uses an action");
+        JLabel line1 = new JLabel("Would you like to feed all of your");
+        JLabel line2 = new JLabel("animals hay (" + Item.HAY.getAmount() + ") or breeding compound");
+        JLabel line3 = new JLabel("(" + Item.BREEDING_COMPOUND.getAmount() + "). This uses an action");
         line1.setHorizontalAlignment(SwingConstants.CENTER);
         line2.setHorizontalAlignment(SwingConstants.CENTER);
         line3.setHorizontalAlignment(SwingConstants.CENTER);
@@ -470,18 +470,18 @@ public class SmallPanel extends JPanel{
     public void designateAsPlayPanel(AnimalPen animal){
         // JTextArea doesn't seem to have the ability to center text :(
         // also i hate this
-        JLabel line1 = new JLabel("Would you like to play all of your animals");
-        JLabel line2 = new JLabel("or give them all treats (you have " + Item.ANIMAL_TREATS.getAmount() + ")");
-        JLabel line3 = new JLabel("This uses an action");
+        JLabel line1 = new JLabel("Would you like to play with all of your");
+        JLabel line2 = new JLabel("animals or give them all treats");
+        JLabel line3 = new JLabel("(you have " + Item.ANIMAL_TREATS.getAmount() + ") This uses an action");
         line1.setHorizontalAlignment(SwingConstants.CENTER);
         line2.setHorizontalAlignment(SwingConstants.CENTER);
         line3.setHorizontalAlignment(SwingConstants.CENTER);
         line1.setBounds(GUIGame.scaled(0, 67, 345, 20));
         line2.setBounds(GUIGame.scaled(0, 87, 345, 20));
         line3.setBounds(GUIGame.scaled(0, 107, 345, 20));
-        line1.setFont(GUIGame.sizedFont(30f));
-        line2.setFont(GUIGame.sizedFont(30f));
-        line3.setFont(GUIGame.sizedFont(30f));
+        line1.setFont(GUIGame.sizedFont(28f));
+        line2.setFont(GUIGame.sizedFont(28f));
+        line3.setFont(GUIGame.sizedFont(28f));
         line1.setForeground(GUIGame.resources.secondaryColor);
         line2.setForeground(GUIGame.resources.secondaryColor);
         line3.setForeground(GUIGame.resources.secondaryColor);

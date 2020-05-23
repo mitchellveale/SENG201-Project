@@ -13,13 +13,14 @@ class FarmTest {
     void nextDay() {
         Farm.nextDay();
         assertEquals(2, Farm.getCurrentDay());
+        assertTrue(Farm.getFarmCondition() < 1);
     }
 
     @Test
     void useLottoTicket() {
         Item.LOTTO_TICKET.buy();
-        int money = Farm.money;
+        int money = Farm.getMoney();
         Farm.useLottoTicket();
-        assertTrue(Farm.money > money);
+        assertTrue(Farm.getMoney() > money);
     }
 }

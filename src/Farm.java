@@ -43,6 +43,7 @@ public class Farm {
         AnimalPens[1] = chickenPen;
         AnimalPens[2] = pigPen;
         currentDay = 1;
+        FarmerActions.resetActions();
         money = 1000;
         for(int i=0;i<=cropFields.length-1;i++) {
         	cropFields[i] = new CropField();

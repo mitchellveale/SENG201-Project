@@ -397,16 +397,21 @@ public class TextGame {
 	
 	private static void spreadFert(CropField o) {
 		if(FarmerActions.getRemainingActions()>0) {
-		if(Item.FERTILIZER.getAmount()>0) {
-			o.fertilize();
-			Item.FERTILIZER.use();
-		}
-		else {
-			System.out.println("You don't have enough");
-		}
-		}
+			if(o.isFertilized()) {
+				System.out.println("Field is already fertilized!");
+			}
+			else {
+		        if(Item.FERTILIZER.getAmount()>0) {
+			        o.fertilize();
+		        }
+		        else {
+			        System.out.println("You don't have enough");
+	    	    }
+		    }
+			}
 		else {System.out.println("No remaining actions!");}
 	}
+	
 	
 	private static void plantCrop(CropField o) {
 		Crop[] crops = Crop.values();

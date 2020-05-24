@@ -50,7 +50,7 @@ public enum Animal {
 		this.currentCount = i;
 	}
 	/**
-	 * Increases Happiness of Animal by i
+	 * Increases Happiness of Animal by i, but is bound by 10 
 	 * @param i Int that the happiness of an Animal is changed by
 	 */
 	public void increaseHappiness(int i) {
@@ -63,8 +63,8 @@ public enum Animal {
 		}
 	}
 	/**
-	 * Increases Healthiness of Animal by i
-	 * @param i Int hat the healthiness of an Animal is changed by
+	 * Increases Healthiness of Animal by i, but is bound by 10 
+	 * @param i Int that the healthiness of an Animal is changed by
 	 */
 	public void increaseHealthiness(int i) {
 		this.healthiness += i;
@@ -92,7 +92,7 @@ public enum Animal {
 	}
 	/**
 	 * 
-	 * @return Animal Happiness
+	 * @return Animal Healthiness
 	 */
 	public int getHealthiness() {
 		return healthiness;
@@ -113,7 +113,7 @@ public enum Animal {
 	}
 	/**
 	 * 
-	 * @return dailyIncome of Animal
+	 * @return dailyIncome of Animal, adjusted for happiness and healthiness
 	 */
 	public double getdailyIncome() {
 		return baseDailyIncome * ((happiness+healthiness)/10.0);

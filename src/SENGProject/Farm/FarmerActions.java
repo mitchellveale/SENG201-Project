@@ -42,8 +42,8 @@ public class FarmerActions {
 
     /**
      * Increases the growth multiplier, increases more if growthCompound is used, uses an action
-     * @param c
-     * @param growthCompound
+     * @param c A cropfield object
+     * @param growthCompound boolean describing if growth compound is being applied
      */
     public static void tendToCrop(CropField c, Boolean growthCompound){
         if (growthCompound) {
@@ -101,7 +101,7 @@ public class FarmerActions {
 
     /**
      * 
-     * @return remaining actions
+     * @return An int of the remaining actions for the day
      */
     public static int getRemainingActions() {
         return remainingActions;

@@ -18,6 +18,10 @@ public class MediumPanel extends JPanel{
 
     private final JLabel titleLabel;
 
+    /**
+     * @param previousPanel the previous panel to the new one
+     * @param title the title of the panel
+     */
     public MediumPanel(JPanel previousPanel, String title){
         super();
         this.previousPanel = previousPanel;
@@ -36,6 +40,10 @@ public class MediumPanel extends JPanel{
         add(titleLabel);
     }
 
+    /**
+     * designates a panel for the cropfield
+     * @param cropField The cropField being accessed 
+     */
     public void designateAsCropFieldPanel(int cropField){
         CropField thisCropField = Farm.getCropFields()[cropField];
         JLabel plantedCropLabel = new JLabel();
@@ -168,6 +176,9 @@ public class MediumPanel extends JPanel{
         });
     }
 
+    /**
+     *  designates as the store panel
+     */
     public void designateAsStorePanel(){
         JButton buySeedsButton = new JButton("Buy seeds");
         JButton buyItemsButton = new JButton("Buy items");
@@ -223,6 +234,9 @@ public class MediumPanel extends JPanel{
         });
     }
 
+    /**
+     * designates as the panel for purchasing animals
+     */
     public void designateAsBuyAnimalsPanel(){
         JButton buyCowsButton = new JButton("Buy cows");
         JButton buyPigsButton = new JButton("Buy pigs");
@@ -276,6 +290,9 @@ public class MediumPanel extends JPanel{
         });
     }
 
+    /**
+     * designates as the panel for the house
+     */
     public void designateAsHousePanel(){
         JButton tendToFarmButton = new JButton("Tend to farm land (" + (int)(Farm.getFarmCondition() * 100) + "%)");
         JButton nextDayButton = new JButton((Farm.isFinalDay() ? "Finish Game" : "Next day"));
@@ -334,6 +351,10 @@ public class MediumPanel extends JPanel{
         });
     }
 
+    /**
+     * designates as the animalPen panel
+     * @param animal an animalPen object 
+     */
     public void designateAsAnimalPenPanel(AnimalPen animal){
         JLabel amountLabel = new JLabel("Amount: " + animal.getAnimal().getCurrentCount() + "/" + animal.getCapacity());
         JLabel happinessLabel = new JLabel("Happiness: " + animal.getAnimal().getHappiness() + "/10");
@@ -404,6 +425,9 @@ public class MediumPanel extends JPanel{
         });
     }
 
+    /**
+     * @return The previous panel 
+     */
     public JPanel getPreviousPanel() {
         return previousPanel;
     }

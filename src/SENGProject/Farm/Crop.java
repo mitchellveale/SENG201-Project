@@ -44,7 +44,7 @@ public enum Crop{
 
     /**
      * 
-     * @return The Crops name
+     * @return A String of the Crops name
      */
     public String getName() {
         return name;
@@ -60,7 +60,7 @@ public enum Crop{
     
     /**
      * 
-     * @return Crops selling price
+     * @return An int of the Crops selling price
      */
     public int getSellPrice() {
         return sellPrice;
@@ -68,7 +68,7 @@ public enum Crop{
     
     /**
      * 
-     * @return Base yield of a crop
+     * @return An int of the base yield of a crop
      */
     public int getBaseYield() {
         return baseYield;
@@ -76,7 +76,7 @@ public enum Crop{
     
     /**
      * 
-     * @return Base growing time of a crop
+     * @return An int of the base growing time of a crop
      */
     public int getBaseGrowTime() {
         return baseGrowTime;
@@ -84,7 +84,7 @@ public enum Crop{
     
     /**
      * 
-     * @return Amount of health boost animals get upon harvest of crop
+     * @return An int of the amount of health boost animals get upon harvest of crop
      */
     public int getHealthBoost() {
         return healthBoost;
@@ -100,7 +100,7 @@ public enum Crop{
     
     /**
      * 
-     * @return A description of abilities should a crop have special abilities
+     * @return A String of the description of abilities, should a crop have special abilities
      */
     public String abilities() {
         String ans = "";
@@ -113,7 +113,7 @@ public enum Crop{
     
     /**
      * 
-     * @return Standard description of a crop
+     * @return A String of the standard description of a crop
      */
     public String description(){
         return "Grows in " + baseGrowTime + " day(s)\n    Sells for $" + sellPrice * baseYield;
@@ -129,7 +129,7 @@ public enum Crop{
     
     /**
      * 
-     * @return Number of seed for a crop type
+     * @return An int of the number of seeds for a crop type
      */
     public int getSeedAmount() {
         return seedAmount;

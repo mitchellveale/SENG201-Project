@@ -568,8 +568,4 @@ public class SmallPanel extends JPanel{
             GUIGame.deletePanel(thisPanel, previousPanel);
         });
     }
-
-    public JPanel getPreviousPanel() {
-        return previousPanel;
-    }
 }

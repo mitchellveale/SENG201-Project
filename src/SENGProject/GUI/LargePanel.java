@@ -165,7 +165,6 @@ public class LargePanel extends JPanel{
         cropName.setBounds(GUIGame.scaled(5, 0, 77, 20));
         cropName.setForeground(GUIGame.resources.tertiaryColor);
         cropName.setFont(GUIGame.sizedFont(30f));
-        //cropName.setHorizontalAlignment(SwingConstants.CENTER);
         cropName.setVerticalAlignment(SwingConstants.CENTER);
         panel.add(cropName);
 

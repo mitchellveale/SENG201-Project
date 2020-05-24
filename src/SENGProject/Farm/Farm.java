@@ -69,8 +69,9 @@ public class Farm {
         	pen.getAnimal().increaseHappiness(-1);
         	pen.getAnimal().increaseHealthiness(-1);
         }
-        farmCondition = ((farmCondition * 100)-20)/100;
+        money += farmType.getExtraCash();
 
+        farmCondition = ((farmCondition * 100)-20)/100;
         if (farmCondition < 0)
             farmCondition = 0;
 

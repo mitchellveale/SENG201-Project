@@ -403,8 +403,4 @@ public class MediumPanel extends JPanel{
             GUIGame.deletePanel(thisPanel, previousPanel);
         });
     }
-
-    public JPanel getPreviousPanel() {
-        return previousPanel;
-    }
 }

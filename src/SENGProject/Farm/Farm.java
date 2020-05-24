@@ -98,7 +98,7 @@ public class Farm {
     }
 
     /**
-     * @return true if the current day is the final day of the game else false
+     * @return true if the current day is the final day of the game, else false
      */
     public static boolean isFinalDay(){
         return (currentDay == gameLength);
@@ -106,7 +106,7 @@ public class Farm {
     
     /**
      * 
-     * @return The current day
+     * @return An int of the current day
      */
     public static int getCurrentDay() {
     	return currentDay;
@@ -114,7 +114,7 @@ public class Farm {
     
     /**
      * 
-     * @return The length of the game in days
+     * @return An int of the length of the game in days
      */
     public static int getGameLength() {
     	return gameLength;
@@ -122,7 +122,7 @@ public class Farm {
     
     /**
      * 
-     * @return The final score of the game
+     * @return An int of the final score of the game
      */
     public static int getScore() {
         int a = 0;
@@ -163,7 +163,7 @@ public class Farm {
    
    /**
     * 
-    * @return Farms money
+    * @return An int of the Farms money
     */
    public static int getMoney() {
 	   return money;

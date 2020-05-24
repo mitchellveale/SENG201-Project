@@ -13,6 +13,11 @@ import javax.swing.border.LineBorder;
 public class SmallPanel extends JPanel{
     private final JPanel previousPanel;
 
+    /**
+     * creates a small panel
+     * @param previousPanel the previous panel
+     * @param title The title of the panel
+     */
     public SmallPanel(JPanel previousPanel, String title){
         super();
         this.previousPanel = previousPanel;
@@ -33,8 +38,6 @@ public class SmallPanel extends JPanel{
 
     public void designateAsTendToCropPanel(int cropField){
         CropField thisCropField = Farm.getCropFields()[cropField];
-        // JTextArea doesn't seem to have the ability to center text :(
-        // also i hate this
         JLabel line1 = new JLabel("Would you like to use water or");
         JLabel line2 = new JLabel("Growth compound? (you have " + Item.GROWTH_COMPOUND.getAmount() + ")");
         JLabel line3 = new JLabel("This uses an action");
@@ -125,6 +128,10 @@ public class SmallPanel extends JPanel{
         });
     }
 
+    /**
+     * designates a panel for harvesting crops
+     * @param cropField a cropField object
+     */
     public void designateAsHarvestCropsPanel(int cropField){
         // i hate this
         JLabel line1 = new JLabel("Would you like to harvest all");
@@ -193,6 +200,10 @@ public class SmallPanel extends JPanel{
         });
     }
 
+    /**
+     * designates a panel to an animalPen in the store
+     * @param animal the animal in the store
+     */
     public void designateAsBuyAnimalsPanel(AnimalPen animal){
         JLabel infoLabel = new JLabel("Buy 0 " + animal.getAnimal().getName() + "s for $0?");
         infoLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -257,6 +268,9 @@ public class SmallPanel extends JPanel{
         });
     }
 
+    /**
+     * Designates a panel to inventory 
+     */
     public void designateAsInventoryPanel(){
         JButton seedsButton = new JButton("Seeds");
         JButton itemsButton = new JButton("Items");
@@ -295,7 +309,9 @@ public class SmallPanel extends JPanel{
         });
     }
 
-
+    /**
+     * designates tend to farm a panel
+     */
     public void designateAsTendToFarmPanel(){
         // i hate this, but this seems like the easiest way to get multiple *centered* lines of text
         JLabel line1 = new JLabel("Do you want to tend to your");
@@ -363,6 +379,9 @@ public class SmallPanel extends JPanel{
         });
     }
 
+    /**
+     * designate as panel for lotto ticket usage 
+     */
     public void designateAsLottoTicketPanel(){
         JLabel label = new JLabel("You won $" + Farm.useLottoTicket());
         MainScreen.update();
@@ -392,9 +411,11 @@ public class SmallPanel extends JPanel{
         });
     }
 
+    /**
+     * designate as feeding panel
+     * @param animal The animalPen being used
+     */
     public void designateAsFeedPanel(AnimalPen animal){
-        // JTextArea doesn't seem to have the ability to center text :(
-        // also i hate this
         JLabel line1 = new JLabel("Would you like to feed all of your");
         JLabel line2 = new JLabel("animals hay (" + Item.HAY.getAmount() + ") or breeding compound");
         JLabel line3 = new JLabel("(" + Item.BREEDING_COMPOUND.getAmount() + "). This uses an action");
@@ -471,9 +492,11 @@ public class SmallPanel extends JPanel{
         });
     }
 
+    /**
+     * designate as panel for playing with animals
+     * @param animal animal being used 
+     */
     public void designateAsPlayPanel(AnimalPen animal){
-        // JTextArea doesn't seem to have the ability to center text :(
-        // also i hate this
         JLabel line1 = new JLabel("Would you like to play with all of your");
         JLabel line2 = new JLabel("animals or give them all treats");
         JLabel line3 = new JLabel("(you have " + Item.ANIMAL_TREATS.getAmount() + ") This uses an action");
@@ -548,6 +571,9 @@ public class SmallPanel extends JPanel{
         });
     }
 
+    /**
+     * designate as panel for displaying no actions error
+     */
     public void designateAsNoActionsPanel(){
         JLabel warningLabel = new JLabel("You have no actions remaining");
         warningLabel.setHorizontalAlignment(SwingConstants.CENTER);

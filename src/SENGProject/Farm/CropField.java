@@ -17,11 +17,10 @@ public class CropField {
     private boolean fertilized = false;
 
     /**
-     *  Plants a crop in the CropField
+     *  Plants a crop in the CropField, assuming there is enough seed 
      * @param crop The crop object to be planted in the CropField
      */
     public void PlantCrop(Crop crop){
-        // Assumes seed amount has been checked in calling method
         amount = 0;
         growth = 0;
         crop.plant();
@@ -99,14 +98,11 @@ public class CropField {
         if (plantedCrop == null)
             return false;
         return (growth >= actualGrowTime());
-    	//if(growth == 0) {return false;}
-    	//else {
-        //return (growth >= actualGrowTime());}
     }
 
     /**
      * 
-     * @return the current percentage of growth
+     * @return the current percentage of growth undergone
      */
     public double getGrowthPercent(){
         return (double) growth / actualGrowTime();
@@ -114,7 +110,7 @@ public class CropField {
 
     /**
      * 
-     * @return The time to maturity adjusted by the growth multiplier
+     * @return an int of the the time to maturity adjusted by the growth multiplier
      */
     private int actualGrowTime()
     {
@@ -127,7 +123,7 @@ public class CropField {
 
     /**
      * 
-     * @return remaining time to maturity
+     * @return An int of the remaining time to maturity
      */
     public int getRemainingGrowTime(){
         return (actualGrowTime() - growth);
@@ -150,14 +146,16 @@ public class CropField {
     }
 
     /**
-     * Sets fertilized to true, decrements remaining amount
+     * Sets fertilized to true, decrements remaining amount, all assuming the field is empty
      */
     public void fertilize(){
-        //This assumes that a check for if the field is empty is done elsewhere
         fertilized = true;
         Item.FERTILIZER.use();
     }
     
+    /**
+     * @return The string representation of a crop field
+     */
     public String toString() {
     	if(plantedCrop == null) {
     		return "Currently planted: None\nFertilized: " + fertilized+"\n";

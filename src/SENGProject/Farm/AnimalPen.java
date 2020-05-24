@@ -20,6 +20,9 @@ public class AnimalPen {
 		this.capacity = (int)Math.round(baseCapacity * Farm.getFarmType().getAnimalPenSizeMultiplier());
 	}
 	
+	/**
+	 * @return The String representation of an AnimalPen 
+	 */
 	public String toString() {
 		return holdingAnimal.getName() + " (" +
 			   holdingAnimal.getCurrentCount() + ")  " +

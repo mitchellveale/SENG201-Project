@@ -50,6 +50,9 @@ public class LargePanel extends JPanel{
         add(titleLabel);
     }
 
+    /**
+     * designates each cropfield a panel
+     */
     public void designateAsPlantPanel(int cropField){
         for (int i = 0; i < 6; i++){
             JPanel newPanel = cropOption(Crop.values()[i], cropField);
@@ -59,6 +62,9 @@ public class LargePanel extends JPanel{
 
     }
 
+    /**
+     * designates each cropfield a panel for the store
+     */
     public void designateAsBuySeedsPanel(){
         for (int i = 0; i < 6; i++){
             JPanel newPanel = buyCropOption(Crop.values()[i], true);
@@ -67,6 +73,9 @@ public class LargePanel extends JPanel{
         }
     }
 
+    /**
+     * designates each item a panel for the store
+     */
     public void designateAsBuyItemsPanel(){
         for (int i = 0; i < 6; i++){
             JPanel newPanel = buyItemOption(Item.values()[i], true);
@@ -75,6 +84,9 @@ public class LargePanel extends JPanel{
         }
     }
 
+    /**
+     * designates each seed type a panel for the store
+     */
     public void designateAsViewSeedsPanel(){
         for (int i = 0; i < 6; i++){
             JPanel newPanel = buyCropOption(Crop.values()[i], false);
@@ -83,6 +95,9 @@ public class LargePanel extends JPanel{
         }
     }
 
+    /**
+     * designates each item a panel for the store
+     */
     public void designateAsViewItemsPanel(){
         for (int i = 0; i < 6; i++){
             JPanel newPanel = buyItemOption(Item.values()[i], false);

@@ -24,7 +24,7 @@ public class GUIGame {
 
     /**
      * Starts the game
-     * @param scale
+     * @param scale A double that scales the size of the window
      */
     public static void startGame(double scale){
         GUIGame.scale = scale;
@@ -74,48 +74,76 @@ public class GUIGame {
         setActivePanel(MainScreen.getPanel());
     }
 
-    
+    /**
+     * @return The scaled font
+     */
     public static Font sizedFont(float size){
-        // I screwed up when making the panels, this was the easiest way to fix it
         return resources.font.deriveFont(scaled(size) / 1.69f);
     }
 
+    /**
+     * @return An int of the scaled value 
+     */
     public static int scaled(int value){
         return (int)(value * scale);
     }
 
+    /**
+     * @return A float of the scaled value 
+     */
     public static float scaled(float value){
         return (float)(scaled((int) value));
     }
 
+    /**
+     * @return A scaled rectangle 
+     */
     public static Rectangle scaled(int x, int y, int width, int height){
         return new Rectangle(scaled(x), scaled(y), scaled(width), scaled(height));
     }
 
+    /**
+     * removes a panel and sets the next active panel
+     */
     public static void deletePanel(JPanel panel, JPanel newActive){
         panel.setVisible(false);
         pane.remove(panel);
         setActivePanel(newActive);
     }
 
+    /**
+     * Adds a panel and sets it to active 
+     */
     public static void addPanel(JPanel panel){
         pane.add(panel);
         pane.moveToFront(panel);
         setActivePanel(panel);
     }
 
+    /**
+     * @return An int of the width
+     */
     public static int getWidth() {
         return width;
     }
 
+    /**
+     * @return An int of the height
+     */
     public static int getHeight() {
         return height;
     }
 
+    /**
+     * @return the active panel object
+     */
     public static JPanel getActivePanel() {
         return activePanel;
     }
 
+    /**
+     * Sets the active panel to the parameter
+     */
     public static void setActivePanel(JPanel activePanel) {
         GUIGame.activePanel = activePanel;
     }

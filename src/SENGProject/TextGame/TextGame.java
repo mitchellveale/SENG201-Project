@@ -5,6 +5,9 @@ import SENGProject.Farm.*;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+/**
+ * Contains all methods relating to the CLI 
+ */
 public class TextGame {
 
 	static Scanner scan = new Scanner(System.in);

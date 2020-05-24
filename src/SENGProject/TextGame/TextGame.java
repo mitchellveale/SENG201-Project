@@ -289,14 +289,12 @@ public class TextGame {
 	
 	private static void viewCropStatus() {
 		boolean exit = false;
-		int i = 1;
 		while(!exit) {
-		for(CropField field : Farm.getCropFields()) {
+		for(int i = 1;i <= Farm.getCropFields().length; i++) {
 			System.out.println(i +" - Crop Field #" + i);
-			System.out.println(field);
-			i++;
+			System.out.println(Farm.getCropFields()[i-1]);
 		}
-		System.out.println(i + " - back");
+		System.out.println(Farm.getCropFields().length +1 + " - back");
 		String doNext = scan.next();
 		int cropNumber = (Pattern.matches("[0-9]+", doNext)) ? Integer.parseInt(doNext) : 0;
 		if(cropNumber == 7) {

@@ -2,3 +2,7 @@
 javadoc/**
 out/**
 SENG201 Project.iml
+.classpath
+.project
+SENG201 Project.eml
+Seng201 Project.userlibraries

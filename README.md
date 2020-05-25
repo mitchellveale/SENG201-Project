@@ -6,6 +6,14 @@ Program Arguments:
     -gui    |  boolean  |  -gui false  |    true     |
    -scale   |  double   |  -scale 1.5  |     1.0     |
 
+How to play GUI:
+Click on any crop field to view its status
+Click on any animal pen to view its status
+Click on the barn to view your inventory
+Click on the store to view the store
+click on the house to go to the next day, tend to farm land or use a lotto ticket
+
+
 How to compile program
 1. Navigate to your folder containing the 'src' and 'resources' folder through command line
 2. Create a 'classes' folder and then run the command 'javac -d classes -sourcepath src src/SENGProject/GameManager.java'

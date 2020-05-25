@@ -266,7 +266,7 @@ public class TextGame {
 	}
 	
 	private static void playAnimals() {
-		if(FarmerActions.getRemainingActions() < 0) {
+		if(FarmerActions.getRemainingActions() <= 0) {
 			System.out.println("NO Actions Remaining!");
 		}
 		else if(Farm.getAnimalPens()[0].getAnimal().getHappiness() == 10) { // As all animals have the same happiness

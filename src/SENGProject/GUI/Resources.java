@@ -6,6 +6,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Objects;
 
 /**
@@ -51,8 +53,8 @@ public class Resources {
     public Resources(){
         Font newFont;
         try {
-            File font_file = new File("resources/HVD_Poster.ttf");
-            Font unsizedFont = Font.createFont(Font.TRUETYPE_FONT, font_file);
+            InputStream is = getClass().getResourceAsStream("resources/HVD_Poster.ttf");
+            Font unsizedFont = Font.createFont(Font.TRUETYPE_FONT, is);
             newFont = unsizedFont.deriveFont(20f);
         }catch (Exception e){
             System.out.println("WARNING: Unable to locate game font, using backup font instead. Some elements may look a bit weird");
@@ -90,7 +92,8 @@ public class Resources {
     private Image scaledImage(String path){
         BufferedImage bufferedImage = null;
         try {
-            bufferedImage = ImageIO.read(new File(path));
+            InputStream in = getClass().getResourceAsStream(path);
+            bufferedImage = ImageIO.read(in);
         } catch (IOException e) {
             System.out.println("Something went wrong when loading image '" + path + "'. Stack trace printed below\n\n");
             e.printStackTrace();
